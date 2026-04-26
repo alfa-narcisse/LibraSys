@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.librasys.controller.MainController" styleClass="root-pane">
+    <top>
+        <VBox spacing="12" styleClass="top-zone">
+            <padding>
+                <Insets top="20" right="24" bottom="20" left="24"/>
+            </padding>
+            <Label text="LibraSys" styleClass="app-title"/>
+            <Label text="Systeme de gestion de bibliotheque moderne" styleClass="app-subtitle"/>
+            <HBox spacing="16">
+                <VBox styleClass="metric-card" spacing="6">
+                    <Label text="Titres en catalogue" styleClass="metric-title"/>
+                    <Label fx:id="totalTitlesLabel" text="0" styleClass="metric-value"/>
+                </VBox>
+                <VBox styleClass="metric-card" spacing="6">
+                    <Label text="Exemplaires disponibles" styleClass="metric-title"/>
+                    <Label fx:id="totalCopiesLabel" text="0" styleClass="metric-value"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="16" styleClass="content-zone">
+            <padding>
+                <Insets top="20" right="24" bottom="24" left="24"/>
+            </padding>
+
+            <HBox spacing="10">
+                <TextField fx:id="titleField" promptText="Titre" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="authorField" promptText="Auteur" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="isbnField" promptText="ISBN" HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="categoryBox" promptText="Categorie" prefWidth="170"/>
+                <TextField fx:id="copiesField" promptText="Exemplaires" prefWidth="120"/>
+                <Button text="Ajouter" onAction="#onAddBook" styleClass="primary-button"/>
+                <Button text="Supprimer" onAction="#onRemoveSelectedBook" styleClass="danger-button"/>
+            </HBox>
+
+            <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="books-table">
+                <columns>
+                    <TableColumn fx:id="titleColumn" text="Titre" prefWidth="270"/>
+                    <TableColumn fx:id="authorColumn" text="Auteur" prefWidth="200"/>
+                    <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="200"/>
+                    <TableColumn fx:id="categoryColumn" text="Categorie" prefWidth="150"/>
+                    <TableColumn fx:id="copiesColumn" text="Exemplaires" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
