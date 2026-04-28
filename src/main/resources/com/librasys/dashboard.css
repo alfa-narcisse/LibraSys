@@ -1,0 +1,200 @@
+.dashboard-root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+.sidebar {
+    -fx-background-color: #1a237e;
+}
+
+.brand-box {
+    -fx-padding: 0 0 10 0;
+}
+
+.brand-circle {
+    -fx-min-width: 46;
+    -fx-min-height: 46;
+    -fx-max-width: 46;
+    -fx-max-height: 46;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 23;
+}
+
+.brand-main {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 19px;
+    -fx-font-weight: 700;
+}
+
+.brand-sub {
+    -fx-text-fill: #d9ddff;
+    -fx-font-size: 12px;
+}
+
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e4ff;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-alignment: center-left;
+    -fx-pref-width: 210;
+    -fx-padding: 10 14;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.menu-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu-btn-selected {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: #ffffff;
+}
+
+.content-area {
+    -fx-background-color: #f4f4f4;
+}
+
+.header-title {
+    -fx-text-fill: #1b1f34;
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+}
+
+.pill {
+    -fx-padding: 6 12;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.pill-info {
+    -fx-background-color: #e4e8ff;
+    -fx-text-fill: #1a237e;
+}
+
+.pill-alert {
+    -fx-background-color: #ffe3e3;
+    -fx-text-fill: #b71c1c;
+}
+
+.stat-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-color: #e8e9f1;
+    -fx-border-radius: 14;
+    -fx-padding: 14;
+    -fx-spacing: 6;
+}
+
+.stat-title {
+    -fx-text-fill: #5f6580;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.stat-value {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+}
+
+.stat-sub {
+    -fx-text-fill: #7e849f;
+    -fx-font-size: 12px;
+}
+
+.panel-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-color: #e8e9f1;
+    -fx-border-radius: 14;
+    -fx-padding: 14;
+}
+
+.panel-title {
+    -fx-text-fill: #1f2544;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+.chart-plot-background {
+    -fx-background-color: #fafbff;
+}
+
+.chart-bar {
+    -fx-bar-fill: #1a237e;
+}
+
+.axis-label,
+.axis {
+    -fx-tick-label-fill: #616a92;
+}
+
+.popular-label {
+    -fx-text-fill: #4b5378;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.popular-progress {
+    -fx-pref-height: 8;
+}
+
+.popular-progress .track {
+    -fx-background-color: #eceef8;
+    -fx-background-radius: 6;
+}
+
+.popular-progress .bar {
+    -fx-background-color: #1a237e;
+    -fx-background-radius: 6;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #e8e9f1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f0f2fa;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #414a72;
+    -fx-font-weight: 700;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: #e9edff;
+}
+
+.loans-card .table-cell {
+    -fx-padding: 8 10;
+}
+
+.status-chip {
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+.status-en-cours {
+    -fx-background-color: #dff7e7;
+    -fx-text-fill: #1e7a43;
+}
+
+.status-retard {
+    -fx-background-color: #ffe4e4;
+    -fx-text-fill: #b3261e;
+}

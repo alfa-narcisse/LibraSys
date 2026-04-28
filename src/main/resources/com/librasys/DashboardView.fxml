@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.librasys.controller.DashboardController" styleClass="dashboard-root">
+    <left>
+        <VBox prefWidth="250" styleClass="sidebar">
+            <padding>
+                <Insets top="26" right="20" bottom="26" left="20"/>
+            </padding>
+            <spacing>16</spacing>
+
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="brand-box">
+                <StackPane styleClass="brand-circle">
+                    <ImageView fx:id="sidebarLogoImageView" fitHeight="34" fitWidth="34" preserveRatio="true" pickOnBounds="true"/>
+                </StackPane>
+                <VBox spacing="1">
+                    <Label text="LibraSys" styleClass="brand-main"/>
+                    <Label text="Bibliotheque" styleClass="brand-sub"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="8" styleClass="menu-box">
+                <Button fx:id="dashboardMenuButton" text="Tableau de bord" styleClass="menu-btn menu-btn-selected" onAction="#showDashboard"/>
+                <Button fx:id="studentsMenuButton" text="Etudiants" styleClass="menu-btn" onAction="#showStudents"/>
+                <Button text="Livres &amp; Rayons" styleClass="menu-btn"/>
+                <Button text="Prets/Retours" styleClass="menu-btn"/>
+                <Button text="Rapports" styleClass="menu-btn"/>
+                <Button text="Parametres" styleClass="menu-btn"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox fx:id="mainContentArea" styleClass="content-area" spacing="16">
+            <padding>
+                <Insets top="18" right="22" bottom="18" left="22"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Bonjour, Sarah — 18 avril 2026" styleClass="header-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="84 prets actifs" styleClass="pill pill-info"/>
+                <Label text="7 retards" styleClass="pill pill-alert"/>
+            </HBox>
+
+            <HBox spacing="12">
+                <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
+                    <Label text="Total livres" styleClass="stat-title"/>
+                    <Label text="3 842" styleClass="stat-value"/>
+                    <Label text="2 910 disponibles" styleClass="stat-sub"/>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
+                    <Label text="Etudiants" styleClass="stat-title"/>
+                    <Label text="1 207" styleClass="stat-value"/>
+                    <Label text="+12 ce mois" styleClass="stat-sub"/>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
+                    <Label text="Prets du jour" styleClass="stat-title"/>
+                    <Label text="18" styleClass="stat-value"/>
+                    <Label text="11 retours" styleClass="stat-sub"/>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
+                    <Label text="Retards" styleClass="stat-title"/>
+                    <Label text="7" styleClass="stat-value"/>
+                    <Label text="A traiter" styleClass="stat-sub"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="12" VBox.vgrow="ALWAYS">
+                <VBox HBox.hgrow="ALWAYS" styleClass="panel-card" spacing="10">
+                    <Label text="Activite mensuelle (prets)" styleClass="panel-title"/>
+                    <BarChart fx:id="monthlyActivityChart" categoryGap="24" barGap="6" styleClass="activity-chart" VBox.vgrow="ALWAYS">
+                        <xAxis>
+                            <CategoryAxis/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+
+                <VBox prefWidth="300" styleClass="panel-card" spacing="12">
+                    <Label text="Livres populaires" styleClass="panel-title"/>
+
+                    <VBox spacing="6">
+                        <Label text="Algorithmique" styleClass="popular-label"/>
+                        <ProgressBar progress="0.86" styleClass="popular-progress"/>
+                    </VBox>
+                    <VBox spacing="6">
+                        <Label text="Droit civil" styleClass="popular-label"/>
+                        <ProgressBar progress="0.76" styleClass="popular-progress"/>
+                    </VBox>
+                    <VBox spacing="6">
+                        <Label text="Chimie org." styleClass="popular-label"/>
+                        <ProgressBar progress="0.63" styleClass="popular-progress"/>
+                    </VBox>
+                    <VBox spacing="6">
+                        <Label text="Physique" styleClass="popular-label"/>
+                        <ProgressBar progress="0.58" styleClass="popular-progress"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="8" styleClass="panel-card loans-card">
+                <Label text="Prets recents" styleClass="panel-title"/>
+                <TableView fx:id="recentLoansTable">
+                    <columns>
+                        <TableColumn fx:id="studentColumn" text="Etudiant" prefWidth="220"/>
+                        <TableColumn fx:id="bookColumn" text="Livre" prefWidth="270"/>
+                        <TableColumn fx:id="returnDateColumn" text="Date de retour" prefWidth="150"/>
+                        <TableColumn fx:id="statusColumn" text="Statut" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

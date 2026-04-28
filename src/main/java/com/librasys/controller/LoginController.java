@@ -1,10 +1,13 @@
 package com.librasys.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -12,13 +15,22 @@ import java.net.URL;
 
 public class LoginController {
     @FXML
-    private ComboBox<String> roleSelector;
+    private ToggleGroup roleToggleGroup;
+
+    @FXML
+    private ToggleButton librarianToggle;
+
+    @FXML
+    private ToggleButton adminToggle;
 
     @FXML
     private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private CheckBox rememberMeCheckBox;
 
     @FXML
     private Label feedbackLabel;
@@ -28,8 +40,7 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        roleSelector.getItems().addAll("Bibliothecaire", "Administrateur");
-        roleSelector.getSelectionModel().selectFirst();
+        librarianToggle.setSelected(true);
         feedbackLabel.setText("");
 
         URL logoUrl = getClass().getResource("/com/librasys/logo_ept.png");
@@ -40,15 +51,17 @@ public class LoginController {
 
     @FXML
     private void onLoginClick() {
-        String role = roleSelector.getValue();
+        Toggle selectedToggle = roleToggleGroup.getSelectedToggle();
+        String role = selectedToggle == adminToggle ? "Administrateur" : "Bibliothecaire";
         String username = usernameField.getText() == null ? "" : usernameField.getText().trim();
         String password = passwordField.getText() == null ? "" : passwordField.getText().trim();
 
-        if (role == null || username.isEmpty() || password.isEmpty()) {
+        if (selectedToggle == null || username.isEmpty() || password.isEmpty()) {
             feedbackLabel.setText("Veuillez renseigner le role, l'identifiant et le mot de passe.");
             return;
         }
 
-        feedbackLabel.setText("Connexion en cours pour " + role + "...");
+        String remember = rememberMeCheckBox.isSelected() ? " (session memorisee)" : "";
+        feedbackLabel.setText("Connexion en cours pour " + role + remember + "...");
     }
 }
