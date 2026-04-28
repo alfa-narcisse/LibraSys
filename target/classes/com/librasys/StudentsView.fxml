@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.librasys.controller.StudentsController" styleClass="students-root" spacing="14">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="students-header">
+        <padding>
+            <Insets top="14" right="14" bottom="14" left="14"/>
+        </padding>
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="search-box" HBox.hgrow="ALWAYS">
+            <Label text="🔍" styleClass="search-icon"/>
+            <TextField fx:id="searchField" promptText="Rechercher un étudiant par nom ou matricule..."
+                       onKeyReleased="#onSearchChanged" styleClass="search-field" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <ComboBox fx:id="promotionFilter" onAction="#onPromotionFilterChanged" prefWidth="150" styleClass="promo-filter"/>
+        <ComboBox fx:id="sortFilter" onAction="#onSortFilterChanged" prefWidth="170" styleClass="promo-filter"/>
+        <Button text="+ Nouvel Étudiant" styleClass="new-student-btn"/>
+    </HBox>
+
+    <HBox spacing="14" VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" fitToHeight="true" HBox.hgrow="ALWAYS" styleClass="students-grid-scroll">
+            <content>
+                <VBox styleClass="students-table-wrap">
+                    <padding>
+                        <Insets top="4" right="4" bottom="8" left="4"/>
+                    </padding>
+                    <TableView fx:id="studentsTable" VBox.vgrow="ALWAYS" styleClass="students-table">
+                        <columns>
+                            <TableColumn fx:id="nameColumn" text="Nom" prefWidth="170"/>
+                            <TableColumn fx:id="emailColumn" text="Email" prefWidth="190"/>
+                            <TableColumn fx:id="matriculeColumn" text="Matricule" prefWidth="125"/>
+                            <TableColumn fx:id="classColumn" text="Classe" prefWidth="140"/>
+                            <TableColumn fx:id="yearColumn" text="Année" prefWidth="90"/>
+                            <TableColumn fx:id="totalLoansColumn" text="Prêts effectués" prefWidth="110"/>
+                            <TableColumn fx:id="activeLoansColumn" text="Prêts actifs" prefWidth="95"/>
+                            <TableColumn fx:id="delaysColumn" text="Retards" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <VBox fx:id="studentDetailPane" prefWidth="320" minWidth="320" maxWidth="320" spacing="14" styleClass="detail-panel">
+            <padding>
+                <Insets top="16" right="16" bottom="16" left="16"/>
+            </padding>
+            <StackPane alignment="CENTER">
+                <Circle radius="46" styleClass="detail-avatar"/>
+            </StackPane>
+            <VBox spacing="2" alignment="CENTER">
+                <Label fx:id="detailNameLabel" text="Ahmed Bensalem" styleClass="detail-name"/>
+                <Label fx:id="detailSectionLabel" text="Génie Informatique" styleClass="detail-sub"/>
+                <Label fx:id="detailMatriculeLabel" text="2023-INF-0412" styleClass="detail-sub"/>
+                <Label fx:id="detailLoanChipLabel" text="2 prêts" styleClass="loan-chip loan-chip-active"/>
+            </VBox>
+            <VBox spacing="10" styleClass="digital-card">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Carte EPT" styleClass="digital-card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="EPT" styleClass="digital-card-logo"/>
+                </HBox>
+                <VBox spacing="3">
+                    <Label text="Nom" styleClass="digital-label"/>
+                    <Label fx:id="cardNameLabel" text="Ahmed Bensalem" styleClass="digital-value"/>
+                    <Label fx:id="cardMatriculeLabel" text="2023-INF-0412" styleClass="digital-value-sub"/>
+                </VBox>
+                <HBox spacing="2" styleClass="barcode-strip" alignment="BOTTOM_LEFT">
+                    <Rectangle width="3" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="5" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="4" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="6" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="3" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="5" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="3" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                    <Rectangle width="4" height="34" styleClass="barcode-bar"/>
+                </HBox>
+            </VBox>
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </HBox>
+</VBox>

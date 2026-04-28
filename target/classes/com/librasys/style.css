@@ -1,0 +1,148 @@
+.login-root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-background-color: #f5f6fb;
+}
+
+.left-banner {
+    -fx-background-color: #1a237e;
+}
+
+.sidebar-content {
+    -fx-fill-width: true;
+}
+
+.logo-circle {
+    -fx-fill: rgba(255, 255, 255, 0.97);
+    -fx-stroke: rgba(255, 255, 255, 0.45);
+    -fx-stroke-width: 1.2;
+}
+
+.brand-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 34px;
+    -fx-font-weight: 700;
+}
+
+.brand-subtitle {
+    -fx-text-fill: #d9ddff;
+    -fx-font-size: 15px;
+}
+
+.stats-panel {
+    -fx-padding: 12 0 0 0;
+}
+
+.stat-card {
+    -fx-background-color: rgba(255, 255, 255, 0.13);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 255, 255, 0.22);
+    -fx-border-radius: 14;
+    -fx-padding: 12 14;
+}
+
+.stat-number {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+}
+
+.stat-label {
+    -fx-text-fill: #d7dbff;
+    -fx-font-size: 12px;
+}
+
+.right-section {
+    -fx-padding: 32;
+    -fx-alignment: center;
+}
+
+.form-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-color: #e8eaf9;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(14, 21, 69, 0.14), 28, 0.24, 0, 10);
+}
+
+.form-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+}
+
+.field-label {
+    -fx-text-fill: #303f7b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.role-toggle {
+    -fx-background-color: #eef0fc;
+    -fx-background-radius: 12;
+    -fx-border-color: #d4d9f8;
+    -fx-border-radius: 12;
+    -fx-text-fill: #2d3569;
+    -fx-font-weight: 700;
+    -fx-padding: 10 12;
+    -fx-cursor: hand;
+}
+
+.role-toggle:selected {
+    -fx-background-color: #1a237e;
+    -fx-border-color: #1a237e;
+    -fx-text-fill: #ffffff;
+}
+
+.text-field,
+.password-field {
+    -fx-background-color: #f8f9ff;
+    -fx-background-radius: 12;
+    -fx-border-color: #d9def8;
+    -fx-border-radius: 12;
+    -fx-padding: 10 12;
+}
+
+.text-field:focused,
+.password-field:focused {
+    -fx-border-color: #1a237e;
+    -fx-border-width: 2;
+    -fx-background-color: #ffffff;
+}
+
+.remember-checkbox {
+    -fx-text-fill: #44508e;
+    -fx-font-size: 12px;
+}
+
+.forgot-link {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 12px;
+    -fx-underline: false;
+    -fx-border-color: transparent;
+    -fx-padding: 0 0 0 8;
+}
+
+.forgot-link:hover {
+    -fx-text-fill: #283593;
+    -fx-underline: true;
+}
+
+.login-button {
+    -fx-background-color: #1a237e;
+    -fx-background-radius: 12;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12 16;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #283593;
+}
+
+.feedback-label {
+    -fx-text-fill: #b71c1c;
+    -fx-font-size: 12px;
+}

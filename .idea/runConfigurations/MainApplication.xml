@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MainApplication" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.librasys.MainApplication" />
+    <module name="LibraSys" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

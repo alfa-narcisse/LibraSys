@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.librasys.controller.LoginController" styleClass="login-root">
+
+    <fx:define>
+        <ToggleGroup fx:id="roleToggleGroup"/>
+    </fx:define>
+
+    <StackPane prefWidth="420.0" styleClass="left-banner">
+        <VBox alignment="TOP_CENTER" spacing="28" styleClass="sidebar-content">
+            <padding>
+                <Insets top="44" right="34" bottom="36" left="34"/>
+            </padding>
+
+            <VBox alignment="CENTER" spacing="14">
+                <StackPane styleClass="logo-circle-wrap">
+                    <Circle radius="56" styleClass="logo-circle" fill="WHITE"/>
+                    <ImageView fx:id="logoImageView" fitHeight="84" fitWidth="84" pickOnBounds="true" preserveRatio="true"/>
+                </StackPane>
+                <VBox alignment="CENTER" spacing="4">
+                    <Label text="LibraSys" styleClass="brand-title"/>
+                    <Label text="Ecole Polytechnique de Tunisie" styleClass="brand-subtitle"/>
+                </VBox>
+            </VBox>
+
+            <VBox spacing="12" styleClass="stats-panel">
+                <VBox spacing="2" styleClass="stat-card">
+                    <Label text="📚  3 842" styleClass="stat-number"/>
+                    <Label text="Livres" styleClass="stat-label"/>
+                </VBox>
+                <VBox spacing="2" styleClass="stat-card">
+                    <Label text="🎓  1 207" styleClass="stat-number"/>
+                    <Label text="Etudiants" styleClass="stat-label"/>
+                </VBox>
+                <VBox spacing="2" styleClass="stat-card">
+                    <Label text="🔄  84" styleClass="stat-number"/>
+                    <Label text="Prets actifs" styleClass="stat-label"/>
+                </VBox>
+                <VBox spacing="2" styleClass="stat-card">
+                    <Label text="⏰  7" styleClass="stat-number"/>
+                    <Label text="Retards" styleClass="stat-label"/>
+                </VBox>
+            </VBox>
+        </VBox>
+    </StackPane>
+
+    <StackPane styleClass="right-section" HBox.hgrow="ALWAYS">
+        <VBox spacing="16.0" maxWidth="430.0" styleClass="form-card" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="34" right="34" bottom="34" left="34"/>
+            </padding>
+
+            <Label text="ACCÈS SÉCURISÉ" styleClass="form-title"/>
+
+            <Label text="Role utilisateur" styleClass="field-label"/>
+            <HBox spacing="10">
+                <ToggleButton fx:id="librarianToggle" text="Bibliothecaire" toggleGroup="$roleToggleGroup"
+                              selected="true" styleClass="role-toggle" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <ToggleButton fx:id="adminToggle" text="Administrateur" toggleGroup="$roleToggleGroup"
+                              styleClass="role-toggle" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            </HBox>
+
+            <Label text="Identifiant" styleClass="field-label"/>
+            <TextField fx:id="usernameField" promptText="biblio.sarah@ept.ucar.tn"/>
+
+            <Label text="Mot de passe" styleClass="field-label"/>
+            <PasswordField fx:id="passwordField" promptText="........"/>
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <CheckBox fx:id="rememberMeCheckBox" text="Rester connecte" styleClass="remember-checkbox"/>
+                <Region HBox.hgrow="ALWAYS" /> <Hyperlink text="Mot de passe oublie ?" styleClass="forgot-link"/>
+            </HBox>
+
+            <Button text="Se connecter" onAction="#onLoginClick" styleClass="login-button"
+                    maxWidth="Infinity"/>
+            <Label fx:id="feedbackLabel" styleClass="feedback-label"/>
+        </VBox>
+    </StackPane>
+</HBox>
