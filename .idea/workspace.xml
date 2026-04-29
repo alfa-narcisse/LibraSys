@@ -5,18 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/BooksController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/BooksView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/books.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BUILD_AND_TEST_GUIDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DELIVERY_SUMMARY.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMPLEMENTATION_SUMMARY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/INDEX_DOCUMENTATION.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MODULE_M5_LOANS_README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPECIFICATION_M5_DETAILED.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VISUAL_ARCHITECTURE.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/DashboardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/DashboardView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/DashboardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/DashboardView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$LoanRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$LoanRow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="43" />
+    <option name="cachedIndexableFilesCount" value="37" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -99,7 +102,9 @@
       <workItem from="1777410325162" duration="765000" />
       <workItem from="1777411179287" duration="665000" />
       <workItem from="1777411968775" duration="3319000" />
-      <workItem from="1777438271615" duration="1128000" />
+      <workItem from="1777438271615" duration="2887000" />
+      <workItem from="1777442148460" duration="2291000" />
+      <workItem from="1777456170311" duration="562000" />
     </task>
     <servers />
   </component>

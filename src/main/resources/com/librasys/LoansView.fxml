@@ -44,7 +44,7 @@
                 <Label text="12" styleClass="summary-value"/>
                 <Label text="2 en retard" styleClass="summary-sub"/>
             </VBox>
-            <VBox HBox.hgrow="ALWAYS" styleClass="summary-card summary-card-alert">
+            <VBox HBox.hgrow="ALWAYS" styleClass="summary-card">
                 <Label text="Retards Critiques" styleClass="summary-title"/>
                 <Label text="7" styleClass="summary-value-alert"/>
                 <Label text="À traiter aujourd'hui" styleClass="summary-sub"/>

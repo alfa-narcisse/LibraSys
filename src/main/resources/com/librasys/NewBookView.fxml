@@ -41,7 +41,7 @@
                 <Label text="ISBN" styleClass="form-label"/>
                 <HBox spacing="8">
                     <TextField fx:id="isbnField" promptText="978-..." HBox.hgrow="ALWAYS" styleClass="form-input"/>
-                    <Button text="📷 Scanner" styleClass="books-secondary-btn"/>
+                    <Button text="Scanner" styleClass="books-secondary-btn"/>
                 </HBox>
             </VBox>
 
@@ -102,6 +102,6 @@
 
     <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="new-book-actions">
         <Button text="Annuler" onAction="#onCancel" styleClass="cancel-btn"/>
-        <Button text="💾 Enregistrer le livre" onAction="#onSaveBook" styleClass="books-primary-btn"/>
+        <Button text="Enregistrer le livre" onAction="#onSaveBook" styleClass="books-primary-btn"/>
     </HBox>
 </VBox>

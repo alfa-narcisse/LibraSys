@@ -15,15 +15,13 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/com/librasys/DashboardView.fxml"));
+        // Start with the Login view as the first screen
+        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/com/librasys/LoginView.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 1320, 820);
-        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/dashboard.css").toExternalForm());
-        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/students.css").toExternalForm());
-        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/books.css").toExternalForm());
-        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/shelves.css").toExternalForm());
-        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/loans.css").toExternalForm());
+        Scene scene = new Scene(root, 800, 600);
+        // apply base styling; dashboard-specific styles will be applied when loading the dashboard
+        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/style.css").toExternalForm());
 
         stage.setTitle("LibraSys");
         stage.setMinWidth(1080);
