@@ -1,0 +1,478 @@
+.books-root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-background-color: #f4f6fc;
+}
+
+.books-header {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 14;
+}
+
+.books-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+
+.books-search-box {
+    -fx-background-color: #f6f8ff;
+    -fx-border-color: #d8def4;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 0 12;
+    -fx-min-width: 320;
+    -fx-pref-width: 360;
+}
+
+.books-search-icon {
+    -fx-text-fill: #6373a8;
+}
+
+.books-search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-pref-height: 38;
+}
+
+.books-primary-btn {
+    -fx-background-color: #1a237e;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 9 14;
+}
+
+.books-primary-btn:hover {
+    -fx-background-color: #131b63;
+}
+
+.books-secondary-btn {
+    -fx-background-color: #eef1ff;
+    -fx-text-fill: #1a237e;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 9 12;
+}
+
+.section-caption {
+    -fx-text-fill: #2a3157;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.manage-rayon-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #1a237e;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #1a237e;
+    -fx-font-weight: 700;
+    -fx-padding: 7 12;
+}
+
+.pill-scroll,
+.rayon-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.pill-scroll > .viewport,
+.rayon-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.pills-row {
+    -fx-padding: 4 2;
+}
+
+.rayon-pill {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d8def4;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-text-fill: #33406f;
+    -fx-font-weight: 700;
+    -fx-padding: 7 13;
+}
+
+.rayon-pill-active {
+    -fx-background-color: #1a237e;
+    -fx-border-color: #1a237e;
+    -fx-text-fill: white;
+}
+
+.rayon-card {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-min-width: 170;
+    -fx-pref-width: 170;
+    -fx-cursor: hand;
+}
+
+.rayon-card-selected {
+    -fx-border-color: #1a237e;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(26, 35, 126, 0.2), 14, 0.2, 0, 3);
+}
+
+.rayon-icon {
+    -fx-font-size: 16px;
+}
+
+.rayon-name {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1f2748;
+}
+
+.rayon-stats,
+.rayon-location {
+    -fx-font-size: 11px;
+    -fx-text-fill: #70789f;
+}
+
+.rayon-progress {
+    -fx-pref-height: 6;
+}
+
+.rayon-progress .track {
+    -fx-background-color: #eceff9;
+    -fx-background-radius: 6;
+}
+
+.rayon-progress .bar {
+    -fx-background-color: #1a237e;
+    -fx-background-radius: 6;
+}
+
+.books-table-wrap {
+    -fx-background-color: transparent;
+}
+
+.books-table {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-color: #e4e8f8;
+    -fx-border-radius: 14;
+}
+
+.books-table .column-header-background {
+    -fx-background-color: #ffffff;
+}
+
+.books-table .column-header,
+.books-table .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #eef2ff transparent;
+}
+
+.books-table .column-header .label {
+    -fx-text-fill: #39446f;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.books-table .table-row-cell {
+    -fx-border-color: transparent transparent #f0f3ff transparent;
+}
+
+.books-table .table-cell {
+    -fx-padding: 10 8;
+    -fx-text-fill: #2b3557;
+}
+
+.books-table .table-row-cell:filled:hover {
+    -fx-background-color: #f7f9ff;
+}
+
+.books-table .table-row-cell:filled:selected {
+    -fx-background-color: #eaf0ff;
+}
+
+.book-title-cell {
+    -fx-text-fill: #1e2544;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.book-author-cell {
+    -fx-text-fill: #7a839f;
+    -fx-font-size: 11px;
+}
+
+.category-badge {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+}
+
+.cat-info {
+    -fx-background-color: #dbe7ff;
+    -fx-text-fill: #1c3e91;
+}
+
+.cat-math {
+    -fx-background-color: #f7e2ff;
+    -fx-text-fill: #6a1b9a;
+}
+
+.cat-phys {
+    -fx-background-color: #dff8e6;
+    -fx-text-fill: #1a7a49;
+}
+
+.cat-generic {
+    -fx-background-color: #eceff7;
+    -fx-text-fill: #4b5475;
+}
+
+.availability-chip {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+}
+
+.availability-in {
+    -fx-background-color: #dff7e7;
+    -fx-text-fill: #1e7a43;
+}
+
+.availability-out {
+    -fx-background-color: #ffe4e4;
+    -fx-text-fill: #b3261e;
+}
+
+.action-icon {
+    -fx-text-fill: #4c5786;
+    -fx-cursor: hand;
+}
+
+.action-icon:hover {
+    -fx-text-fill: #1a237e;
+}
+
+.book-detail-panel {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #e4e8f8;
+    -fx-border-radius: 14;
+}
+
+.detail-title {
+    -fx-text-fill: #1d2548;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.detail-cover-wrap {
+    -fx-background-color: #f5f7ff;
+    -fx-border-color: #dde4fc;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.detail-book-title {
+    -fx-text-fill: #1c2546;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+.detail-meta {
+    -fx-text-fill: #68719a;
+    -fx-font-size: 11px;
+}
+
+.detail-summary {
+    -fx-background-color: #f9faff;
+    -fx-border-color: #e4e8f8;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 12px;
+    -fx-text-fill: #394163;
+}
+
+.detail-summary .content {
+    -fx-background-color: transparent;
+}
+
+.detail-qr-card {
+    -fx-background-color: #f6f8ff;
+    -fx-background-radius: 10;
+    -fx-border-color: #dce3fb;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+}
+
+.detail-qr-title {
+    -fx-text-fill: #4d5988;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+.detail-code {
+    -fx-text-fill: #18204c;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+}
+
+.barcode-strip {
+    -fx-padding: 3 0 0 0;
+}
+
+.barcode-bar-thick,
+.barcode-bar-mid,
+.barcode-bar-thin {
+    -fx-background-color: #171717;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+}
+
+.barcode-bar-thick {
+    -fx-min-width: 5;
+    -fx-max-width: 5;
+}
+
+.barcode-bar-mid {
+    -fx-min-width: 3;
+    -fx-max-width: 3;
+}
+
+.barcode-bar-thin {
+    -fx-min-width: 2;
+    -fx-max-width: 2;
+}
+
+.book-health-progress {
+    -fx-pref-height: 7;
+}
+
+.book-health-progress .track {
+    -fx-background-color: #eceff9;
+    -fx-background-radius: 6;
+}
+
+.book-health-progress .bar {
+    -fx-background-color: #1a237e;
+    -fx-background-radius: 6;
+}
+
+.manage-dialog .header-panel {
+    -fx-background-color: #f5f7ff;
+}
+
+.dialog-title {
+    -fx-text-fill: #1d2548;
+    -fx-font-weight: 700;
+}
+
+.dialog-tip {
+    -fx-text-fill: #6e769d;
+    -fx-font-size: 11px;
+}
+
+.new-book-root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-background-color: #f4f6fc;
+}
+
+.new-book-header {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 12;
+    -fx-padding: 10 12;
+}
+
+.back-link-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 6 2;
+}
+
+.new-book-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.new-book-grid {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 12;
+    -fx-padding: 14;
+}
+
+.new-book-section {
+    -fx-padding: 4;
+}
+
+.form-label {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.form-input,
+.form-combo,
+.form-spinner {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #d7def4;
+    -fx-background-color: white;
+}
+
+.form-input {
+    -fx-pref-height: 38;
+}
+
+.form-area {
+    -fx-pref-height: 96;
+}
+
+.form-area .content {
+    -fx-background-color: transparent;
+}
+
+.form-combo,
+.form-spinner {
+    -fx-pref-height: 38;
+}
+
+.cover-drop-zone {
+    -fx-min-height: 185;
+    -fx-background-color: #fbfcff;
+    -fx-background-radius: 10;
+    -fx-border-color: #b9c4ea;
+    -fx-border-style: segments(8, 6);
+    -fx-border-radius: 10;
+}
+
+.cover-drop-title {
+    -fx-text-fill: #5d6897;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.new-book-actions {
+    -fx-padding: 2 0 0 0;
+}
+
+.cancel-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #b8bfd9;
+    -fx-text-fill: #5a607a;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 9 14;
+}

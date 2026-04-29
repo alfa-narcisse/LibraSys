@@ -54,6 +54,12 @@ public class DashboardController {
     @FXML
     private Button studentsMenuButton;
 
+    @FXML
+    private Button booksMenuButton;
+
+    @FXML
+    private Button loansMenuButton;
+
     private List<Node> dashboardHomeNodes;
 
     @FXML
@@ -138,9 +144,33 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void showBooks() {
+        try {
+            Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/BooksView.fxml"));
+            mainContentArea.getChildren().setAll(view);
+            setActiveMenu(booksMenuButton);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Impossible de charger la vue des livres.", exception);
+        }
+    }
+
+    @FXML
+    private void showLoans() {
+        try {
+            Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/LoansView.fxml"));
+            mainContentArea.getChildren().setAll(view);
+            setActiveMenu(loansMenuButton);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Impossible de charger la vue des prêts/retours.", exception);
+        }
+    }
+
     private void setActiveMenu(Button activeButton) {
         dashboardMenuButton.getStyleClass().remove("menu-btn-selected");
         studentsMenuButton.getStyleClass().remove("menu-btn-selected");
+        booksMenuButton.getStyleClass().remove("menu-btn-selected");
+        loansMenuButton.getStyleClass().remove("menu-btn-selected");
         activeButton.getStyleClass().add("menu-btn-selected");
     }
 

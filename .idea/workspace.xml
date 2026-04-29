@@ -4,14 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d" name="Changes" comment="" />
+    <list default="true" id="36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/BooksController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/BooksView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/books.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/DashboardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/DashboardView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/DashboardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/DashboardView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$LoanRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$LoanRow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="27" />
+    <option name="cachedIndexableFilesCount" value="43" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,6 +73,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -71,6 +85,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager" selected="Application.Launcher" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d" name="Changes" comment="" />
@@ -83,6 +98,8 @@
       <workItem from="1777212200333" duration="1419000" />
       <workItem from="1777410325162" duration="765000" />
       <workItem from="1777411179287" duration="665000" />
+      <workItem from="1777411968775" duration="3319000" />
+      <workItem from="1777438271615" duration="1128000" />
     </task>
     <servers />
   </component>

@@ -21,6 +21,9 @@ public class MainApplication extends Application {
         Scene scene = new Scene(root, 1320, 820);
         scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/dashboard.css").toExternalForm());
         scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/students.css").toExternalForm());
+        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/books.css").toExternalForm());
+        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/shelves.css").toExternalForm());
+        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/loans.css").toExternalForm());
 
         stage.setTitle("LibraSys");
         stage.setMinWidth(1080);

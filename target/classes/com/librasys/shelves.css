@@ -1,0 +1,131 @@
+.shelves-root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-background-color: #f4f6fc;
+}
+
+.shelves-header {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 12;
+    -fx-padding: 12;
+}
+
+.shelves-back-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.shelves-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.shelves-outline-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #1a237e;
+    -fx-text-fill: #1a237e;
+    -fx-font-weight: 700;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 9 14;
+}
+
+.shelves-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.shelves-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.shelf-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #dfe4f2;
+    -fx-border-radius: 12;
+    -fx-padding: 14;
+    -fx-effect: dropshadow(gaussian, rgba(18, 28, 74, 0.08), 14, 0.2, 0, 4);
+}
+
+.shelf-card:hover {
+    -fx-border-color: #1a237e;
+}
+
+.shelf-card-title {
+    -fx-text-fill: #1d2548;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+}
+
+.shelf-progress {
+    -fx-pref-height: 8;
+}
+
+.shelf-progress .track {
+    -fx-background-color: #e9edfa;
+    -fx-background-radius: 6;
+}
+
+.shelf-progress .bar {
+    -fx-background-color: #1a237e;
+    -fx-background-radius: 6;
+}
+
+.shelf-stat {
+    -fx-text-fill: #66709a;
+    -fx-font-size: 12px;
+}
+
+.shelf-view-btn {
+    -fx-background-color: #1a237e;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+}
+
+.add-shelf-dialog {
+    -fx-background-color: #ffffff;
+}
+
+.dialog-main-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+}
+
+.dialog-label {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.dialog-input {
+    -fx-background-color: white;
+    -fx-border-color: #d7def4;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.dialog-cancel-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #b8bfd9;
+    -fx-text-fill: #5a607a;
+    -fx-font-weight: 700;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+}
+
+.dialog-create-btn {
+    -fx-background-color: #1a237e;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="booksRoot"
+      fx:controller="com.librasys.controller.BooksController" styleClass="books-root" spacing="14">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="books-header">
+        <padding>
+            <Insets top="12" right="12" bottom="12" left="12"/>
+        </padding>
+        <Label text="Bibliothèque / Livres" styleClass="books-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="books-search-box">
+            <Label text="🔎" styleClass="books-search-icon"/>
+            <TextField fx:id="searchField" promptText="Titre, Auteur ou ISBN..." onKeyReleased="#onSearchChanged"
+                       styleClass="books-search-field" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <Button text="+ Ajouter un livre" styleClass="books-primary-btn" onAction="#onAddBook"/>
+        <Button text="📷 Scanner ISBN" styleClass="books-secondary-btn"/>
+    </HBox>
+
+    <VBox spacing="8">
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Rayons" styleClass="section-caption"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="⚙ Gérer les Rayons" styleClass="manage-rayon-btn" onAction="#onManageRayons"/>
+        </HBox>
+        <ScrollPane fitToHeight="true" fitToWidth="false" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER" styleClass="pill-scroll">
+            <content>
+                <HBox fx:id="pillsContainer" spacing="8" styleClass="pills-row"/>
+            </content>
+        </ScrollPane>
+        <ScrollPane fitToHeight="true" fitToWidth="false" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER" styleClass="rayon-scroll">
+            <content>
+                <HBox fx:id="rayonCardsContainer" spacing="10"/>
+            </content>
+        </ScrollPane>
+    </VBox>
+
+    <HBox spacing="14" VBox.vgrow="ALWAYS">
+        <VBox HBox.hgrow="ALWAYS" styleClass="books-table-wrap">
+            <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="books-table">
+                <columns>
+                    <TableColumn fx:id="coverColumn" text="Couverture" prefWidth="110"/>
+                    <TableColumn fx:id="titleAuthorColumn" text="Titre &amp; Auteur" prefWidth="250"/>
+                    <TableColumn fx:id="categoryColumn" text="Catégorie" prefWidth="145"/>
+                    <TableColumn fx:id="locationColumn" text="Localisation" prefWidth="145"/>
+                    <TableColumn fx:id="availabilityColumn" text="Disponibilité" prefWidth="120"/>
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="110"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox fx:id="detailsPane" prefWidth="300" minWidth="300" maxWidth="300" spacing="12" styleClass="book-detail-panel">
+            <padding>
+                <Insets top="14" right="14" bottom="14" left="14"/>
+            </padding>
+            <Label text="Détails rapides" styleClass="detail-title"/>
+            <StackPane prefHeight="180" styleClass="detail-cover-wrap">
+                <ImageView fx:id="detailCoverImageView" fitHeight="170" fitWidth="130" preserveRatio="true"/>
+            </StackPane>
+            <Label fx:id="detailBookTitleLabel" text="Sélectionnez un livre" styleClass="detail-book-title" wrapText="true"/>
+            <Label fx:id="detailMetaLabel" text="Rayon — Auteur" styleClass="detail-meta"/>
+            <TextArea fx:id="detailSummaryArea" editable="false" wrapText="true" prefHeight="120" styleClass="detail-summary"/>
+            <VBox spacing="5" styleClass="detail-qr-card">
+                <Label text="Code interne" styleClass="detail-qr-title"/>
+                <Label fx:id="detailCodeLabel" text="LIB-00000" styleClass="detail-code"/>
+                <HBox spacing="2" alignment="BOTTOM_LEFT" styleClass="barcode-strip">
+                    <Region styleClass="barcode-bar-thick"/>
+                    <Region styleClass="barcode-bar-thin"/>
+                    <Region styleClass="barcode-bar-mid"/>
+                    <Region styleClass="barcode-bar-thin"/>
+                    <Region styleClass="barcode-bar-thick"/>
+                    <Region styleClass="barcode-bar-mid"/>
+                    <Region styleClass="barcode-bar-thin"/>
+                    <Region styleClass="barcode-bar-thick"/>
+                    <Region styleClass="barcode-bar-thin"/>
+                    <Region styleClass="barcode-bar-mid"/>
+                </HBox>
+            </VBox>
+            <ProgressBar fx:id="detailWearProgress" progress="0.25" styleClass="book-health-progress"/>
+            <Label fx:id="detailWearLabel" text="Usure: 25%" styleClass="detail-meta"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="Historique des emprunts" styleClass="books-primary-btn" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+</VBox>

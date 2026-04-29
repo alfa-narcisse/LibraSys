@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.librasys.controller.LoansController" styleClass="loans-root" spacing="0" fx:id="mainContainer">
+
+    <!-- Header Section -->
+    <HBox styleClass="loans-header" spacing="16">
+        <padding>
+            <Insets top="18" right="22" bottom="18" left="22"/>
+        </padding>
+        <Label text="Gestion des Prêts et Retours" styleClass="header-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="← Retour" styleClass="back-btn"/>
+    </HBox>
+
+    <!-- Summary Cards Section -->
+    <VBox styleClass="loans-summary" spacing="12">
+        <padding>
+            <Insets top="0" right="22" bottom="18" left="22"/>
+        </padding>
+        <HBox spacing="12">
+            <VBox HBox.hgrow="ALWAYS" styleClass="summary-card">
+                <Label text="Prêts Actifs" styleClass="summary-title"/>
+                <Label text="84" styleClass="summary-value"/>
+                <Label text="+3 aujourd'hui" styleClass="summary-sub"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="summary-card">
+                <Label text="Retours Attendus Aujourd'hui" styleClass="summary-title"/>
+                <Label text="12" styleClass="summary-value"/>
+                <Label text="2 en retard" styleClass="summary-sub"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="summary-card summary-card-alert">
+                <Label text="Retards Critiques" styleClass="summary-title"/>
+                <Label text="7" styleClass="summary-value-alert"/>
+                <Label text="À traiter aujourd'hui" styleClass="summary-sub"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Tab Navigation -->
+    <HBox styleClass="loans-tabs" spacing="2">
+        <padding>
+            <Insets top="0" right="22" bottom="0" left="22"/>
+        </padding>
+        <Button fx:id="tabPretBtn" text="Prêt" styleClass="tab-btn tab-btn-inactive"/>
+        <Button fx:id="tabRetourBtn" text="Retour" styleClass="tab-btn tab-btn-inactive"/>
+        <Button fx:id="tabHistoriqueBtn" text="Historique Générale" styleClass="tab-btn tab-btn-inactive"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Content Container -->
+    <StackPane fx:id="contentContainer" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="0" right="22" bottom="22" left="22"/>
+        </padding>
+
+        <!-- TAB PRÊT -->
+        <VBox fx:id="pretContainer" styleClass="tab-content" spacing="16">
+            <padding>
+                <Insets top="16" right="0" bottom="0" left="0"/>
+            </padding>
+
+            <!-- Step 1: Identification -->
+            <VBox styleClass="process-section" spacing="10">
+                <Label text="Étape 1 : Identification de l'Étudiant" styleClass="section-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="studentMatriculeField" HBox.hgrow="ALWAYS" styleClass="form-input"
+                               promptText="Scannez le matricule étudiant (6 chiffres)"/>
+                    <Button text="📱 Scanner" styleClass="scan-btn"/>
+                </HBox>
+
+                <!-- Student Quick Card -->
+                <VBox styleClass="quick-card" spacing="8">
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <VBox styleClass="avatar-placeholder">
+                            <Label text="AB"/>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS" spacing="4">
+                            <Label fx:id="studentNameLabel" text="Nom complet ici" styleClass="student-quick-name"/>
+                            <Label fx:id="studentQuotaLabel" text="Quota: - / -" styleClass="student-quick-quota"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <!-- Step 2: Book Selection -->
+            <VBox styleClass="process-section" spacing="10">
+                <Label text="Étape 2 : Sélection du Livre" styleClass="section-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="bookIsbnField" HBox.hgrow="ALWAYS" styleClass="form-input"
+                               promptText="Scannez l'ISBN ou le code-barres du livre"/>
+                    <Button text="📱 Scanner" styleClass="scan-btn"/>
+                </HBox>
+
+                <!-- Book Quick Card -->
+                <VBox styleClass="quick-card" spacing="8">
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <VBox styleClass="book-placeholder">
+                            <Label text="📖"/>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS" spacing="4">
+                            <Label fx:id="bookTitleLabel" text="Titre du livre ici" styleClass="book-quick-title"/>
+                            <Label fx:id="bookStateLabel" text="État: - " styleClass="book-quick-state"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <!-- Step 3: Validation -->
+            <VBox styleClass="process-section" spacing="10">
+                <Label text="Étape 3 : Validation et Confirmation" styleClass="section-title"/>
+                <VBox styleClass="validation-card" spacing="12">
+                    <Label fx:id="returnDateLabel" text="Date de retour: -" styleClass="return-date-info"/>
+                    <Button fx:id="confirmLoanBtn" text="✓ Confirmer le Prêt" styleClass="confirm-btn"/>
+                </VBox>
+            </VBox>
+        </VBox>
+
+        <!-- TAB RETOUR -->
+        <VBox fx:id="retourContainer" styleClass="tab-content" spacing="20">
+            <padding>
+                <Insets top="16" right="0" bottom="0" left="0"/>
+            </padding>
+
+            <!-- Scan Book Section -->
+            <VBox styleClass="process-section" spacing="12">
+                <Label text="Scanner le Livre à Retourner" styleClass="section-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="scanBookField" HBox.hgrow="ALWAYS" styleClass="form-input"
+                               promptText="Scannez le livre à retourner"/>
+                    <Button text=" Scanner" styleClass="scan-btn"/>
+                </HBox>
+
+                <!-- Return Info Card -->
+                <VBox styleClass="quick-card" spacing="8">
+                    <Label fx:id="returnStudentLabel" text="En attente de scan..." styleClass="return-info"/>
+                </VBox>
+            </VBox>
+
+            <!-- Damage Check Section -->
+            <VBox styleClass="process-section" spacing="12">
+                <Label text="Vérification de l'État" styleClass="section-title"/>
+                <VBox styleClass="validation-card" spacing="10">
+                    <CheckBox fx:id="damagedCheckBox" text="Livre endommagé" styleClass="damage-checkbox"/>
+                    <Label fx:id="penaltyLabel" text="Pénalité: 0 DA" styleClass="penalty-info"/>
+                </VBox>
+            </VBox>
+
+            <!-- Validation Button -->
+            <Button fx:id="validateReturnBtn" text="✓ Valider le Retour" styleClass="return-btn"/>
+        </VBox>
+
+        <!-- TAB HISTORIQUE -->
+        <VBox fx:id="historiqueContainer" styleClass="tab-content" spacing="14">
+            <padding>
+                <Insets top="16" right="0" bottom="0" left="0"/>
+            </padding>
+
+            <!-- Search & Filter Section -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" HBox.hgrow="ALWAYS" styleClass="search-input"
+                           promptText="Chercher par nom, titre..."/>
+                <ComboBox fx:id="filterComboBox" styleClass="filter-combo" prefWidth="150"/>
+            </HBox>
+
+            <!-- History Table -->
+            <VBox styleClass="table-container" VBox.vgrow="ALWAYS">
+                <TableView fx:id="historiqueTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="studentColHistorique" text="Étudiant" prefWidth="200"/>
+                        <TableColumn fx:id="bookColHistorique" text="Titre" prefWidth="250"/>
+                        <TableColumn fx:id="loanDateCol" text="Date Prêt" prefWidth="120"/>
+                        <TableColumn fx:id="returnDateCol" text="Date Retour" prefWidth="120"/>
+                        <TableColumn fx:id="statusColHistorique" text="Statut" prefWidth="110"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </StackPane>
+</VBox>

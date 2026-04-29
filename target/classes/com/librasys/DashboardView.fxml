@@ -37,12 +37,10 @@
             </HBox>
 
             <VBox spacing="8" styleClass="menu-box">
-                <Button fx:id="dashboardMenuButton" text="Tableau de bord" styleClass="menu-btn menu-btn-selected" onAction="#showDashboard"/>
+                <Button fx:id="dashboardMenuButton" text="Tableau de bord" styleClass="menu-btn" onAction="#showDashboard"/>
                 <Button fx:id="studentsMenuButton" text="Etudiants" styleClass="menu-btn" onAction="#showStudents"/>
-                <Button text="Livres &amp; Rayons" styleClass="menu-btn"/>
-                <Button text="Prets/Retours" styleClass="menu-btn"/>
-                <Button text="Rapports" styleClass="menu-btn"/>
-                <Button text="Parametres" styleClass="menu-btn"/>
+                <Button fx:id="booksMenuButton" text="Livres &amp; Rayons" styleClass="menu-btn" onAction="#showBooks"/>
+                <Button fx:id="loansMenuButton" text="Prets/Retours" styleClass="menu-btn" onAction="#showLoans"/>
             </VBox>
         </VBox>
     </left>
