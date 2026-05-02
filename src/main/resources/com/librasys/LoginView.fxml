@@ -32,19 +32,19 @@
 
             <VBox spacing="12" styleClass="stats-panel">
                 <VBox spacing="2" styleClass="stat-card">
-                    <Label text="📚  3 842" styleClass="stat-number"/>
+                    <Label fx:id="totalBooksLabel" text="📚  0" styleClass="stat-number"/>
                     <Label text="Livres" styleClass="stat-label"/>
                 </VBox>
                 <VBox spacing="2" styleClass="stat-card">
-                    <Label text="🎓  1 207" styleClass="stat-number"/>
+                    <Label fx:id="totalStudentsLabel" text="🎓  0" styleClass="stat-number"/>
                     <Label text="Etudiants" styleClass="stat-label"/>
                 </VBox>
                 <VBox spacing="2" styleClass="stat-card">
-                    <Label text="🔄  84" styleClass="stat-number"/>
+                    <Label fx:id="activeLoansLabel" text="🔄  0" styleClass="stat-number"/>
                     <Label text="Prets actifs" styleClass="stat-label"/>
                 </VBox>
                 <VBox spacing="2" styleClass="stat-card">
-                    <Label text="⏰  7" styleClass="stat-number"/>
+                    <Label fx:id="criticalDelaysLabel" text="⏰  0" styleClass="stat-number"/>
                     <Label text="Retards" styleClass="stat-label"/>
                 </VBox>
             </VBox>
@@ -68,18 +68,13 @@
             </HBox>
 
             <Label text="Identifiant" styleClass="field-label"/>
-            <TextField fx:id="usernameField" promptText="biblio.sarah@ept.ucar.tn"/>
+            <TextField fx:id="usernameField" promptText="admin"/>
 
             <Label text="Mot de passe" styleClass="field-label"/>
             <PasswordField fx:id="passwordField" promptText="........"/>
 
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <CheckBox fx:id="rememberMeCheckBox" text="Rester connecte" styleClass="remember-checkbox"/>
-                <Region HBox.hgrow="ALWAYS" /> <Hyperlink text="Mot de passe oublie ?" styleClass="forgot-link"/>
-            </HBox>
-
             <Button text="Se connecter" onAction="#onLoginClick" styleClass="login-button"
-                    maxWidth="Infinity"/>
+                    maxWidth="Infinity" defaultButton="true"/>
             <Label fx:id="feedbackLabel" styleClass="feedback-label"/>
         </VBox>
     </StackPane>

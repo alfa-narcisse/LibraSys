@@ -52,32 +52,32 @@
             </padding>
 
             <HBox alignment="CENTER_LEFT">
-                <Label text="Bonjour, Sarah — 18 avril 2026" styleClass="header-title"/>
+                <Label fx:id="headerLabel" text="Bonjour -" styleClass="header-title"/>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Label text="84 prets actifs" styleClass="pill pill-info"/>
-                <Label text="7 retards" styleClass="pill pill-alert"/>
+                <Label fx:id="activeLoansLabel" text="0 prêt actif" styleClass="pill pill-info"/>
+                <Label fx:id="criticalDelaysLabel" text="0 retard" styleClass="pill pill-alert" />
             </HBox>
 
             <HBox spacing="12">
                 <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
                     <Label text="Total livres" styleClass="stat-title"/>
-                    <Label text="3 842" styleClass="stat-value"/>
-                    <Label text="2 910 disponibles" styleClass="stat-sub"/>
+                    <Label fx:id="totalBooksLabel" text="0" styleClass="stat-value"/>
+                    <Label fx:id="availableBooksLabel" text="0 disponible" styleClass="stat-sub"/>
                 </VBox>
                 <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
                     <Label text="Etudiants" styleClass="stat-title"/>
-                    <Label text="1 207" styleClass="stat-value"/>
-                    <Label text="+12 ce mois" styleClass="stat-sub"/>
+                    <Label fx:id="totalStudentsLabel" text="0" styleClass="stat-value"/>
+                    <Label fx:id="newStudentLabel" text="0 ce mois" styleClass="stat-sub"/>
                 </VBox>
                 <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
                     <Label text="Prets du jour" styleClass="stat-title"/>
-                    <Label text="18" styleClass="stat-value"/>
-                    <Label text="11 retours" styleClass="stat-sub"/>
+                    <Label fx:id="todayLoansLabel" text="0" styleClass="stat-value"/>
+                    <Label fx:id="todayReturnsLabel" text="0 retour" styleClass="stat-sub"/>
                 </VBox>
                 <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
                     <Label text="Retards" styleClass="stat-title"/>
-                    <Label text="7" styleClass="stat-value"/>
-                    <Label text="A traiter" styleClass="stat-sub"/>
+                    <Label fx:id="todayDelaysLabel" text="0" styleClass="stat-value"/>
+                    <Label text="A triter" styleClass="stat-sub"/>
                 </VBox>
             </HBox>
 
@@ -97,22 +97,9 @@
                 <VBox prefWidth="300" styleClass="panel-card" spacing="12">
                     <Label text="Livres populaires" styleClass="panel-title"/>
 
-                    <VBox spacing="6">
-                        <Label text="Algorithmique" styleClass="popular-label"/>
-                        <ProgressBar progress="0.86" styleClass="popular-progress"/>
+                    <VBox fx:id="popularBooksContainer" spacing="6">
                     </VBox>
-                    <VBox spacing="6">
-                        <Label text="Droit civil" styleClass="popular-label"/>
-                        <ProgressBar progress="0.76" styleClass="popular-progress"/>
-                    </VBox>
-                    <VBox spacing="6">
-                        <Label text="Chimie org." styleClass="popular-label"/>
-                        <ProgressBar progress="0.63" styleClass="popular-progress"/>
-                    </VBox>
-                    <VBox spacing="6">
-                        <Label text="Physique" styleClass="popular-label"/>
-                        <ProgressBar progress="0.58" styleClass="popular-progress"/>
-                    </VBox>
+
                 </VBox>
             </HBox>
 

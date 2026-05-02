@@ -1,0 +1,82 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_4_29_2026_9_09_PM_[Changes]" date="1777493396621" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_29_2026_9_09_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 4/29/2026 9:09 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$4.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/LoginController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/ui/StudentCard.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/module-info.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$5.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/StudentsController$Student.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/NewBookController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/ShelvesController$Shelf.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/MainApplication.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/LoansController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/DashboardController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/LoansController$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/LoansController$LoanHistoryRow.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$Book.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/DashboardController$LoanRow.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/BooksController$Rayon.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/DashboardController$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/StudentsController$LoanEntry.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/ShelvesController$ButtonTypeWrapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/Launcher.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/StudentsController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/librasys/controller/ShelvesController.class" />
+  </binary>
+</changelist>

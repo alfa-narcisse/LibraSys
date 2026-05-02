@@ -19,6 +19,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.librasys.dao.loandao;
+import com.librasys.util.SessionManager;
+
 public class LoansController {
     @FXML
     private VBox mainContainer;
@@ -110,22 +113,58 @@ public class LoansController {
     @FXML
     private ComboBox<String> filterComboBox;
 
+    // Summary States Components
+    @FXML
+    private Label activeLoansLabel;
+    @FXML
+    private Label newTodayLabel;
+    @FXML
+    private Label expectedReturnsLabel;
+    @FXML
+    private Label lateReturnsLabel;
+    @FXML
+    private Label criticalDelaysLabel;
+
+
     private List<LoanHistoryRow> allLoans = new ArrayList<>();
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+    private final loandao loanDAO = new loandao();
     @FXML
     private void initialize() {
-        loadStyles();
         initializeTabButtons();
         initializeTabPret();
         initializeTabRetour();
         initializeTabHistorique();
         showTabPret();
         loadSampleData();
+        loadSummary();
     }
 
-    private void loadStyles() {
-        // Styles will be loaded by MainApplication
+    private void loadSummary() {
+        int[] stats = loanDAO.getSummaryStats();
+
+        int activeLoans    = stats[0];
+        int newToday       = stats[1];
+        int expectedToday  = stats[2];
+        int lateReturns    = stats[3];
+        int criticalDelays = stats[4];
+
+        activeLoansLabel.setText(String.valueOf(activeLoans));
+        newTodayLabel.setText("+" + newToday + " aujourd'hui");
+
+        expectedReturnsLabel.setText(String.valueOf(expectedToday));
+        lateReturnsLabel.setText(lateReturns + " en retard");
+
+        criticalDelaysLabel.setText(String.valueOf(criticalDelays));
+
+        // Change color if critical delays are high
+        if (criticalDelays > 5) {
+            criticalDelaysLabel.setStyle("-fx-text-fill: #e74c3c;");
+        } else if (criticalDelays > 0) {
+            criticalDelaysLabel.setStyle("-fx-text-fill: #f39c12;");
+        } else {
+            criticalDelaysLabel.setStyle("-fx-text-fill: #2ecc71;");
+        }
     }
 
     private void initializeTabButtons() {
@@ -135,13 +174,28 @@ public class LoansController {
     }
 
     private void initializeTabPret() {
-        studentMatriculeField.setPromptText("Scannez le matricule étudiant");
-        bookIsbnField.setPromptText("Scannez l'ISBN ou le code-barres du livre");
-
+        studentMatriculeField.focusedProperty().addListener((observable, wasfocused, isnowfocused) -> {
+            if (!isnowfocused) {
+                String matricule = studentMatriculeField.getText().trim();
+                if (!matricule.isEmpty()) {
+                    loadStudentInfo(matricule);
+                }
+            }
+        });
         studentMatriculeField.setOnAction(e -> {
             String matricule = studentMatriculeField.getText().trim();
             if (!matricule.isEmpty()) {
                 loadStudentInfo(matricule);
+            }
+        });
+
+        bookIsbnField.focusedProperty().addListener((observable, wasfocused, isnowfocused) -> {
+            if (!isnowfocused) {
+                String codeBarre = bookIsbnField.getText().trim();
+                if (!codeBarre.isEmpty()) {
+                    loadBookInfo(codeBarre);
+
+                }
             }
         });
 
@@ -154,7 +208,7 @@ public class LoansController {
 
         confirmLoanBtn.setOnAction(e -> confirmLoan());
 
-        // Initialize return date calculation
+
         studentMatriculeField.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!newVal.isEmpty() && !bookIsbnField.getText().isEmpty()) {
                 calculateReturnDate();
@@ -163,14 +217,22 @@ public class LoansController {
     }
 
     private void initializeTabRetour() {
-        scanBookField.setPromptText("Scannez le livre à retourner");
-        damagedCheckBox.setOnAction(e -> calculatePenalty());
+
+        scanBookField.focusedProperty().addListener((observable, wasfocused, isnowfocused) -> {
+            if (!isnowfocused) {
+                String codeBarre = scanBookField.getText().trim();
+                if (!codeBarre.isEmpty()) {
+                    loadReturnInfo(codeBarre);
+                }
+            }
+        });
         scanBookField.setOnAction(e -> {
             String isbn = scanBookField.getText().trim();
             if (!isbn.isEmpty()) {
                 loadReturnInfo(isbn);
             }
         });
+        damagedCheckBox.setOnAction(e -> calculatePenalty());
 
         validateReturnBtn.setOnAction(e -> validateReturn());
     }
@@ -181,6 +243,7 @@ public class LoansController {
         loanDateCol.setCellValueFactory(new PropertyValueFactory<>("loanDate"));
         returnDateCol.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         statusColHistorique.setCellValueFactory(new PropertyValueFactory<>("status"));
+        loadSampleData();
 
         statusColHistorique.setCellFactory(column -> new TableCell<>() {
             @Override
@@ -235,29 +298,62 @@ public class LoansController {
     }
 
     private void loadStudentInfo(String matricule) {
-        // Simulation - dans une vraie app, chercher dans une base de données
-        if (matricule.matches("^[0-9]{6}$")) {
-            studentNameLabel.setText("Ahmed Ben Ali");
-            studentQuotaLabel.setText("Quota: 3/5 livres");
-            studentQuotaLabel.setStyle("-fx-text-fill: #2ecc71;");
-        } else {
-            showAlert("Erreur", "Matricule invalide. Utilisez 6 chiffres.");
-            studentNameLabel.setText("Non trouvé");
-            studentQuotaLabel.setText("Quota: 0/5");
+        String info = loanDAO.getStudentInfo(matricule);
+        if (info != null) {
+            String[] parts = info.split("\\|");
+            studentNameLabel.setText(parts[0]);
+            studentQuotaLabel.setText("Prêts actifs: " + parts[1] + "/5");
+            studentQuotaLabel.setStyle("-fx-text-fill: #2ecc71");
+            calculateReturnDate();
+        }
+        else {
+            showAlert("Erreur", "Matricule n'existe pas");
+            studentNameLabel.setText("Erreur");
+            studentQuotaLabel.setText("Quota : 0/5");
         }
     }
 
-    private void loadBookInfo(String isbn) {
-        // Simulation - dans une vraie app, chercher dans une base de données
-        if (isbn.length() >= 5) {
-            bookTitleLabel.setText("Algorithmique Avancée");
-            bookStateLabel.setText("État: Excellent");
-            bookStateLabel.setStyle("-fx-text-fill: #2ecc71;");
-        } else {
-            showAlert("Erreur", "ISBN invalide.");
+    private void loadBookInfo(String codeBarre) {
+        String[] bookInfo = loanDAO.getBookInfoByCodeBarre(codeBarre);
+
+        if (bookInfo == null) {
+            showAlert("Erreur", "Aucun exemplaire trouvé pour ce code-barres.");
             bookTitleLabel.setText("Non trouvé");
             bookStateLabel.setText("État: Inconnu");
+            bookStateLabel.setStyle("-fx-text-fill: #e74c3c;");
+            return;
         }
+
+        String title      = bookInfo[0];
+        String state      = bookInfo[1];
+        String disponible = bookInfo[2];
+
+        // Check if book is available for loan
+        if ("indisponible".equals(disponible)) {
+            showAlert("Erreur", "Cet exemplaire est déjà emprunté.");
+            bookTitleLabel.setText(title);
+            bookStateLabel.setText("État: " + state + " — Indisponible");
+            bookStateLabel.setStyle("-fx-text-fill: #e74c3c;");
+            confirmLoanBtn.setDisable(true);
+            return;
+        }
+
+        // Book found and available
+        bookTitleLabel.setText(title);
+        bookStateLabel.setText("État: " + state);
+        confirmLoanBtn.setDisable(false);
+
+        // Color state label based on condition
+        switch (state) {
+            case "Excellent" -> bookStateLabel.setStyle("-fx-text-fill: #2ecc71;");
+            case "Bon"       -> bookStateLabel.setStyle("-fx-text-fill: #f39c12;");
+            case "Usé"       -> bookStateLabel.setStyle("-fx-text-fill: #e67e22;");
+            case "Endommagé" -> bookStateLabel.setStyle("-fx-text-fill: #e74c3c;");
+            default          -> bookStateLabel.setStyle("-fx-text-fill: #7f8c8d;");
+        }
+
+        // Auto calculate return date once book is scanned
+        calculateReturnDate();
     }
 
     private void calculateReturnDate() {
@@ -269,62 +365,92 @@ public class LoansController {
 
     private void confirmLoan() {
         String matricule = studentMatriculeField.getText().trim();
-        String isbn = bookIsbnField.getText().trim();
+        String codeBarre = bookIsbnField.getText().trim();
 
-        if (matricule.isEmpty() || isbn.isEmpty()) {
+        if (matricule.isEmpty() || codeBarre.isEmpty()) {
             showAlert("Erreur", "Veuillez remplir tous les champs.");
             return;
         }
 
-        showAlert("Succès", "Prêt confirmé pour Ahmed Ben Ali - Algorithmique Avancée");
-        studentMatriculeField.clear();
-        bookIsbnField.clear();
-        studentNameLabel.setText("");
-        studentQuotaLabel.setText("");
-        bookTitleLabel.setText("");
-        bookStateLabel.setText("");
-        returnDateLabel.setText("");
+        int idUser = SessionManager.getUserId();
+        if (idUser == -1) {
+            showAlert("Erreur", "Session expirée.");
+            return;
+        }
+
+        boolean success = loanDAO.confirmLoan(matricule, codeBarre,idUser);
+        if (success) {
+            loanDAO.setExemplaireDisponible(codeBarre,false);
+            showAlert("Succès", "Prêt confirmé !");
+            studentMatriculeField.clear();
+            bookIsbnField.clear();
+            studentNameLabel.setText("");
+            studentQuotaLabel.setText("");
+            bookTitleLabel.setText("");
+            bookStateLabel.setText("");
+            returnDateLabel.setText("");
+            loadSampleData();
+            loadSummary();
+        } else {
+            showAlert("Erreur", "Impossible de confirmer le prêt.");
+        }
     }
 
-    private void loadReturnInfo(String isbn) {
-        // Simulation
-        if (isbn.length() >= 5) {
-            returnStudentLabel.setText("Livre: Algorithmique Avancée - Emprunteur: Ahmed Ben Ali");
+    private void loadReturnInfo(String codeBarre) {
+        String info = loanDAO.getLoanInfoByCodeBarre(codeBarre);
+        if (info == null) {
+            returnStudentLabel.setText("Aucun prêt actif trouvé.");
+            returnStudentLabel.setStyle("-fx-text-fill: #e74c3c;");
+            validateReturnBtn.setDisable(true);
             damagedCheckBox.setSelected(false);
-            penaltyLabel.setText("Pénalité: 0 DA");
-            penaltyLabel.setStyle("-fx-text-fill: #2ecc71;");
-        } else {
-            showAlert("Erreur", "Livre non trouvé.");
+            penaltyLabel.setText("Aucune pénalité");
+            return;
         }
+        returnStudentLabel.setText(info);
+        returnStudentLabel.setStyle("-fx-text-fill: #e74c3c;");
+        validateReturnBtn.setDisable(false);
+        calculatePenalty();
+
     }
 
     private void calculatePenalty() {
         if (damagedCheckBox.isSelected()) {
-            penaltyLabel.setText("Pénalité: 500 DA (dommage) + retard");
+            penaltyLabel.setText("Pénalité: 200 DT (dommage) ");
             penaltyLabel.setStyle("-fx-text-fill: #e74c3c;");
         } else {
-            penaltyLabel.setText("Pénalité: 0 DA");
+            penaltyLabel.setText("Pénalité: 0 DT");
             penaltyLabel.setStyle("-fx-text-fill: #2ecc71;");
         }
     }
 
     private void validateReturn() {
-        String scanText = scanBookField.getText().trim();
-        if (scanText.isEmpty()) {
-            showAlert("Erreur", "Veuillez scanner un livre.");
+        String codeBarre = scanBookField.getText().trim();
+        if (codeBarre.isEmpty()) {
+            showAlert("Erreur", "Veuillez scanner ou saisir le code barre de l'exemplaire.");
             return;
         }
-
-        showAlert("Succès", "Retour validé pour Algorithmique Avancée");
-        scanBookField.clear();
-        returnStudentLabel.setText("");
-        damagedCheckBox.setSelected(false);
-        penaltyLabel.setText("");
+        boolean isDamaged = damagedCheckBox.isSelected();
+        boolean success = loanDAO.validateReturn(codeBarre, isDamaged);
+        if (success) {
+            loanDAO.setExemplaireDisponible(codeBarre,true);
+            showAlert("Succès", "Retour validé avec succès");
+            scanBookField.clear();
+            returnStudentLabel.setText("");
+            damagedCheckBox.setSelected(false);
+            penaltyLabel.setText("");
+            loadSampleData();
+            loadSummary();
+        }
+        else {
+            showAlert("Erreur", "Impossible de valider le retour ou livre déja retourné.");
+        }
     }
 
     private void filterHistorique() {
         String searchText = searchField.getText().toLowerCase();
         String statusFilter = filterComboBox.getValue();
+
+        allLoans = loanDAO.getAllLoans();
 
         historiqueTable.getItems().clear();
         historiqueTable.getItems().addAll(
@@ -341,23 +467,15 @@ public class LoansController {
         );
     }
 
-    private void loadSampleData() {
-/*
-*         allLoans.addAll(
-            new LoanHistoryRow("Ahmed Ben Ali", "Algorithmique Avancée", "15/04/2026", "30/04/2026", "En cours"),
-            new LoanHistoryRow("Mariam Trabelsi", "Physique Quantique", "10/04/2026", "25/04/2026", "En retard"),
-            new LoanHistoryRow("Rached Gharbi", "Droit Civil", "08/04/2026", "23/04/2026", "Rendu"),
-            new LoanHistoryRow("Samira Kooli", "Chimie Organique", "12/04/2026", "27/04/2026", "En cours"),
-            new LoanHistoryRow("Layla Mansouri", "Base de Données", "20/04/2026", "05/05/2026", "En cours"),
-            new LoanHistoryRow("Karim Hadj", "Systèmes Distribués", "05/04/2026", "20/04/2026", "Rendu"),
-            new LoanHistoryRow("Fatima Zahra", "Machine Learning", "18/04/2026", "03/05/2026", "En cours"),
-            new LoanHistoryRow("Ali Amri", "Génie Logiciel", "07/04/2026", "22/04/2026", "En retard")
-        );
-*
-* */
 
-        historiqueTable.getItems().addAll(allLoans);
-    }
+
+    private void loadSampleData() {
+            allLoans.clear();
+            allLoans = loanDAO.getAllLoans(); // ← from database now
+            historiqueTable.getItems().addAll(allLoans);
+            historiqueTable.getItems().clear();
+            historiqueTable.getItems().addAll(allLoans);
+        }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

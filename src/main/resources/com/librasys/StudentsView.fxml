@@ -33,7 +33,7 @@
         </HBox>
         <ComboBox fx:id="promotionFilter" onAction="#onPromotionFilterChanged" prefWidth="150" styleClass="promo-filter"/>
         <ComboBox fx:id="sortFilter" onAction="#onSortFilterChanged" prefWidth="170" styleClass="promo-filter"/>
-        <Button text="+ Nouvel Étudiant" styleClass="new-student-btn"/>
+        <Button text="+ Nouvel Étudiant" styleClass="new-student-btn" />
     </HBox>
 
     <HBox spacing="14" VBox.vgrow="ALWAYS">

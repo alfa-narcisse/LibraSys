@@ -1,5 +1,6 @@
 package com.librasys.controller;
 
+import com.librasys.dao.studentdao;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,13 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -75,15 +76,28 @@ public class StudentsController {
 
     @FXML
     private Label cardMatriculeLabel;
+    @FXML
+    private Button addStudentBtn;
 
     private final ObservableList<Student> students = FXCollections.observableArrayList();
     private final FilteredList<Student> filteredStudents = new FilteredList<>(students, student -> true);
-
+    private final studentdao Studentdao = new studentdao();
+    @FXML
+    private void onAddStudent() {
+        try {
+            Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/NewStudentView.fxml"));
+            if (studentsTable.getScene().getRoot() instanceof Pane parentPane) {
+                parentPane.getChildren().setAll(view);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void initialize() {
         configureTable();
+        loadFromDatabase();
         configureFilters();
-        seedData();
         refreshTable();
         studentsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
@@ -123,10 +137,23 @@ public class StudentsController {
         delaysColumn.setCellValueFactory(data -> data.getValue().delaysProperty());
     }
 
-    private void configureFilters() {
-        promotionFilter.setItems(FXCollections.observableArrayList("Toutes", "2024", "2025", "2026"));
+     private void configureFilters() {
+        // Load promotions dynamically from students in DB
+        List<String> promotions = new ArrayList<>();
+        promotions.add("Toutes");
+        Studentdao.getAllStudents()
+                .stream()
+                .map(Student::getPromotion)
+                .distinct()
+                .sorted()
+                .forEach(promotions::add);
+
+        promotionFilter.setItems(FXCollections.observableArrayList(promotions));
         promotionFilter.getSelectionModel().selectFirst();
-        sortFilter.setItems(FXCollections.observableArrayList("Nom (A-Z)", "Retards (desc)", "Classe (A-Z)"));
+
+        sortFilter.setItems(FXCollections.observableArrayList(
+                "Nom (A-Z)", "Retards (desc)", "Classe (A-Z)"
+        ));
         sortFilter.getSelectionModel().selectFirst();
     }
 
@@ -172,19 +199,9 @@ public class StudentsController {
         detailLoanChipLabel.getStyleClass().add(student.isNearDelay() ? "loan-chip-warning" : "loan-chip-active");
     }
 
-    private void seedData() {
-        students.addAll(
-                new Student("Ahmed Bensalem", "ahmed.bensalem@ept.tn", "2023-INF-0412", "GINF-A", "3ème", "2026", 14, 2, 1,
-                        List.of(new LoanEntry("Algorithmique", "14/04/2026"), new LoanEntry("Droit civil", "10/04/2026"))),
-                new Student("Sarra Khalfallah", "sarra.khalfallah@ept.tn", "2024-MAT-0098", "GMATH-B", "2ème", "2025", 11, 1, 3,
-                        List.of(new LoanEntry("Analyse avancee", "11/04/2026"), new LoanEntry("Physique", "07/04/2026"))),
-                new Student("Youssef Triki", "youssef.triki@ept.tn", "2022-CHI-0220", "GCHIM-A", "4ème", "2024", 18, 3, 0,
-                        List.of(new LoanEntry("Chimie org.", "16/04/2026"), new LoanEntry("Thermodynamique", "13/04/2026"))),
-                new Student("Meriem Ayed", "meriem.ayed@ept.tn", "2023-INF-0444", "GINF-A", "3ème", "2026", 16, 2, 2,
-                        List.of(new LoanEntry("Reseaux", "09/04/2026"), new LoanEntry("Architecture SI", "04/04/2026"))),
-                new Student("Hatem Ghezal", "hatem.ghezal@ept.tn", "2024-MEC-0156", "GMEC-C", "2ème", "2025", 7, 0, 0,
-                        List.of(new LoanEntry("Mecanique des fluides", "02/04/2026"), new LoanEntry("Calcul numerique", "29/03/2026")))
-        );
+    private void loadFromDatabase() {
+        students.clear();
+        students.addAll(Studentdao.getAllStudents());
     }
 
     public static class Student {

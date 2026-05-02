@@ -1,0 +1,586 @@
+Index: src/main/java/com/example/projetjava/Launcher.java
+===================================================================
+diff --git a/src/main/java/com/example/projetjava/Launcher.java b/src/main/java/com/example/projetjava/Launcher.java
+deleted file mode 100644
+--- a/src/main/java/com/example/projetjava/Launcher.java	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ /dev/null	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
+@@ -1,9 +0,0 @@
+-package com.example.projetjava;
+-
+-import javafx.application.Application;
+-
+-public class Launcher {
+-    public static void main(String[] args) {
+-        Application.launch(HelloApplication.class, args);
+-    }
+-}
+Index: src/main/java/com/example/projetjava/HelloController.java
+===================================================================
+diff --git a/src/main/java/com/example/projetjava/HelloController.java b/src/main/java/com/example/projetjava/HelloController.java
+deleted file mode 100644
+--- a/src/main/java/com/example/projetjava/HelloController.java	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ /dev/null	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
+@@ -1,14 +0,0 @@
+-package com.example.projetjava;
+-
+-import javafx.fxml.FXML;
+-import javafx.scene.control.Label;
+-
+-public class HelloController {
+-    @FXML
+-    private Label welcomeText;
+-
+-    @FXML
+-    protected void onHelloButtonClick() {
+-        welcomeText.setText("Welcome to JavaFX Application!");
+-    }
+-}
+Index: src/main/java/com/example/projetjava/HelloApplication.java
+===================================================================
+diff --git a/src/main/java/com/example/projetjava/HelloApplication.java b/src/main/java/com/example/projetjava/HelloApplication.java
+deleted file mode 100644
+--- a/src/main/java/com/example/projetjava/HelloApplication.java	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ /dev/null	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
+@@ -1,19 +0,0 @@
+-package com.example.projetjava;
+-
+-import javafx.application.Application;
+-import javafx.fxml.FXMLLoader;
+-import javafx.scene.Scene;
+-import javafx.stage.Stage;
+-
+-import java.io.IOException;
+-
+-public class HelloApplication extends Application {
+-    @Override
+-    public void start(Stage stage) throws IOException {
+-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+-        stage.setTitle("Hello!");
+-        stage.setScene(scene);
+-        stage.show();
+-    }
+-}
+Index: target/classes/com/librasys/style.css
+===================================================================
+diff --git a/target/classes/com/librasys/style.css b/target/classes/com/librasys/style.css
+deleted file mode 100644
+--- a/target/classes/com/librasys/style.css	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ /dev/null	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
+@@ -1,148 +0,0 @@
+-.login-root {
+-    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+-    -fx-background-color: #f5f6fb;
+-}
+-
+-.left-banner {
+-    -fx-background-color: #1a237e;
+-}
+-
+-.sidebar-content {
+-    -fx-fill-width: true;
+-}
+-
+-.logo-circle {
+-    -fx-fill: rgba(255, 255, 255, 0.97);
+-    -fx-stroke: rgba(255, 255, 255, 0.45);
+-    -fx-stroke-width: 1.2;
+-}
+-
+-.brand-title {
+-    -fx-text-fill: #ffffff;
+-    -fx-font-size: 34px;
+-    -fx-font-weight: 700;
+-}
+-
+-.brand-subtitle {
+-    -fx-text-fill: #d9ddff;
+-    -fx-font-size: 15px;
+-}
+-
+-.stats-panel {
+-    -fx-padding: 12 0 0 0;
+-}
+-
+-.stat-card {
+-    -fx-background-color: rgba(255, 255, 255, 0.13);
+-    -fx-background-radius: 14;
+-    -fx-border-color: rgba(255, 255, 255, 0.22);
+-    -fx-border-radius: 14;
+-    -fx-padding: 12 14;
+-}
+-
+-.stat-number {
+-    -fx-text-fill: #ffffff;
+-    -fx-font-size: 24px;
+-    -fx-font-weight: 700;
+-}
+-
+-.stat-label {
+-    -fx-text-fill: #d7dbff;
+-    -fx-font-size: 12px;
+-}
+-
+-.right-section {
+-    -fx-padding: 32;
+-    -fx-alignment: center;
+-}
+-
+-.form-card {
+-    -fx-background-color: #ffffff;
+-    -fx-background-radius: 20;
+-    -fx-border-color: #e8eaf9;
+-    -fx-border-radius: 20;
+-    -fx-border-width: 1;
+-    -fx-effect: dropshadow(gaussian, rgba(14, 21, 69, 0.14), 28, 0.24, 0, 10);
+-}
+-
+-.form-title {
+-    -fx-text-fill: #1a237e;
+-    -fx-font-size: 28px;
+-    -fx-font-weight: 800;
+-}
+-
+-.field-label {
+-    -fx-text-fill: #303f7b;
+-    -fx-font-size: 12px;
+-    -fx-font-weight: 700;
+-}
+-
+-.role-toggle {
+-    -fx-background-color: #eef0fc;
+-    -fx-background-radius: 12;
+-    -fx-border-color: #d4d9f8;
+-    -fx-border-radius: 12;
+-    -fx-text-fill: #2d3569;
+-    -fx-font-weight: 700;
+-    -fx-padding: 10 12;
+-    -fx-cursor: hand;
+-}
+-
+-.role-toggle:selected {
+-    -fx-background-color: #1a237e;
+-    -fx-border-color: #1a237e;
+-    -fx-text-fill: #ffffff;
+-}
+-
+-.text-field,
+-.password-field {
+-    -fx-background-color: #f8f9ff;
+-    -fx-background-radius: 12;
+-    -fx-border-color: #d9def8;
+-    -fx-border-radius: 12;
+-    -fx-padding: 10 12;
+-}
+-
+-.text-field:focused,
+-.password-field:focused {
+-    -fx-border-color: #1a237e;
+-    -fx-border-width: 2;
+-    -fx-background-color: #ffffff;
+-}
+-
+-.remember-checkbox {
+-    -fx-text-fill: #44508e;
+-    -fx-font-size: 12px;
+-}
+-
+-.forgot-link {
+-    -fx-text-fill: #1a237e;
+-    -fx-font-size: 12px;
+-    -fx-underline: false;
+-    -fx-border-color: transparent;
+-    -fx-padding: 0 0 0 8;
+-}
+-
+-.forgot-link:hover {
+-    -fx-text-fill: #283593;
+-    -fx-underline: true;
+-}
+-
+-.login-button {
+-    -fx-background-color: #1a237e;
+-    -fx-background-radius: 12;
+-    -fx-text-fill: #ffffff;
+-    -fx-font-size: 14px;
+-    -fx-font-weight: 700;
+-    -fx-padding: 12 16;
+-    -fx-cursor: hand;
+-}
+-
+-.login-button:hover {
+-    -fx-background-color: #283593;
+-}
+-
+-.feedback-label {
+-    -fx-text-fill: #b71c1c;
+-    -fx-font-size: 12px;
+-}
+Index: src/main/resources/com/example/projetjava/hello-view.fxml
+===================================================================
+diff --git a/src/main/resources/com/example/projetjava/hello-view.fxml b/src/main/resources/com/example/projetjava/hello-view.fxml
+deleted file mode 100644
+--- a/src/main/resources/com/example/projetjava/hello-view.fxml	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ /dev/null	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
+@@ -1,16 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.layout.VBox?>
+-
+-<?import javafx.scene.control.Button?>
+-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+-      fx:controller="com.example.projetjava.HelloController">
+-    <padding>
+-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+-    </padding>
+-
+-    <Label fx:id="welcomeText"/>
+-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+-</VBox>
+Index: target/classes/com/librasys/LoginView.fxml
+===================================================================
+diff --git a/target/classes/com/librasys/LoginView.fxml b/target/classes/com/librasys/LoginView.fxml
+deleted file mode 100644
+--- a/target/classes/com/librasys/LoginView.fxml	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ /dev/null	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
+@@ -1,86 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.*?>
+-<?import javafx.scene.image.ImageView?>
+-<?import javafx.scene.layout.*?>
+-<?import javafx.scene.shape.Circle?>
+-
+-<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+-      fx:controller="com.librasys.controller.LoginController" styleClass="login-root">
+-
+-    <fx:define>
+-        <ToggleGroup fx:id="roleToggleGroup"/>
+-    </fx:define>
+-
+-    <StackPane prefWidth="420.0" styleClass="left-banner">
+-        <VBox alignment="TOP_CENTER" spacing="28" styleClass="sidebar-content">
+-            <padding>
+-                <Insets top="44" right="34" bottom="36" left="34"/>
+-            </padding>
+-
+-            <VBox alignment="CENTER" spacing="14">
+-                <StackPane styleClass="logo-circle-wrap">
+-                    <Circle radius="56" styleClass="logo-circle" fill="WHITE"/>
+-                    <ImageView fx:id="logoImageView" fitHeight="84" fitWidth="84" pickOnBounds="true" preserveRatio="true"/>
+-                </StackPane>
+-                <VBox alignment="CENTER" spacing="4">
+-                    <Label text="LibraSys" styleClass="brand-title"/>
+-                    <Label text="Ecole Polytechnique de Tunisie" styleClass="brand-subtitle"/>
+-                </VBox>
+-            </VBox>
+-
+-            <VBox spacing="12" styleClass="stats-panel">
+-                <VBox spacing="2" styleClass="stat-card">
+-                    <Label text="📚  3 842" styleClass="stat-number"/>
+-                    <Label text="Livres" styleClass="stat-label"/>
+-                </VBox>
+-                <VBox spacing="2" styleClass="stat-card">
+-                    <Label text="🎓  1 207" styleClass="stat-number"/>
+-                    <Label text="Etudiants" styleClass="stat-label"/>
+-                </VBox>
+-                <VBox spacing="2" styleClass="stat-card">
+-                    <Label text="🔄  84" styleClass="stat-number"/>
+-                    <Label text="Prets actifs" styleClass="stat-label"/>
+-                </VBox>
+-                <VBox spacing="2" styleClass="stat-card">
+-                    <Label text="⏰  7" styleClass="stat-number"/>
+-                    <Label text="Retards" styleClass="stat-label"/>
+-                </VBox>
+-            </VBox>
+-        </VBox>
+-    </StackPane>
+-
+-    <StackPane styleClass="right-section" HBox.hgrow="ALWAYS">
+-        <VBox spacing="16.0" maxWidth="430.0" styleClass="form-card" alignment="CENTER_LEFT">
+-            <padding>
+-                <Insets top="34" right="34" bottom="34" left="34"/>
+-            </padding>
+-
+-            <Label text="ACCÈS SÉCURISÉ" styleClass="form-title"/>
+-
+-            <Label text="Role utilisateur" styleClass="field-label"/>
+-            <HBox spacing="10">
+-                <ToggleButton fx:id="librarianToggle" text="Bibliothecaire" toggleGroup="$roleToggleGroup"
+-                              selected="true" styleClass="role-toggle" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+-                <ToggleButton fx:id="adminToggle" text="Administrateur" toggleGroup="$roleToggleGroup"
+-                              styleClass="role-toggle" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+-            </HBox>
+-
+-            <Label text="Identifiant" styleClass="field-label"/>
+-            <TextField fx:id="usernameField" promptText="biblio.sarah@ept.ucar.tn"/>
+-
+-            <Label text="Mot de passe" styleClass="field-label"/>
+-            <PasswordField fx:id="passwordField" promptText="........"/>
+-
+-            <HBox alignment="CENTER_LEFT" spacing="10">
+-                <CheckBox fx:id="rememberMeCheckBox" text="Rester connecte" styleClass="remember-checkbox"/>
+-                <Region HBox.hgrow="ALWAYS" /> <Hyperlink text="Mot de passe oublie ?" styleClass="forgot-link"/>
+-            </HBox>
+-
+-            <Button text="Se connecter" onAction="#onLoginClick" styleClass="login-button"
+-                    maxWidth="Infinity"/>
+-            <Label fx:id="feedbackLabel" styleClass="feedback-label"/>
+-        </VBox>
+-    </StackPane>
+-</HBox>
+\ No newline at end of file
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module com.example.librasys {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n    exports com.librasys;\r\n    opens com.librasys.controller to javafx.fxml;\r\n    exports com.librasys.controller;\r\n    exports com.librasys.ui;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ b/src/main/java/module-info.java	(date 1777473791504)
+@@ -1,6 +1,7 @@
+ module com.example.librasys {
+     requires javafx.controls;
+     requires javafx.fxml;
++    requires org.jetbrains.annotations;
+     exports com.librasys;
+     opens com.librasys.controller to javafx.fxml;
+     exports com.librasys.controller;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/BUILD_AND_TEST_GUIDE.md\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/DELIVERY_SUMMARY.txt\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/IMPLEMENTATION_SUMMARY.md\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/INDEX_DOCUMENTATION.md\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MODULE_M5_LOANS_README.md\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/SPECIFICATION_M5_DETAILED.md\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/VISUAL_ARCHITECTURE.md\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"EmbeddingIndexingInfo\">\r\n    <option name=\"cachedIndexableFilesCount\" value=\"37\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;alfa-narcisse&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/alfa-narcisse/LibraSys.git&quot;,\r\n    &quot;accountId&quot;: &quot;4abc388f-764e-4d74-8ff7-745ac23c3f98&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7,\r\n  &quot;fromUser&quot;: false\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3CtNS03lw3Iddh3mYzAy22Ic7U1\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Application.Launcher\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d\" name=\"Changes\" comment=\"\" />\r\n      <created>1777200906449</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1777200906449</updated>\r\n      <workItem from=\"1777200907984\" duration=\"1120000\" />\r\n      <workItem from=\"1777202396522\" duration=\"7161000\" />\r\n      <workItem from=\"1777212200333\" duration=\"1419000\" />\r\n      <workItem from=\"1777410325162\" duration=\"765000\" />\r\n      <workItem from=\"1777411179287\" duration=\"665000\" />\r\n      <workItem from=\"1777411968775\" duration=\"3319000\" />\r\n      <workItem from=\"1777438271615\" duration=\"2887000\" />\r\n      <workItem from=\"1777442148460\" duration=\"2291000\" />\r\n      <workItem from=\"1777456170311\" duration=\"562000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.IllegalArgumentException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.ClassNotFoundException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ b/.idea/workspace.xml	(date 1777473791503)
+@@ -4,47 +4,37 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d" name="Changes" comment="">
++    <list default="true" id="57ec5bef-632b-4db1-82fc-8f1fd9e974de" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/BUILD_AND_TEST_GUIDE.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/DELIVERY_SUMMARY.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/IMPLEMENTATION_SUMMARY.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/INDEX_DOCUMENTATION.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/MODULE_M5_LOANS_README.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/SPECIFICATION_M5_DETAILED.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/VISUAL_ARCHITECTURE.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projetjava/HelloApplication.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projetjava/HelloController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projetjava/Launcher.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/projetjava/hello-view.fxml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/LoginView.fxml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/style.css" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="EmbeddingIndexingInfo">
+-    <option name="cachedIndexableFilesCount" value="37" />
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory">{
+-  &quot;lastFilter&quot;: {
+-    &quot;state&quot;: &quot;OPEN&quot;,
+-    &quot;assignee&quot;: &quot;alfa-narcisse&quot;
++  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
++  "lastFilter": {
++    "state": "OPEN",
++    "assignee": "Alban226"
+   }
+-}</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/alfa-narcisse/LibraSys.git&quot;,
+-    &quot;accountId&quot;: &quot;4abc388f-764e-4d74-8ff7-745ac23c3f98&quot;
++}]]></component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/alfa-narcisse/LibraSys.git",
++    "accountId": "989a2f57-2ce7-4862-93fe-35188c854e25"
+   }
+-}</component>
++}]]></component>
+   <component name="MavenImportPreferences">
+     <option name="generalSettings">
+       <MavenGeneralSettings>
+@@ -52,92 +42,65 @@
+       </MavenGeneralSettings>
+     </option>
+   </component>
+-  <component name="McpProjectServerCommands">
+-    <commands />
+-    <urls />
+-  </component>
+-  <component name="ProjectColorInfo">{
+-  &quot;associatedIndex&quot;: 7,
+-  &quot;fromUser&quot;: false
+-}</component>
+-  <component name="ProjectId" id="3CtNS03lw3Iddh3mYzAy22Ic7U1" />
++  <component name="ProjectColorInfo"><![CDATA[{
++  "customColor": "",
++  "associatedIndex": 7
++}]]></component>
++  <component name="ProjectId" id="3D1gd9MX6y3MPQXuvyPuUkeyHBH" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.HelloApplication.executor": "Run",
++    "Application.Launcher.executor": "Run",
++    "Application.MainApplication.executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
++    "git-widget-placeholder": "master",
++    "junie.onboarding.icon.badge.shown": "true",
++    "kotlin-language-version-configured": "true",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "to.speed.mode.migration.done": "true",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
+-  <component name="RunManager" selected="Application.Launcher" />
++}]]></component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="36e23e22-f2e3-47de-b11e-3bcbcfbd9b1d" name="Changes" comment="" />
+-      <created>1777200906449</created>
++      <changelist id="57ec5bef-632b-4db1-82fc-8f1fd9e974de" name="Changes" comment="" />
++      <created>1777455075887</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+-      <updated>1777200906449</updated>
+-      <workItem from="1777200907984" duration="1120000" />
+-      <workItem from="1777202396522" duration="7161000" />
+-      <workItem from="1777212200333" duration="1419000" />
+-      <workItem from="1777410325162" duration="765000" />
+-      <workItem from="1777411179287" duration="665000" />
+-      <workItem from="1777411968775" duration="3319000" />
+-      <workItem from="1777438271615" duration="2887000" />
+-      <workItem from="1777442148460" duration="2291000" />
+-      <workItem from="1777456170311" duration="562000" />
++      <updated>1777455075887</updated>
++      <workItem from="1777455076934" duration="2029000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State />
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+       <breakpoints>
+-        <breakpoint enabled="true" type="java-exception">
+-          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
++        <line-breakpoint enabled="true" type="java-method">
++          <url>file://$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java</url>
++          <line>16</line>
++          <properties class="com.librasys.MainApplication" method="start">
++            <option name="EMULATED" value="true" />
++            <option name="WATCH_EXIT" value="false" />
++          </properties>
+           <option name="timeStamp" value="1" />
+-        </breakpoint>
+-        <breakpoint enabled="true" type="java-exception">
+-          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+-          <option name="timeStamp" value="2" />
+-        </breakpoint>
++        </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+   </component>
+-  <component name="XSLT-Support.FileAssociations.UIState">
+-    <expand />
+-    <select />
+-  </component>
+ </project>
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>com.example</groupId>\r\n    <artifactId>LibraSys</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n    <name>LibraSys</name>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <maven.compiler.release>21</maven.compiler.release>\r\n        <javafx.version>21.0.6</javafx.version>\r\n        <junit.version>5.12.1</junit.version>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-controls</artifactId>\r\n            <version>${javafx.version}</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-fxml</artifactId>\r\n            <version>${javafx.version}</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-api</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-engine</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <version>3.13.0</version>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.openjfx</groupId>\r\n                <artifactId>javafx-maven-plugin</artifactId>\r\n                <version>0.0.8</version>\r\n                <executions>\r\n                    <execution>\r\n                        <id>default-cli</id>\r\n                        <configuration>\r\n                            <mainClass>com.example.librasys/com.librasys.Launcher</mainClass>\r\n                            <launcher>librasys</launcher>\r\n                            <jlinkZipName>librasys</jlinkZipName>\r\n                            <jlinkImageName>librasys</jlinkImageName>\r\n                            <noManPages>true</noManPages>\r\n                            <stripDebug>true</stripDebug>\r\n                            <noHeaderFiles>true</noHeaderFiles>\r\n                        </configuration>\r\n                    </execution>\r\n                </executions>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision c04f51c730d1d899afd9b2890ab0cf056c242574)
++++ b/pom.xml	(date 1777473791503)
+@@ -39,6 +39,12 @@
+             <version>${junit.version}</version>
+             <scope>test</scope>
+         </dependency>
++        <dependency>
++            <groupId>org.jetbrains</groupId>
++            <artifactId>annotations</artifactId>
++            <version>RELEASE</version>
++            <scope>compile</scope>
++        </dependency>
+     </dependencies>
+ 
+     <build>

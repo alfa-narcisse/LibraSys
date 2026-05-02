@@ -9,5 +9,8 @@
         <module name="LibraSys" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Projetjava" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>

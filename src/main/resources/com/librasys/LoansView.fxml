@@ -25,7 +25,7 @@
         </padding>
         <Label text="Gestion des Prêts et Retours" styleClass="header-title"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="← Retour" styleClass="back-btn"/>
+
     </HBox>
 
     <!-- Summary Cards Section -->
@@ -36,18 +36,18 @@
         <HBox spacing="12">
             <VBox HBox.hgrow="ALWAYS" styleClass="summary-card">
                 <Label text="Prêts Actifs" styleClass="summary-title"/>
-                <Label text="84" styleClass="summary-value"/>
-                <Label text="+3 aujourd'hui" styleClass="summary-sub"/>
+                <Label fx:id="activeLoansLabel" text="0" styleClass="summary-value"/>
+                <Label fx:id="newTodayLabel" text="+0 aujourd'hui" styleClass="summary-sub"/>
             </VBox>
             <VBox HBox.hgrow="ALWAYS" styleClass="summary-card">
                 <Label text="Retours Attendus Aujourd'hui" styleClass="summary-title"/>
-                <Label text="12" styleClass="summary-value"/>
-                <Label text="2 en retard" styleClass="summary-sub"/>
+                <Label fx:id="expectedReturnsLabel" text="0" styleClass="summary-value"/>
+                <Label fx:id="lateReturnsLabel" text="0 retour attendu aujourd'hui" styleClass="summary-sub"/>
             </VBox>
             <VBox HBox.hgrow="ALWAYS" styleClass="summary-card">
                 <Label text="Retards Critiques" styleClass="summary-title"/>
-                <Label text="7" styleClass="summary-value-alert"/>
-                <Label text="À traiter aujourd'hui" styleClass="summary-sub"/>
+                <Label fx:id="criticalDelaysLabel" text="0" styleClass="summary-value-alert"/>
+                <Label  text="À traiter aujourd'hui" styleClass="summary-sub"/>
             </VBox>
         </HBox>
     </VBox>
@@ -77,7 +77,7 @@
 
             <!-- Step 1: Identification -->
             <VBox styleClass="process-section" spacing="10">
-                <Label text="Étape 1 : Identification de l'Étudiant" styleClass="section-title"/>
+                <Label text="Étape 1 : Identification de l'étudiant" styleClass="section-title"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <TextField fx:id="studentMatriculeField" HBox.hgrow="ALWAYS" styleClass="form-input"
                                promptText="Scannez le matricule étudiant (6 chiffres)"/>
@@ -103,7 +103,7 @@
                 <Label text="Étape 2 : Sélection du Livre" styleClass="section-title"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <TextField fx:id="bookIsbnField" HBox.hgrow="ALWAYS" styleClass="form-input"
-                               promptText="Scannez l'ISBN ou le code-barres du livre"/>
+                               promptText="Scannez le code-barre de l'exemplaire"/>
                     <Button text="📱 Scanner" styleClass="scan-btn"/>
                 </HBox>
 
@@ -115,7 +115,7 @@
                         </VBox>
                         <VBox HBox.hgrow="ALWAYS" spacing="4">
                             <Label fx:id="bookTitleLabel" text="Titre du livre ici" styleClass="book-quick-title"/>
-                            <Label fx:id="bookStateLabel" text="État: - " styleClass="book-quick-state"/>
+                            <Label fx:id="bookStateLabel" text="Etat: - " styleClass="book-quick-state"/>
                         </VBox>
                     </HBox>
                 </VBox>
@@ -154,7 +154,7 @@
 
             <!-- Damage Check Section -->
             <VBox styleClass="process-section" spacing="12">
-                <Label text="Vérification de l'État" styleClass="section-title"/>
+                <Label text="Vérification de l'état" styleClass="section-title"/>
                 <VBox styleClass="validation-card" spacing="10">
                     <CheckBox fx:id="damagedCheckBox" text="Livre endommagé" styleClass="damage-checkbox"/>
                     <Label fx:id="penaltyLabel" text="Pénalité: 0 DA" styleClass="penalty-info"/>
@@ -182,7 +182,7 @@
             <VBox styleClass="table-container" VBox.vgrow="ALWAYS">
                 <TableView fx:id="historiqueTable" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="studentColHistorique" text="Étudiant" prefWidth="200"/>
+                        <TableColumn fx:id="studentColHistorique" text="Etudiant" prefWidth="200"/>
                         <TableColumn fx:id="bookColHistorique" text="Titre" prefWidth="250"/>
                         <TableColumn fx:id="loanDateCol" text="Date Prêt" prefWidth="120"/>
                         <TableColumn fx:id="returnDateCol" text="Date Retour" prefWidth="120"/>

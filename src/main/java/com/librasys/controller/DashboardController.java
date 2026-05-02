@@ -1,22 +1,27 @@
 package com.librasys.controller;
 
+import com.librasys.util.SessionManager;
+import com.librasys.dao.bookdao;
+import com.librasys.dao.loandao;
+import com.librasys.dao.studentdao;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
+import javafx.scene.control.ProgressBar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,16 +64,44 @@ public class DashboardController {
 
     @FXML
     private Button loansMenuButton;
+    @FXML
+    private Label totalStudentsLabel;
+    @FXML
+    private Label totalBooksLabel;
+    @FXML
+    private Label activeLoansLabel;
+    @FXML
+    private Label criticalDelaysLabel;
+    @FXML
+    private Label headerLabel;
+    @FXML
+    private Label availableBooksLabel;
+    @FXML
+    private Label newStudentsLabel;
+    @FXML
+    private Label todayLoansLabel;
+    @FXML
+    private Label todayReturnsLabel;
+    @FXML
+    private Label totalDelaysLabel;
+    @FXML
+    private VBox  popularBooksContainer;
 
     private List<Node> dashboardHomeNodes;
+
+    private final loandao loanDAO = new loandao();
+    private final studentdao studentDAO = new studentdao();
+    private final bookdao bookDAO = new bookdao();
 
     @FXML
     private void initialize() {
         loadLogo();
+        loadSummaryCards();
         initChart();
         initTable();
         dashboardHomeNodes = new ArrayList<>(mainContentArea.getChildren());
         setActiveMenu(dashboardMenuButton);
+
     }
 
     private void loadLogo() {
@@ -78,15 +111,98 @@ public class DashboardController {
         }
     }
 
+
+    // =====================
+    // SUMMARY CARDS FROM DB
+    // =====================
+    private void loadSummaryCards() {
+        // Header with logged-in username and today's date
+        String username = SessionManager.getUsername();
+        String today    = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRENCH));
+        if (headerLabel != null) {
+            headerLabel.setText("Bonjour, " + username + " — " + today);
+        }
+
+        // Total books and available
+        int totalBooks     = bookDAO.countBooks();
+        int availableBooks = bookDAO.countAvailableBooks();
+        if (totalBooksLabel     != null) totalBooksLabel.setText(String.valueOf(totalBooks));
+        if (availableBooksLabel != null) availableBooksLabel.setText(availableBooks + " disponibles");
+
+        // Total students and new this month
+        int totalStudents = studentDAO.countStudents();
+        int newStudents   = studentDAO.countNewStudentsThisMonth();
+        if (totalStudentsLabel != null) totalStudentsLabel.setText(String.valueOf(totalStudents));
+        if (newStudentsLabel   != null) newStudentsLabel.setText("+" + newStudents + " ce mois");
+
+        // Loan stats
+        int[] stats = loanDAO.getSummaryStats();
+        int activeLoans    = stats[0];
+        int newToday       = stats[1];
+        int expectedToday  = stats[2];
+        int criticalDelays = stats[4];
+
+        if (activeLoansLabel    != null) activeLoansLabel.setText(activeLoans + " prets actifs");
+        if (criticalDelaysLabel != null) criticalDelaysLabel.setText(criticalDelays + " retards");
+        if (todayLoansLabel     != null) todayLoansLabel.setText(String.valueOf(newToday));
+        if (todayReturnsLabel   != null) todayReturnsLabel.setText(expectedToday + " retours");
+        if (totalDelaysLabel    != null) totalDelaysLabel.setText(String.valueOf(criticalDelays));
+
+        // Color for critical delays
+        if (criticalDelaysLabel != null) {
+            if (criticalDelays > 5)     criticalDelaysLabel.setStyle("-fx-text-fill: #e74c3c;");
+            else if (criticalDelays > 0) criticalDelaysLabel.setStyle("-fx-text-fill: #f39c12;");
+            else                         criticalDelaysLabel.setStyle("-fx-text-fill: #2ecc71;");
+        }
+
+        // Popular books
+        loadPopularBooks();
+    }
+    private void loadPopularBooks() {
+        if (popularBooksContainer == null) return;
+
+        List<String[]> popular = bookDAO.getPopularBooks();
+        popularBooksContainer.getChildren().clear();
+
+        for (String[] book : popular) {
+            String title    = book[0];
+            double progress = Double.parseDouble(book[1]);
+
+            Label nameLabel = new Label(title);
+            nameLabel.getStyleClass().add("popular-label");
+
+            ProgressBar bar = new ProgressBar(progress);
+            bar.getStyleClass().add("popular-progress");
+            bar.setMaxWidth(Double.MAX_VALUE);
+
+            VBox entry = new VBox(4, nameLabel, bar);
+            popularBooksContainer.getChildren().add(entry);
+        }
+    }
+    // =====================
+    // CHART FROM DB
+    // =====================
     private void initChart() {
+        List<int[]> monthlyStats = loanDAO.getMonthlyStats();
+
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Prets");
-        series.getData().add(new XYChart.Data<>("Nov", 43));
-        series.getData().add(new XYChart.Data<>("Dec", 51));
-        series.getData().add(new XYChart.Data<>("Jan", 58));
-        series.getData().add(new XYChart.Data<>("Fev", 65));
-        series.getData().add(new XYChart.Data<>("Mar", 74));
-        series.getData().add(new XYChart.Data<>("Avr", 68));
+        series.setName("Prêts");
+
+        String[] monthNames = {"Jan", "Fév", "Mar", "Avr", "Mai", "Jun",
+                "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"};
+
+        if (monthlyStats.isEmpty()) {
+            // Fallback — show empty chart
+            for (String month : monthNames) {
+                series.getData().add(new XYChart.Data<>(month, 0));
+            }
+        } else {
+            for (int[] row : monthlyStats) {
+                int month = row[0];
+                int count = row[1];
+                series.getData().add(new XYChart.Data<>(monthNames[month - 1], count));
+            }
+        }
 
         monthlyActivityChart.getData().clear();
         monthlyActivityChart.getData().add(series);
@@ -94,11 +210,15 @@ public class DashboardController {
         monthlyActivityChart.setAnimated(false);
     }
 
+    // =====================
+    // RECENT LOANS TABLE FROM DB
+    // =====================
     private void initTable() {
         studentColumn.setCellValueFactory(data -> data.getValue().studentProperty());
         bookColumn.setCellValueFactory(data -> data.getValue().bookProperty());
         returnDateColumn.setCellValueFactory(data -> data.getValue().returnDateProperty());
         statusColumn.setCellValueFactory(data -> data.getValue().statusProperty());
+
         statusColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(String status, boolean empty) {
@@ -107,25 +227,34 @@ public class DashboardController {
                     setGraphic(null);
                     return;
                 }
-
                 Label chip = new Label(status);
                 chip.getStyleClass().add("status-chip");
-                chip.getStyleClass().add("Retard".equals(status) ? "status-retard" : "status-en-cours");
-
+                if ("En retard".equals(status)) {
+                    chip.getStyleClass().add("status-retard");
+                } else if ("Rendu".equals(status)) {
+                    chip.getStyleClass().add("status-rendu");
+                } else {
+                    chip.getStyleClass().add("status-en-cours");
+                }
                 StackPane wrapper = new StackPane(chip);
                 wrapper.setMaxWidth(Double.MAX_VALUE);
                 setGraphic(wrapper);
             }
         });
 
-        recentLoansTable.getItems().addAll(
-                new LoanRow("A. Ben Ali", "Algorithmique avancee", "18/04/2026", "En cours"),
-                new LoanRow("M. Trabelsi", "Physique quantique", "17/04/2026", "Retard"),
-                new LoanRow("R. Gharbi", "Droit civil", "19/04/2026", "En cours"),
-                new LoanRow("S. Kooli", "Chimie organique", "16/04/2026", "Retard"),
-                new LoanRow("L. Mansouri", "Base de donnees", "20/04/2026", "En cours")
-        );
+        // Load recent loans from DB
+        loadRecentLoans();
     }
+
+    private void loadRecentLoans() {
+        List<LoanRow> recentLoans = loanDAO.getRecentLoansForDashboard();
+        recentLoansTable.getItems().clear();
+        recentLoansTable.getItems().addAll(recentLoans);
+    }
+
+
+
+
 
     @FXML
     private void showDashboard() {

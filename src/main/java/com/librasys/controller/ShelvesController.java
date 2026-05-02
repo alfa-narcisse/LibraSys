@@ -1,5 +1,6 @@
 package com.librasys.controller;
 
+import com.librasys.dao.shelfdao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,17 +26,18 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.Comparator;
 
-public class ShelvesController {
+public class  ShelvesController {
     @FXML
     private VBox shelvesRoot;
     @FXML
     private FlowPane shelvesFlowPane;
 
     private final ObservableList<Shelf> shelves = FXCollections.observableArrayList();
+    private final shelfdao shelfDAO = new shelfdao();
 
     @FXML
     private void initialize() {
-        seedShelves();
+        loadFromDatabase();
         renderShelves();
     }
 
@@ -102,12 +104,25 @@ public class ShelvesController {
 
         cancelButton.setOnAction(event -> dialog.setResult(ButtonTypeWrapper.CANCEL));
         createButton.setOnAction(event -> {
-            String name = shelfNameField.getText() == null ? "" : shelfNameField.getText().trim();
+            String name     = shelfNameField.getText() == null ? "" : shelfNameField.getText().trim();
             String category = categoryCombo.getValue() == null ? "Général" : categoryCombo.getValue();
             String location = locationField.getText() == null ? "" : locationField.getText().trim();
-            int capacity = capacitySpinner.getValue();
-            if (!name.isBlank() && !location.isBlank()) {
-                shelves.add(new Shelf(name + " - " + category, 0, capacity, 0, location));
+            int capacity    = capacitySpinner.getValue();
+
+            if (name.isBlank() || location.isBlank()) {
+                return;
+            }
+
+            // Check for duplicates before inserting
+            String fullName = name + " - " + category;
+            if (shelfDAO.shelfExists(fullName)) {
+                // show error — shelf already exists
+                return;
+            }
+
+            boolean success = shelfDAO.addShelf(fullName, "#3498db", location);
+            if (success) {
+                shelves.add(new Shelf(fullName, 0, capacity, 0, location));
                 shelves.sort(Comparator.comparing(Shelf::name));
                 renderShelves();
                 dialog.setResult(ButtonTypeWrapper.CREATE);
@@ -171,15 +186,9 @@ public class ShelvesController {
         }
     }
 
-    private void seedShelves() {
-        shelves.addAll(
-                new Shelf("Rayon A - Informatique", 142, 200, 3, "Allée 1"),
-                new Shelf("Rayon B - Mathématiques", 108, 180, 3, "Allée 2"),
-                new Shelf("Rayon C - Physique", 96, 160, 2, "Allée 3"),
-                new Shelf("Rayon D - Littérature", 88, 140, 3, "Allée 4"),
-                new Shelf("Rayon E - Droit", 74, 130, 2, "Allée 5"),
-                new Shelf("Rayon F - Économie", 65, 120, 2, "Allée 6")
-        );
+    private void loadFromDatabase() {
+        shelves.addAll(shelfDAO.getAllShelves());
+        shelves.sort(Comparator.comparing(Shelf::name));
     }
 
     private enum ButtonTypeWrapper {
