@@ -5,70 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57ec5bef-632b-4db1-82fc-8f1fd9e974de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/71152c5a-99b3-4de1-8d8c-cc015be4b040.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/71152c5a-99b3-4de1-8d8c-cc015be4b040/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/71152c5a-99b3-4de1-8d8c-cc015be4b040/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/71152c5a-99b3-4de1-8d8c-cc015be4b040/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/71152c5a-99b3-4de1-8d8c-cc015be4b040/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_29_2026_9_09_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_29_2026_9_09_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_4_29_2026_3_43_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_4_29_2026_3_43_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/NewStudentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/dao/bookdao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/dao/loandao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/dao/logindao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/dao/shelfdao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/dao/studentdao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/util/DatabaseConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/librasys/util/SessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/NewStudentController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/dao/bookdao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/dao/loandao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/dao/logindao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/dao/shelfdao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/dao/studentdao$1RawStudent.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/dao/studentdao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/util/DatabaseConnection.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/librasys/util/SessionManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/MainApplication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/MainApplication.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/BooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/BooksController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoansController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoansController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/NewBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/NewBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/NewStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/NewStudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/ShelvesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/ShelvesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/librasys/controller/StudentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/librasys/controller/StudentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/BooksView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/BooksView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/DashboardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/DashboardView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/LoansView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/NewBookView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/ShelvesView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/ShelvesView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/StudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/StudentsView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/students.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/students.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/librasys/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/librasys/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/BooksView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/BooksView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/DashboardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/DashboardView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/LoansView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/LoansView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/MainApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/NewBookView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/ShelvesView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/ShelvesView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/StudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/StudentsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$Book.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$Rayon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/BooksController$Rayon.class" afterDir="false" />
@@ -76,23 +29,24 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$LoanRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController$LoanRow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/DashboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoansController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoansController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoansController$LoanHistoryRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoansController$LoanHistoryRow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoansController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoansController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/NewBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/NewBookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/NewStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/NewStudentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/ShelvesController$ButtonTypeWrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/ShelvesController$ButtonTypeWrapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/ShelvesController$Shelf.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/ShelvesController$Shelf.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/ShelvesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/ShelvesController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/StudentsController$LoanEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/StudentsController$LoanEntry.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/StudentsController$Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/StudentsController$Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/controller/StudentsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/controller/StudentsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/students.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/students.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/librasys/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/librasys/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="67" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -119,7 +73,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/alfa-narcisse/LibraSys.git&quot;,
-    &quot;accountId&quot;: &quot;989a2f57-2ce7-4862-93fe-35188c854e25&quot;
+    &quot;accountId&quot;: &quot;4abc388f-764e-4d74-8ff7-745ac23c3f98&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -128,6 +82,10 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -144,6 +102,7 @@
     &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
     &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -163,7 +122,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -189,10 +148,23 @@
       <workItem from="1777719009322" duration="22117000" />
       <workItem from="1777741266233" duration="439000" />
       <workItem from="1777754991769" duration="517000" />
+      <workItem from="1777960815288" duration="14864000" />
+      <workItem from="1777990977070" duration="257000" />
+      <workItem from="1778007708330" duration="1987000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

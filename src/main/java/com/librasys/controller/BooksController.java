@@ -185,12 +185,71 @@ public class BooksController {
                     setGraphic(null);
                     return;
                 }
-                Label edit = new Label("✎");
-                Label delete = new Label("🗑");
 
-                edit.getStyleClass().add("action-icon");
+                Label delete = new Label("🗑");
                 delete.getStyleClass().add("action-icon");
-                HBox box = new HBox(10, edit, delete);
+                delete.setOnMouseClicked(evt -> {
+                    // ask for session password (styled dialog)
+                    javafx.scene.control.Dialog<String> dialog = new javafx.scene.control.Dialog<>();
+                    dialog.setTitle("Confirmer la suppression");
+                    dialog.setHeaderText("Entrez votre mot de passe pour confirmer");
+                    javafx.scene.control.PasswordField pf = new javafx.scene.control.PasswordField();
+                    pf.setPromptText("Mot de passe");
+                    javafx.scene.layout.VBox content = new javafx.scene.layout.VBox(8, pf);
+                    content.setPadding(new javafx.geometry.Insets(12));
+                    dialog.getDialogPane().setContent(content);
+
+                    // Apply app stylesheet to dialog so it looks consistent
+                    dialog.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                    dialog.getDialogPane().getStyleClass().add("password-dialog");
+
+                    // Add graphic icon
+                    javafx.scene.control.Label icon = new javafx.scene.control.Label("🔒");
+                    icon.getStyleClass().add("dialog-icon");
+                    dialog.getDialogPane().setGraphic(icon);
+
+                    dialog.getDialogPane().getButtonTypes().addAll(javafx.scene.control.ButtonType.OK, javafx.scene.control.ButtonType.CANCEL);
+                    dialog.setResultConverter(button -> button == javafx.scene.control.ButtonType.OK ? pf.getText() : null);
+                    java.util.Optional<String> result = dialog.showAndWait();
+                    if (result.isPresent()) {
+                        String entered = result.get();
+                        com.librasys.dao.logindao loginDAO = new com.librasys.dao.logindao();
+                        String expected = loginDAO.getpassword(com.librasys.util.SessionManager.getUsername());
+                        if (expected != null && expected.equals(entered)) {
+                            boolean deleted = bookDAO.deleteBook(item);
+                            if (deleted) {
+                                // refresh
+                                loadFromDatabase();
+                                applyFilters();
+                                javafx.scene.control.Alert ok = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+                                ok.setTitle("Suppression");
+                                ok.setHeaderText(null);
+                                ok.setContentText("Livre supprimé avec succès.");
+                                ok.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                                ok.getDialogPane().getStyleClass().add("confirm-dialog");
+                                ok.showAndWait();
+                            } else {
+                                javafx.scene.control.Alert err = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+                                err.setTitle("Erreur");
+                                err.setHeaderText(null);
+                                err.setContentText("Impossible de supprimer le livre.");
+                                err.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                                err.getDialogPane().getStyleClass().add("confirm-dialog");
+                                err.showAndWait();
+                            }
+                        } else {
+                            javafx.scene.control.Alert err = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+                            err.setTitle("Mot de passe incorrect");
+                            err.setHeaderText(null);
+                            err.setContentText("Mot de passe invalide.");
+                            err.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                            err.getDialogPane().getStyleClass().add("password-dialog");
+                            err.showAndWait();
+                        }
+                    }
+                });
+
+                HBox box = new HBox(10, delete);
                 box.setAlignment(Pos.CENTER_LEFT);
                 setGraphic(box);
             }
@@ -383,6 +442,14 @@ public class BooksController {
         books.clear();
         rayons.addAll(bookDAO.getRayonsFromShelves());
         books.addAll(bookDAO.getAllBooks());
+    }
+
+    public void setSelectedRayon(String rayonName) {
+        this.selectedRayon = rayonName == null ? "Tous" : rayonName;
+        buildRayonPills();
+        buildRayonCards();
+        highlightSelectedRayonCard();
+        applyFilters();
     }
 
 

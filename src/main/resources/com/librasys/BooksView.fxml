@@ -35,9 +35,11 @@
         </HBox>
         <Button text="+ Ajouter un livre" styleClass="books-primary-btn" onAction="#onAddBook"/>
         <Button text="📷 Scanner ISBN" styleClass="books-secondary-btn"/>
+        <Button text="⚙ Gérer les Rayons" styleClass="books-secondary-btn" onAction="#onManageRayons"/>
     </HBox>
 
-    <VBox spacing="8">
+
+    <VBox spacing="8" visible="false" managed="false">
         <HBox alignment="CENTER_LEFT">
             <Label text="Rayons" styleClass="section-caption"/>
             <Region HBox.hgrow="ALWAYS"/>

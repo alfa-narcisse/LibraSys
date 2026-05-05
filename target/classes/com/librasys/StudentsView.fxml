@@ -33,7 +33,7 @@
         </HBox>
         <ComboBox fx:id="promotionFilter" onAction="#onPromotionFilterChanged" prefWidth="150" styleClass="promo-filter"/>
         <ComboBox fx:id="sortFilter" onAction="#onSortFilterChanged" prefWidth="170" styleClass="promo-filter"/>
-        <Button text="+ Nouvel Étudiant" styleClass="new-student-btn" />
+        <Button fx:id="addStudentBtn" text="+ Nouvel Étudiant" styleClass="new-student-btn" onAction="#onAddStudent" />
     </HBox>
 
     <HBox spacing="14" VBox.vgrow="ALWAYS">
@@ -68,13 +68,13 @@
             </StackPane>
             <VBox spacing="2" alignment="CENTER">
                 <Label fx:id="detailNameLabel" text="Ahmed Bensalem" styleClass="detail-name"/>
-                <Label fx:id="detailSectionLabel" text="Génie Informatique" styleClass="detail-sub"/>
+                <Label fx:id="detailSectionLabel" text="SISY" styleClass="detail-sub"/>
                 <Label fx:id="detailMatriculeLabel" text="2023-INF-0412" styleClass="detail-sub"/>
                 <Label fx:id="detailLoanChipLabel" text="2 prêts" styleClass="loan-chip loan-chip-active"/>
             </VBox>
             <VBox spacing="10" styleClass="digital-card">
                 <HBox alignment="CENTER_LEFT">
-                    <Label text="Carte EPT" styleClass="digital-card-title"/>
+                    <Label text="Carte de bibliothèque" styleClass="digital-card-title"/>
                     <Region HBox.hgrow="ALWAYS"/>
                     <Label text="EPT" styleClass="digital-card-logo"/>
                 </HBox>

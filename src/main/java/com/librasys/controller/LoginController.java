@@ -123,16 +123,35 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/librasys/DashboardView.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 1320, 820);
-            // apply dashboard styles
-            scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/dashboard.css").toExternalForm());
-            scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/students.css").toExternalForm());
-            scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/books.css").toExternalForm());
-            scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/shelves.css").toExternalForm());
-            scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/loans.css").toExternalForm());
+
+            // prepare css urls
+            java.net.URL dashCss = MainApplication.class.getResource("/com/librasys/dashboard.css");
+            java.net.URL studentsCss = MainApplication.class.getResource("/com/librasys/students.css");
+            java.net.URL booksCss = MainApplication.class.getResource("/com/librasys/books.css");
+            java.net.URL shelvesCss = MainApplication.class.getResource("/com/librasys/shelves.css");
+            java.net.URL loansCss = MainApplication.class.getResource("/com/librasys/loans.css");
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            stage.setScene(scene);
+            Scene scene = stage.getScene();
+            if (scene != null) {
+                // reuse existing scene to preserve window size
+                scene.setRoot(root);
+                scene.getStylesheets().clear();
+                if (dashCss != null) scene.getStylesheets().add(dashCss.toExternalForm());
+                if (studentsCss != null) scene.getStylesheets().add(studentsCss.toExternalForm());
+                if (booksCss != null) scene.getStylesheets().add(booksCss.toExternalForm());
+                if (shelvesCss != null) scene.getStylesheets().add(shelvesCss.toExternalForm());
+                if (loansCss != null) scene.getStylesheets().add(loansCss.toExternalForm());
+            } else {
+                Scene newScene = new Scene(root, 1320, 820);
+                if (dashCss != null) newScene.getStylesheets().add(dashCss.toExternalForm());
+                if (studentsCss != null) newScene.getStylesheets().add(studentsCss.toExternalForm());
+                if (booksCss != null) newScene.getStylesheets().add(booksCss.toExternalForm());
+                if (shelvesCss != null) newScene.getStylesheets().add(shelvesCss.toExternalForm());
+                if (loansCss != null) newScene.getStylesheets().add(loansCss.toExternalForm());
+                stage.setScene(newScene);
+            }
+
             stage.setTitle("LibraSys - Dashboard");
         } catch (IOException exception) {
             feedbackLabel.setText("Erreur lors du chargement du tableau de bord.");

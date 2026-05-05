@@ -35,9 +35,17 @@ public class  ShelvesController {
     private final ObservableList<Shelf> shelves = FXCollections.observableArrayList();
     private final shelfdao shelfDAO = new shelfdao();
 
+    // Optional selected shelf to highlight when returning from a drill-down
+    private String selectedShelfName = null;
+
     @FXML
     private void initialize() {
         loadFromDatabase();
+        renderShelves();
+    }
+
+    public void setSelectedShelf(String name) {
+        this.selectedShelfName = name;
         renderShelves();
     }
 
@@ -155,6 +163,11 @@ public class  ShelvesController {
         Label title = new Label(shelf.name());
         title.getStyleClass().add("shelf-card-title");
 
+        // If this shelf matches the selectedShelfName, add a focused style
+        if (selectedShelfName != null && selectedShelfName.equals(shelf.name())) {
+            card.getStyleClass().add("shelf-card-selected");
+        }
+
         ProgressBar occupancyBar = new ProgressBar((double) shelf.booksCount() / shelf.maxCapacity());
         occupancyBar.getStyleClass().add("shelf-progress");
         occupancyBar.setMaxWidth(Double.MAX_VALUE);
@@ -168,6 +181,23 @@ public class  ShelvesController {
 
         Button viewBooksBtn = new Button("Voir les livres");
         viewBooksBtn.getStyleClass().add("shelf-view-btn");
+
+        viewBooksBtn.setOnAction(evt -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/librasys/ShelfBooksView.fxml"));
+                Pane view = loader.load();
+                Object controller = loader.getController();
+                if (controller instanceof com.librasys.controller.ShelfBooksController shelfBooksCtrl) {
+                    shelfBooksCtrl.setRayonName(shelf.name());
+                }
+                if (shelvesRoot.getParent() instanceof Pane parentPane) {
+                    parentPane.getChildren().setAll(view);
+                    return;
+                }
+            } catch (IOException e) {
+                throw new IllegalStateException("Impossible de charger la liste des livres pour le rayon.", e);
+            }
+        });
 
         card.getChildren().addAll(title, occupancyBar, stats, shelvesCount, location, viewBooksBtn);
         return card;

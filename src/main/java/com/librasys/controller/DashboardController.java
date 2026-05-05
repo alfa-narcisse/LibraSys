@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -19,6 +21,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.control.ProgressBar;
+import javafx.stage.Stage;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -330,6 +334,39 @@ public class DashboardController {
 
         public StringProperty statusProperty() {
             return status;
+        }
+    }
+
+    @FXML
+    private Button logoutButton;
+
+    @FXML
+    private void onLogout() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Déconnexion");
+        alert.setHeaderText("Voulez-vous vous déconnecter ?");
+
+        java.net.URL cssUrl = getClass().getResource("/com/librasys/style.css");
+        if (cssUrl != null) alert.getDialogPane().getStylesheets().add(cssUrl.toExternalForm());
+        alert.getDialogPane().getStyleClass().add("confirm-dialog");
+
+        java.util.Optional<ButtonType> res = alert.showAndWait();
+        if (res.isPresent() && res.get() == ButtonType.OK) {
+            SessionManager.logout();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/com/librasys/LoginView.fxml"));
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                double w = stage.getWidth();
+                double h = stage.getHeight();
+
+                Scene scene = new Scene(root, w, h);
+                if (cssUrl != null) scene.getStylesheets().add(cssUrl.toExternalForm());
+
+                stage.setScene(scene);
+                stage.setTitle("LibraSys - Login");
+            } catch (IOException e) {
+                throw new IllegalStateException("Impossible de charger la page de login.", e);
+            }
         }
     }
 }

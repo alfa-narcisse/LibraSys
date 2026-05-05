@@ -42,6 +42,16 @@
                 <Button fx:id="booksMenuButton" text="Livres &amp; Rayons" styleClass="menu-btn" onAction="#showBooks"/>
                 <Button fx:id="loansMenuButton" text="Prets/Retours" styleClass="menu-btn" onAction="#showLoans"/>
             </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button fx:id="logoutButton" styleClass="logout-btn" onAction="#onLogout">
+                <graphic>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="⏻" styleClass="logout-icon"/>
+                        <Label text="Se déconnecter" styleClass="logout-text"/>
+                    </HBox>
+                </graphic>
+            </Button>
         </VBox>
     </left>
 

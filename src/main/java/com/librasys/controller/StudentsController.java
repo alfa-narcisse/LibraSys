@@ -76,8 +76,6 @@ public class StudentsController {
 
     @FXML
     private Label cardMatriculeLabel;
-    @FXML
-    private Button addStudentBtn;
 
     private final ObservableList<Student> students = FXCollections.observableArrayList();
     private final FilteredList<Student> filteredStudents = new FilteredList<>(students, student -> true);
@@ -86,6 +84,17 @@ public class StudentsController {
     private void onAddStudent() {
         try {
             Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/NewStudentView.fxml"));
+            // Find dashboard mainContentArea and replace its children to keep sidebar intact
+            javafx.scene.Scene scene = studentsTable.getScene();
+            if (scene != null) {
+                javafx.scene.Parent root = scene.getRoot();
+                javafx.scene.Node main = root.lookup("#mainContentArea");
+                if (main instanceof javafx.scene.layout.Pane mainPane) {
+                    mainPane.getChildren().setAll(view);
+                    return;
+                }
+            }
+            // fallback: replace whole root (previous behavior)
             if (studentsTable.getScene().getRoot() instanceof Pane parentPane) {
                 parentPane.getChildren().setAll(view);
             }
