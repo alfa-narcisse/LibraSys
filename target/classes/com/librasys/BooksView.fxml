@@ -34,7 +34,6 @@
                        styleClass="books-search-field" HBox.hgrow="ALWAYS"/>
         </HBox>
         <Button text="+ Ajouter un livre" styleClass="books-primary-btn" onAction="#onAddBook"/>
-        <Button text="📷 Scanner ISBN" styleClass="books-secondary-btn"/>
         <Button text="⚙ Gérer les Rayons" styleClass="books-secondary-btn" onAction="#onManageRayons"/>
     </HBox>
 
@@ -57,9 +56,9 @@
         </ScrollPane>
     </VBox>
 
-    <HBox spacing="14" VBox.vgrow="ALWAYS">
-        <VBox HBox.hgrow="ALWAYS" styleClass="books-table-wrap">
-            <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="books-table">
+    <HBox spacing="14" VBox.vgrow="ALWAYS" maxHeight="Infinity" >
+        <VBox HBox.hgrow="ALWAYS" styleClass="books-table-wrap" maxHeight="Infinity">
+            <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="books-table" maxHeight="Infinity">
                 <columns>
                     <TableColumn fx:id="coverColumn" text="Couverture" prefWidth="110"/>
                     <TableColumn fx:id="titleAuthorColumn" text="Titre &amp; Auteur" prefWidth="250"/>

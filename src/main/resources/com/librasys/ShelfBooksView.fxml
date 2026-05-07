@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="shelfBookRoot"
+      fx:controller="com.librasys.controller.ShelfBooksController" spacing="12" styleClass="books-root">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT">
+        <!-- Back button decorated and accessible -->
+        <Button fx:id="backButton" text="← Retour" onAction="#onBack" styleClass="back-link-btn"/>
+        <Label fx:id="headerLabel" text="Livres du Rayon" styleClass="books-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TableView fx:id="shelfBooksTable" VBox.vgrow="ALWAYS" styleClass="books-table">
+        <columns>
+            <TableColumn fx:id="coverColumn" text="Couverture" prefWidth="90"/>
+            <TableColumn fx:id="titleAuthorColumn" text="Titre &amp; Auteur" prefWidth="320"/>
+            <TableColumn fx:id="categoryColumn" text="Catégorie" prefWidth="140"/>
+            <TableColumn fx:id="locationColumn" text="Localisation" prefWidth="140"/>
+            <TableColumn fx:id="availabilityColumn" text="Disponibilité" prefWidth="120"/>
+        </columns>
+    </TableView>
+</VBox>

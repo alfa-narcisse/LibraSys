@@ -1,0 +1,282 @@
+/* ==========================================
+   ADD STUDENT VIEW STYLES
+   ========================================== */
+
+.add-student-root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-background-color: #f4f6fc;
+}
+
+.add-student-header {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 12;
+}
+
+.add-student-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.add-student-form-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 12;
+}
+
+.add-student-preview-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3e8fa;
+    -fx-border-radius: 12;
+    -fx-padding: 12;
+    -fx-min-width: 320;
+    -fx-pref-width: 340;
+}
+
+/* ==========================================
+   FORM SECTIONS
+   ========================================== */
+
+.form-section {
+    -fx-padding: 8;
+    -fx-spacing: 12;
+}
+
+.section-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.section-separator {
+    -fx-border-color: #e3e8f8;
+    -fx-padding: 0 0 0 0;
+}
+
+.form-label {
+    -fx-text-fill: #303f7b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.form-input,
+.form-combo {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #d7def4;
+    -fx-background-color: white;
+    -fx-pref-height: 38;
+    -fx-padding: 10 12;
+}
+
+.form-input:focused,
+.form-combo:focused {
+    -fx-border-color: #1a237e;
+    -fx-border-width: 2;
+    -fx-background-color: #ffffff;
+}
+
+/* ==========================================
+   PHOTO UPLOAD SECTION
+   ========================================== */
+
+.photo-upload-container {
+    -fx-background-color: #f8f9ff;
+    -fx-background-radius: 50;
+    -fx-border-color: #b9c4ea;
+    -fx-border-radius: 50;
+    -fx-cursor: hand;
+    -fx-min-width: 120;
+    -fx-min-height: 120;
+    -fx-pref-width: 120;
+    -fx-pref-height: 120;
+}
+
+.photo-upload-container:hover {
+    -fx-background-color: #f0f3ff;
+    -fx-effect: dropshadow(gaussian, rgba(26, 35, 126, 0.15), 12, 0.2, 0, 2);
+}
+
+.photo-circle {
+    -fx-fill: #e9efff;
+    -fx-stroke: #1a237e;
+    -fx-stroke-width: 1.2;
+}
+
+.photo-icon {
+    -fx-font-size: 40px;
+    -fx-text-fill: #4a5fa8;
+}
+
+.photo-status-label {
+    -fx-text-fill: #6a739d;
+    -fx-font-size: 11px;
+}
+
+/* ==========================================
+   CARD PREVIEW SECTION
+   ========================================== */
+
+.preview-title {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.card-preview-wrapper {
+    -fx-min-height: 280;
+}
+
+.digital-card-preview {
+    -fx-background-color: linear-gradient(to bottom right, #153f9a, #0f2c6f);
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(10, 18, 48, 0.25), 16, 0.22, 0, 4);
+}
+
+.digital-card-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.digital-card-logo {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+    -fx-padding: 2 7;
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-background-radius: 10;
+}
+
+.digital-label {
+    -fx-text-fill: rgba(235, 241, 255, 0.85);
+    -fx-font-size: 11px;
+}
+
+.digital-value {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.digital-value-sub {
+    -fx-text-fill: #d7e4ff;
+    -fx-font-size: 12px;
+}
+
+.barcode-strip {
+    -fx-padding: 2 0 0 0;
+}
+
+.barcode-bar {
+    -fx-fill: #111111;
+}
+
+.card-preview-stats {
+    -fx-background-color: #f8f9ff;
+    -fx-border-color: #e3e8f8;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.stats-subtitle {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.stats-label {
+    -fx-text-fill: #6a739d;
+    -fx-font-size: 11px;
+}
+
+.stats-value {
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+/* ==========================================
+   ACTION BUTTONS
+   ========================================== */
+
+.form-actions {
+    -fx-padding: 8 0 0 0;
+}
+
+.back-link-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1a237e;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 6 2;
+    -fx-cursor: hand;
+}
+
+.back-link-btn:hover {
+    -fx-text-fill: #283593;
+}
+
+.cancel-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #b8bfd9;
+    -fx-text-fill: #5a607a;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 9 14;
+    -fx-cursor: hand;
+}
+
+.cancel-btn:hover {
+    -fx-border-color: #a0aad0;
+    -fx-text-fill: #3a4a5a;
+}
+
+.books-primary-btn {
+    -fx-background-color: #1a237e;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 9 14;
+    -fx-cursor: hand;
+}
+
+.books-primary-btn:hover {
+    -fx-background-color: #131b63;
+}
+
+.books-primary-btn:pressed {
+    -fx-background-color: #0a0f3d;
+}
+
+/* ==========================================
+   FEEDBACK LABEL
+   ========================================== */
+
+.feedback-label {
+    -fx-text-fill: #b71c1c;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.feedback-label.success {
+    -fx-text-fill: #2f9d56;
+}
+
+
+.back-link-btn {
+    -fx-background-color: #2f9d56;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16;
+}
+
+.back-link-btn:hover {
+    -fx-background-color: #2a8b4c;
+}

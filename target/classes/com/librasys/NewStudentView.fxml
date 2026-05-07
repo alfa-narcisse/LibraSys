@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="newStudentRoot"
+      fx:controller="com.librasys.controller.NewStudentController"
+      styleClass="new-book-root" spacing="16">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" styleClass="new-book-header">
+        <Button text="← Retour à la liste" onAction="#onBackToList" styleClass="back-link-btn"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Nouvel Étudiant" styleClass="new-book-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <GridPane hgap="16" vgap="12" VBox.vgrow="ALWAYS" styleClass="new-book-grid">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="58"/>
+            <ColumnConstraints percentWidth="42"/>
+        </columnConstraints>
+
+        <VBox spacing="10" GridPane.columnIndex="0" styleClass="new-book-section">
+            <VBox spacing="5">
+                <Label text="Nom complet" styleClass="form-label"/>
+                <TextField fx:id="fullNameField" promptText="Nom complet" HBox.hgrow="ALWAYS" styleClass="form-input"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Email" styleClass="form-label"/>
+                <TextField fx:id="emailField" promptText="adresse@mail.tn" styleClass="form-input"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Matricule" styleClass="form-label"/>
+                <TextField fx:id="matriculeField" promptText="2026-XXX-0001" styleClass="form-input"/>
+            </VBox>
+
+            <HBox spacing="10">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Classe" styleClass="form-label"/>
+                    <ComboBox fx:id="classNameCombo" promptText="Sélectionner une classe" styleClass="form-combo"/>
+                </VBox>
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Niveau" styleClass="form-label"/>
+                    <ComboBox fx:id="yearLevelCombo" promptText="1ère / 2ème ..." styleClass="form-combo"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="5">
+                <Label text="Promotion (année de fin)" styleClass="form-label"/>
+                <ComboBox fx:id="promotionCombo" promptText="2026" styleClass="form-combo"/>
+            </VBox>
+
+        </VBox>
+
+        <VBox spacing="10" GridPane.columnIndex="1" styleClass="new-book-section">
+            <VBox spacing="5">
+                <Label text="Aperçu de la carte" styleClass="section-title"/>
+            </VBox>
+
+            <VBox fx:id="studentDetailPane" prefWidth="320" minWidth="320" maxWidth="320" spacing="14" styleClass="detail-panel">
+                <padding>
+                    <Insets top="16" right="16" bottom="16" left="16"/>
+                </padding>
+                <StackPane alignment="CENTER">
+                    <Circle radius="46" styleClass="detail-avatar" fx:id="previewAvatar" />
+                </StackPane>
+                <VBox spacing="2" alignment="CENTER">
+                    <Label fx:id="detailNameLabel" text="Nom complet" styleClass="detail-name"/>
+                    <Label fx:id="detailSectionLabel" text="Classe - Niveau" styleClass="detail-sub"/>
+                    <Label fx:id="detailMatriculeLabel" text="2026-XXX-0001" styleClass="detail-sub"/>
+                    <Label fx:id="detailLoanChipLabel" text="0 prêts" styleClass="loan-chip loan-chip-active"/>
+                </VBox>
+                <VBox spacing="10" styleClass="digital-card">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Carte de bibliothèque" styleClass="digital-card-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label text="EPT" styleClass="digital-card-logo"/>
+                    </HBox>
+                    <VBox spacing="3">
+                        <Label text="Nom" styleClass="digital-label"/>
+                        <Label fx:id="cardNameLabel" text="Nom complet" styleClass="digital-value"/>
+                        <Label fx:id="cardMatriculeLabel" text="2026-XXX-0001" styleClass="digital-value-sub"/>
+                    </VBox>
+                    <HBox spacing="2" styleClass="barcode-strip" alignment="BOTTOM_LEFT">
+                        <Rectangle width="3" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="5" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="4" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="6" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="3" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="5" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="3" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="2" height="34" styleClass="barcode-bar"/>
+                        <Rectangle width="4" height="34" styleClass="barcode-bar"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+           <Label fx:id="feedbackLabel"
+                   maxWidth="Infinity"
+                   wrapText="true"
+                   style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" />
+        </VBox>
+    </GridPane>
+
+    <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="new-book-actions">
+        <Button text="Annuler" onAction="#onCancel" styleClass="cancel-btn"/>
+        <Button text="Enregistrer l'étudiant" onAction="#onSaveStudent" styleClass="books-primary-btn" defaultButton="true">
+            <graphic>
+                <ProgressIndicator fx:id="saveSpinner" prefHeight="20" prefWidth="20" visible="false" managed="false"/>
+            </graphic>
+        </Button>
+    </HBox>
+
+</VBox>
