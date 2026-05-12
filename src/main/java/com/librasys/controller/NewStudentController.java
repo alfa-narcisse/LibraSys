@@ -223,8 +223,7 @@ public class NewStudentController {
     private void navigateToStudentsList() {
         try {
             Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/StudentsView.fxml"));
-            // Prefer replacing mainContentArea to preserve sidebar
-            javafx.scene.Scene scene = newStudentRoot.getScene();
+            Scene scene = newStudentRoot.getScene();
             if (scene != null) {
                 javafx.scene.Parent root = scene.getRoot();
                 javafx.scene.Node main = root.lookup("#mainContentArea");
@@ -233,12 +232,6 @@ public class NewStudentController {
                     return;
                 }
             }
-            // fallback to parent replacement
-            if (newStudentRoot.getParent() instanceof Pane parentPane) {
-                parentPane.getChildren().setAll(view);
-                return;
-            }
-            throw new IllegalStateException("Le conteneur principal est introuvable.");
         } catch (IOException exception) {
             throw new IllegalStateException("Impossible de revenir à la liste des étudiants.", exception);
         }

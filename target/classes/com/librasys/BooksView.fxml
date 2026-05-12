@@ -44,21 +44,18 @@
             <Region HBox.hgrow="ALWAYS"/>
             <Button text="⚙ Gérer les Rayons" styleClass="manage-rayon-btn" onAction="#onManageRayons"/>
         </HBox>
-        <ScrollPane fitToHeight="true" fitToWidth="false" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER" styleClass="pill-scroll">
-            <content>
-                <HBox fx:id="pillsContainer" spacing="8" styleClass="pills-row"/>
-            </content>
+        <ScrollPane fitToHeight="true" vbarPolicy="NEVER" styleClass="pill-scroll">
+            <HBox fx:id="pillsContainer" spacing="8" styleClass="pills-row"/>
         </ScrollPane>
-        <ScrollPane fitToHeight="true" fitToWidth="false" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER" styleClass="rayon-scroll">
-            <content>
-                <HBox fx:id="rayonCardsContainer" spacing="10"/>
-            </content>
+        <ScrollPane fitToHeight="true" vbarPolicy="NEVER"
+                    styleClass="rayon-scroll">
+            <HBox fx:id="rayonCardsContainer" spacing="10"/>
         </ScrollPane>
     </VBox>
 
-    <HBox spacing="14" VBox.vgrow="ALWAYS" maxHeight="Infinity" >
-        <VBox HBox.hgrow="ALWAYS" styleClass="books-table-wrap" maxHeight="Infinity">
-            <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="books-table" maxHeight="Infinity">
+    <HBox spacing="14" VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308">
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" styleClass="books-table-wrap" maxHeight="1.7976931348623157E308">
+            <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="books-table" maxHeight="1.7976931348623157E308">
                 <columns>
                     <TableColumn fx:id="coverColumn" text="Couverture" prefWidth="110"/>
                     <TableColumn fx:id="titleAuthorColumn" text="Titre &amp; Auteur" prefWidth="250"/>

@@ -8,9 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -55,11 +53,11 @@
     <!-- Tab Navigation -->
     <HBox styleClass="loans-tabs" spacing="2">
         <padding>
-            <Insets top="0" right="22" bottom="0" left="22"/>
+            <Insets right="22"  left="22"/>
         </padding>
-        <Button fx:id="tabPretBtn" text="Prêt" styleClass="tab-btn tab-btn-inactive"/>
-        <Button fx:id="tabRetourBtn" text="Retour" styleClass="tab-btn tab-btn-inactive"/>
-        <Button fx:id="tabHistoriqueBtn" text="Historique Générale" styleClass="tab-btn tab-btn-inactive"/>
+        <Button fx:id="tabPretBtn" text="Prêt" styleClass="tab-btn"/>
+        <Button fx:id="tabRetourBtn" text="Retour" styleClass="tab-btn"/>
+        <Button fx:id="tabHistoriqueBtn" text="Historique Générale" styleClass="tab-btn"/>
         <Region HBox.hgrow="ALWAYS"/>
     </HBox>
 
@@ -80,8 +78,9 @@
                 <Label text="Étape 1 : Identification de l'étudiant" styleClass="section-title"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <TextField fx:id="studentMatriculeField" HBox.hgrow="ALWAYS" styleClass="form-input"
-                               promptText="Scannez le matricule étudiant (6 chiffres)"/>
-                    <Button text="📱 Scanner" styleClass="scan-btn"/>
+                               promptText="Saisissez le matricule de l'étudiant (6 chiffres)"/>
+                    <!-- <Button text=" Scanner" styleClass="scan-btn"/>  Dans le cas où on aura le temps et le moyen pour
+                    mettre en place un scanner pour faciliter le travail du bibliothécaire -->
                 </HBox>
 
                 <!-- Student Quick Card -->
@@ -103,8 +102,9 @@
                 <Label text="Étape 2 : Sélection du Livre" styleClass="section-title"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <TextField fx:id="bookIsbnField" HBox.hgrow="ALWAYS" styleClass="form-input"
-                               promptText="Scannez le code-barre de l'exemplaire"/>
-                    <Button text="📱 Scanner" styleClass="scan-btn"/>
+                               promptText="Saisissez le code ISBN de l'exemplaire"/>
+                   <!-- <Button text=" Scanner" styleClass="scan-btn"/> Dans le cas où on aura le temps, on peut mettre en place un
+                   moyen de scanner le livre, permettant ainsi au bibliothécaire de directement scanner au lieu de saisir chaque numéro du livre -->
                 </HBox>
 
                 <!-- Book Quick Card -->
@@ -139,16 +139,16 @@
 
             <!-- Scan Book Section -->
             <VBox styleClass="process-section" spacing="12">
-                <Label text="Scanner le Livre à Retourner" styleClass="section-title"/>
+                <Label text="Saisir le numéro du Livre à Retourner" styleClass="section-title"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <TextField fx:id="scanBookField" HBox.hgrow="ALWAYS" styleClass="form-input"
-                               promptText="Scannez le livre à retourner"/>
-                    <Button text=" Scanner" styleClass="scan-btn"/>
+                               promptText="Numéro du livre à retourner"/>
+                  <!--   <Button text=" Scanner" styleClass="scan-btn"/> -->
                 </HBox>
 
                 <!-- Return Info Card -->
                 <VBox styleClass="quick-card" spacing="8">
-                    <Label fx:id="returnStudentLabel" text="En attente de scan..." styleClass="return-info"/>
+                    <Label fx:id="returnStudentLabel" text="En attente du numéro du livre à retourner..." styleClass="return-info"/>
                 </VBox>
             </VBox>
 
@@ -157,7 +157,7 @@
                 <Label text="Vérification de l'état" styleClass="section-title"/>
                 <VBox styleClass="validation-card" spacing="10">
                     <CheckBox fx:id="damagedCheckBox" text="Livre endommagé" styleClass="damage-checkbox"/>
-                    <Label fx:id="penaltyLabel" text="Pénalité: 0 DA" styleClass="penalty-info"/>
+                    <Label fx:id="penaltyLabel" text="Pénalité: 0 TND" styleClass="penalty-info"/>
                 </VBox>
             </VBox>
 

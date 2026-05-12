@@ -57,6 +57,7 @@ public class LoginController {
     @FXML
     private Label activeLoansLabel;
 
+    // Création des instances d'intéraction avec la base de données
     private final logindao loginDAO = new logindao();
     private final bookdao bookDAO = new bookdao();
     private final loandao loanDAO = new loandao();
@@ -68,7 +69,7 @@ public class LoginController {
         librarianToggle.setSelected(true);
         feedbackLabel.setText("");
 
-        URL logoUrl = getClass().getResource("/com/librasys/logo_ept.png");
+        URL logoUrl = getClass().getResource("/com/librasys/Image/logo_ept.png");
         if (logoUrl != null) {
             logoImageView.setImage(new Image(logoUrl.toExternalForm()));
         }
@@ -101,11 +102,11 @@ public class LoginController {
             return;
         }
 
-        // Verification du mot de passe
+        // Verification du mot de passe: en fonction du username saisie - on compare avec le mdp enregistré
+        // dans la base de données
         String dbPassword = loginDAO.getpassword(username);
-        System.out.println("Username entered: " + username);
-        System.out.println("Password entered: " + password);
-        System.out.println("Password from DB: " + dbPassword);
+
+
         if (!password.equals(dbPassword)) {
             feedbackLabel.setText("Mot de passe incorrect.");
             return;
@@ -121,15 +122,17 @@ public class LoginController {
         SessionManager.login(userId, dbUsername, dbRole);
 
         try {
+
+            // Recherche du fichier fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/librasys/DashboardView.fxml"));
             Parent root = loader.load();
 
             // prepare css urls
-            java.net.URL dashCss = MainApplication.class.getResource("/com/librasys/dashboard.css");
-            java.net.URL studentsCss = MainApplication.class.getResource("/com/librasys/students.css");
-            java.net.URL booksCss = MainApplication.class.getResource("/com/librasys/books.css");
-            java.net.URL shelvesCss = MainApplication.class.getResource("/com/librasys/shelves.css");
-            java.net.URL loansCss = MainApplication.class.getResource("/com/librasys/loans.css");
+            java.net.URL dashCss = MainApplication.class.getResource("/com/librasys/styleSheet/dashboard.css");
+            java.net.URL studentsCss = MainApplication.class.getResource("/com/librasys/styleSheet/students.css");
+            java.net.URL booksCss = MainApplication.class.getResource("/com/librasys/styleSheet/books.css");
+            java.net.URL shelvesCss = MainApplication.class.getResource("/com/librasys/styleSheet/shelves.css");
+            java.net.URL loansCss = MainApplication.class.getResource("/com/librasys/styleSheet/loans.css");
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
             Scene scene = stage.getScene();
@@ -160,11 +163,19 @@ public class LoginController {
 
     }
     private void loadLibraryInfo() {
+        /*
+         * Cette méthode est utilisée pour la mise à jour des informations affichées dans la page d'accueil du log in
+         * */
+
+        // Le nombre total des livres disponibles dans la bibliothèque
         int totalBooks = bookDAO.countBooks();
         if (totalBooksLabel != null) totalBooksLabel.setText(String.valueOf(totalBooks));
 
+        // Le nombre total des étudiants inscrits dans la base de données
         int totalStudents = studentDAO.countStudents();
         if (totalStudentsLabel != null) totalStudentsLabel.setText(String.valueOf(totalStudents));
+
+        //Etats d'emprunt et de remise - Pour informer s'il y a retard ou non.
         int[] stats = loanDAO.getSummaryStats();
         int activeLoans = stats[0];
         int criticalDelays = stats[4];

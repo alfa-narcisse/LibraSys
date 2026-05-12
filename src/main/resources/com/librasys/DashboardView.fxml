@@ -62,8 +62,8 @@
             <HBox alignment="CENTER_LEFT">
                 <Label fx:id="headerLabel" text="Bonjour -" styleClass="header-title"/>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Label fx:id="activeLoansLabel" text="0 prêt actif" styleClass="pill pill-info"/>
-                <Label fx:id="criticalDelaysLabel" text="0 retard" styleClass="pill pill-alert" />
+                <Label fx:id="activeLoansLabel" text="0 prêt actif" styleClass="pill-info"/>
+                <Label fx:id="criticalDelaysLabel" text="0 retard" styleClass="pill-alert" />
             </HBox>
 
             <HBox spacing="12">
@@ -84,8 +84,8 @@
                 </VBox>
                 <VBox HBox.hgrow="ALWAYS" styleClass="stat-card">
                     <Label text="Retards" styleClass="stat-title"/>
-                    <Label fx:id="todayDelaysLabel" text="0" styleClass="stat-value"/>
-                    <Label text="A triter" styleClass="stat-sub"/>
+                    <Label fx:id="totalDelaysLabel" text="0" styleClass="stat-value"/>
+                    <Label text="A traiter" styleClass="stat-sub"/>
                 </VBox>
             </HBox>
 

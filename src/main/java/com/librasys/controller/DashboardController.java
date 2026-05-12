@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -33,6 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardController {
+    @FXML
+    public Label newStudentLabel;
+
     @FXML
     private BarChart<String, Number> monthlyActivityChart;
 
@@ -109,7 +113,7 @@ public class DashboardController {
     }
 
     private void loadLogo() {
-        URL logoUrl = getClass().getResource("/com/librasys/logo_ept.png");
+        URL logoUrl = getClass().getResource("/com/librasys/Image/logo_ept.png");
         if (logoUrl != null) {
             sidebarLogoImageView.setImage(new Image(logoUrl.toExternalForm()));
         }
@@ -271,6 +275,7 @@ public class DashboardController {
         try {
             Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/StudentsView.fxml"));
             mainContentArea.getChildren().setAll(view);
+            VBox.setVgrow(view, Priority.ALWAYS);
             setActiveMenu(studentsMenuButton);
         } catch (IOException exception) {
             throw new IllegalStateException("Impossible de charger la vue des etudiants.", exception);
@@ -282,6 +287,7 @@ public class DashboardController {
         try {
             Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/BooksView.fxml"));
             mainContentArea.getChildren().setAll(view);
+            VBox.setVgrow(view, Priority.ALWAYS);
             setActiveMenu(booksMenuButton);
         } catch (IOException exception) {
             throw new IllegalStateException("Impossible de charger la vue des livres.", exception);
@@ -292,6 +298,7 @@ public class DashboardController {
     private void showLoans() {
         try {
             Pane view = FXMLLoader.load(getClass().getResource("/com/librasys/LoansView.fxml"));
+            VBox.setVgrow(view, Priority.ALWAYS);
             mainContentArea.getChildren().setAll(view);
             setActiveMenu(loansMenuButton);
         } catch (IOException exception) {
@@ -346,7 +353,7 @@ public class DashboardController {
         alert.setTitle("Déconnexion");
         alert.setHeaderText("Voulez-vous vous déconnecter ?");
 
-        java.net.URL cssUrl = getClass().getResource("/com/librasys/style.css");
+        java.net.URL cssUrl = getClass().getResource("/com/librasys/styleSheet/style.css");
         if (cssUrl != null) alert.getDialogPane().getStylesheets().add(cssUrl.toExternalForm());
         alert.getDialogPane().getStyleClass().add("confirm-dialog");
 

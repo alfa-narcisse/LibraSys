@@ -17,11 +17,9 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         // Start with the Login view as the first screen
         FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/com/librasys/LoginView.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root, 800, 600);
-        // apply base styling; dashboard-specific styles will be applied when loading the dashboard
-        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/style.css").toExternalForm());
+        Parent root = loader.load(); // On charge l'élément parent dans le fichier fxml (le conteneur et ses contenus)
+        Scene scene = new Scene(root, 800, 600); // On lui monte sur scene pour performer
+        scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/styleSheet/style.css").toExternalForm());
 
         stage.setTitle("LibraSys");
         stage.setMinWidth(1080);

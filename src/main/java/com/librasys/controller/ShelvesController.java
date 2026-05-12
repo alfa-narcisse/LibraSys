@@ -20,7 +20,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -59,7 +58,7 @@ public class  ShelvesController {
         Dialog<ButtonTypeWrapper> dialog = new Dialog<>();
         dialog.setTitle("Configuration du Rayon");
         DialogPane pane = dialog.getDialogPane();
-        pane.getStylesheets().add(getClass().getResource("/com/librasys/shelves.css").toExternalForm());
+        pane.getStylesheets().add(getClass().getResource("/com/librasys/styleSheet/shelves.css").toExternalForm());
         pane.getStyleClass().add("add-shelf-dialog");
 
         VBox content = new VBox(10);

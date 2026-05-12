@@ -277,23 +277,23 @@ public class LoansController {
     }
 
     private void showTabPret() {
-        tabPretBtn.getStyleClass().remove("tab-btn-inactive");
-        tabRetourBtn.getStyleClass().add("tab-btn-inactive");
-        tabHistoriqueBtn.getStyleClass().add("tab-btn-inactive");
+        tabPretBtn.getStyleClass().add("tab-btn-active");
+        tabRetourBtn.getStyleClass().remove("tab-btn-active");
+        tabHistoriqueBtn.getStyleClass().remove("tab-btn-active");
         contentContainer.getChildren().setAll(pretContainer);
     }
 
     private void showTabRetour() {
-        tabPretBtn.getStyleClass().add("tab-btn-inactive");
-        tabRetourBtn.getStyleClass().remove("tab-btn-inactive");
-        tabHistoriqueBtn.getStyleClass().add("tab-btn-inactive");
+        tabPretBtn.getStyleClass().remove("tab-btn-active");
+        tabRetourBtn.getStyleClass().add("tab-btn-active");
+        tabHistoriqueBtn.getStyleClass().remove("tab-btn-active");
         contentContainer.getChildren().setAll(retourContainer);
     }
 
     private void showTabHistorique() {
-        tabPretBtn.getStyleClass().add("tab-btn-inactive");
-        tabRetourBtn.getStyleClass().add("tab-btn-inactive");
-        tabHistoriqueBtn.getStyleClass().remove("tab-btn-inactive");
+        tabPretBtn.getStyleClass().remove("tab-btn-active");
+        tabRetourBtn.getStyleClass().remove("tab-btn-active");
+        tabHistoriqueBtn.getStyleClass().add("tab-btn-active");
         contentContainer.getChildren().setAll(historiqueContainer);
     }
 
@@ -415,7 +415,7 @@ public class LoansController {
 
     private void calculatePenalty() {
         if (damagedCheckBox.isSelected()) {
-            penaltyLabel.setText("Pénalité: 200 DT (dommage) ");
+            penaltyLabel.setText("Pénalité: 50 DT (dommage) ");
             penaltyLabel.setStyle("-fx-text-fill: #e74c3c;");
         } else {
             penaltyLabel.setText("Pénalité: 0 DT");

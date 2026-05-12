@@ -76,7 +76,7 @@
     -fx-background-color: white;
     -fx-border-color: #e3e8fa;
     -fx-border-width: 1 0 1 0;
-    -fx-padding: 8 0 0 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .tab-btn {
@@ -87,21 +87,22 @@
     -fx-padding: 12 16;
     -fx-border-color: transparent;
     -fx-border-width: 0 0 2 0;
-    -fx-border-color: transparent;
     -fx-cursor: hand;
 }
 
-.tab-btn:not(.tab-btn-inactive) {
-    -fx-text-fill: #1a237e;
-    -fx-border-color: #2ecc71;
-    -fx-border-width: 0 0 3 0;
+
+.tab-btn-active {
+    -fx-text-fill: #09259c;
+    -fx-background-color: #a7acf1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 17 20;
+    -fx-border-color:#1a237e;
+    -fx-border-width: 0 0 1 0;
+    -fx-cursor: hand;
 }
 
-.tab-btn-inactive {
-    -fx-text-fill: #9ca4c4;
-}
-
-.tab-btn:hover:not(.tab-btn-inactive) {
+.tab-btn:hover{
     -fx-text-fill: #1a237e;
 }
 

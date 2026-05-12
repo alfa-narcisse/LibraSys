@@ -27,10 +27,8 @@ import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Locale;
 import java.io.IOException;
-import java.util.Optional;
 
 public class BooksController {
     @FXML
@@ -200,7 +198,7 @@ public class BooksController {
                     dialog.getDialogPane().setContent(content);
 
                     // Apply app stylesheet to dialog so it looks consistent
-                    dialog.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                    dialog.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/styleSheet/style.css").toExternalForm());
                     dialog.getDialogPane().getStyleClass().add("password-dialog");
 
                     // Add graphic icon
@@ -225,7 +223,7 @@ public class BooksController {
                                 ok.setTitle("Suppression");
                                 ok.setHeaderText(null);
                                 ok.setContentText("Livre supprimé avec succès.");
-                                ok.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                                ok.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/styleSheet/style.css").toExternalForm());
                                 ok.getDialogPane().getStyleClass().add("confirm-dialog");
                                 ok.showAndWait();
                             } else {
@@ -233,7 +231,7 @@ public class BooksController {
                                 err.setTitle("Erreur");
                                 err.setHeaderText(null);
                                 err.setContentText("Impossible de supprimer le livre.");
-                                err.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                                err.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/styleSheet/style.css").toExternalForm());
                                 err.getDialogPane().getStyleClass().add("confirm-dialog");
                                 err.showAndWait();
                             }
@@ -242,7 +240,7 @@ public class BooksController {
                             err.setTitle("Mot de passe incorrect");
                             err.setHeaderText(null);
                             err.setContentText("Mot de passe invalide.");
-                            err.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/style.css").toExternalForm());
+                            err.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/styleSheet/style.css").toExternalForm());
                             err.getDialogPane().getStyleClass().add("password-dialog");
                             err.showAndWait();
                         }

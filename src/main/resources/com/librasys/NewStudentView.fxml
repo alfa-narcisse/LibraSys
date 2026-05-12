@@ -128,9 +128,6 @@
     <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="new-book-actions">
         <Button text="Annuler" onAction="#onCancel" styleClass="cancel-btn"/>
         <Button text="Enregistrer l'étudiant" onAction="#onSaveStudent" styleClass="books-primary-btn" defaultButton="true">
-            <graphic>
-                <ProgressIndicator fx:id="saveSpinner" prefHeight="20" prefWidth="20" visible="false" managed="false"/>
-            </graphic>
         </Button>
     </HBox>
 
