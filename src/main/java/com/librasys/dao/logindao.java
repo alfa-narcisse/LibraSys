@@ -16,15 +16,16 @@ public class logindao {
             if (rs.next()) {
                 return rs.getInt("id_user");
             }
+            DatabaseConnection.closeConnection();
             return -1;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return -1;
         }
     }
 
-
+// Methode qui permet d'obtenir le nom d'utilisateur et qui permet de vérifier si l'utilisateur est déja enregistré
     public String getusername(String usernameField){
         String query = """
                 SELECT username FROM users WHERE username = ? and active =TRUE
@@ -36,8 +37,13 @@ public class logindao {
             ResultSet rs = Ps.executeQuery();
             if (rs.next()) {
                 return rs.getString("username");
+
             }
-            else return null;
+
+            else {
+                DatabaseConnection.closeConnection();
+                return null;}
+
 
         }
         catch(SQLException e){
@@ -45,6 +51,7 @@ public class logindao {
             return null;
         }
     }
+    // Methode qui permet d'obtenir le mot de passe à partir du nom d'utilisateur
     public String getpassword(String usernameField){
         String query = """
                 SELECT password FROM users WHERE username = ? and active =TRUE
@@ -56,7 +63,9 @@ public class logindao {
             if (rs.next()) {
                 return rs.getString("password");
             }
-            else return null;
+            else {
+                DatabaseConnection.closeConnection();
+                return null;}
 
         }
         catch(SQLException e){
@@ -73,34 +82,17 @@ public class logindao {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
+
                 return rs.getString("role");
             }
-            else return null;
+            else {
+                DatabaseConnection.closeConnection();
+                return null;}
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
-    public String getFullName(String username) {
-        String query = "SELECT name, secondname FROM users WHERE username = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getString("name") + " " + rs.getString("secondname");
-            }
-            return null;
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-
-
 
 }

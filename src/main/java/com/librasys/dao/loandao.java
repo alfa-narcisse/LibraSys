@@ -14,10 +14,7 @@ public class loandao {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    // =====================
-    // GET RECENT LOANS FOR ONE STUDENT
-    // Used by studentdao.getAllStudents()
-    // =====================
+    // Fontion qui permet d'avoir les prêts récents
     public List<LoanEntry> getRecentLoans(String matricule) {
         List<LoanEntry> loans = new ArrayList<>();
         String query = """
@@ -45,18 +42,15 @@ public class loandao {
                         .format(formatter);
                 loans.add(new LoanEntry(title, returnDate));
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return loans;
     }
-    //=====================
-    // GET SUMMARY STATS
-    // Used by LoansController to fill summary cards
-    // =====================
+    // Methode qui va retourner les valeurs pour le résumé de l'activité journalière
     public int[] getSummaryStats() {
-        // Methode qui va retourner les valeurs pour le résumé de l'activité journalière
         String query = """
             SELECT
                 SUM(CASE WHEN returned = false THEN 1 ELSE 0 END)
@@ -85,6 +79,7 @@ public class loandao {
                         rs.getInt("critical_delays")
                 };
             }
+            DatabaseConnection.closeConnection();
             return new int[]{0, 0, 0, 0, 0};
 
         } catch (SQLException e) {
@@ -93,10 +88,7 @@ public class loandao {
         }
     }
 
-    // =====================
-    // GET ALL LOANS
-    // Used by LoansController historique table
-    // =====================
+    // Methode qui permet d'obtenir tous les prêts
     public List<LoanHistoryRow> getAllLoans() {
         List<LoanHistoryRow> loans = new ArrayList<>();
         String query = """
@@ -139,10 +131,7 @@ public class loandao {
         return loans;
     }
 
-    // =====================
-    // CONFIRM LOAN
-    // Used by LoansController.confirmLoan()
-    // =====================
+    // methode qui permet de confirmer un prêt
     public boolean confirmLoan(String matricule, String codeBarre,int idUser) {
         String query = """
                 INSERT INTO loans (loan_date, return_date, returned, is_delayed,
@@ -166,19 +155,15 @@ public class loandao {
             stmt.setString(1, matricule);
             stmt.setString(2, codeBarre);
             stmt.setInt(3, idUser);
-
+            DatabaseConnection.closeConnection();
             return stmt.executeUpdate() > 0;
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
 
-    // =====================
-    // VALIDATE RETURN
-    // Used by LoansController.validateReturn()
-    // =====================
+    // Methode qui valide le retour d'un livre et qui met à jour la BDD
     public boolean validateReturn(String codeBarre, boolean isDamaged) {
         String query = """
             UPDATE loans
@@ -201,7 +186,7 @@ public class loandao {
             stmt.setBoolean(2, isDamaged);
             stmt.setString(3, codeBarre);
             int rowsUpdated = stmt.executeUpdate();
-            System.out.println("Rows updated: " + rowsUpdated); // ← debug
+            DatabaseConnection.closeConnection();
             return rowsUpdated > 0;
 
         } catch (SQLException e) {
@@ -210,10 +195,7 @@ public class loandao {
         }
     }
 
-    // =====================
-    // UPDATE EXEMPLAIRE AVAILABILITY
-    // Called after confirmLoan() and validateReturn()
-    // =====================
+    // Mis à jour de la BDD lorsque l'etudiant remet un prêt
     public boolean setExemplaireDisponible(String codeBarre, boolean disponible) {
         String query = """
                 UPDATE exemplaire
@@ -226,18 +208,15 @@ public class loandao {
 
             stmt.setBoolean(1, disponible);
             stmt.setString(2, codeBarre);
+            DatabaseConnection.closeConnection();
             return stmt.executeUpdate() > 0;
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
 
-    // =====================
-    // GET LOAN INFO BY CODE BARRE
-    // Used by LoansController.loadReturnInfo()
-    // =====================
+    // Methode qui permet d'avoir les infos sur un prêt à partir du code barre
     public String getLoanInfoByCodeBarre(String codeBarre) {
         String query = """
                 SELECT b.title, s.full_name
@@ -258,18 +237,15 @@ public class loandao {
                 return "Livre: " + rs.getString("title")
                         + " - Emprunteur: " + rs.getString("full_name");
             }
+            DatabaseConnection.closeConnection();
             return null;
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    // =====================
-    // GET STUDENT INFO BY MATRICULE
-    // Used by LoansController.loadStudentInfo()
-    // =====================
+    // Methode qui donne l'info sue les prêts actifs de l'étudiant
     public String getStudentInfo(String matricule) {
         String query = """
                 SELECT s.full_name,
@@ -288,6 +264,7 @@ public class loandao {
             if (rs.next()) {
                 return rs.getString("full_name") + "|" + rs.getInt("active_loans");
             }
+            DatabaseConnection.closeConnection();
             return null;
 
         } catch (SQLException e) {
@@ -295,10 +272,7 @@ public class loandao {
             return null;
         }
     }
-    // =====================
-// GET BOOK INFO BY CODE BARRE
-// Used by LoansController.loadBookInfo()
-// =====================
+    // Information sur le livre preté à partir du code à barre
     public String[] getBookInfoByCodeBarre(String codeBarre) {
         String query = """
             SELECT b.title, e.state, e.disponible
@@ -320,6 +294,7 @@ public class loandao {
                         rs.getBoolean("disponible") ? "disponible" : "indisponible"
                 };
             }
+            DatabaseConnection.closeConnection();
             return null;
 
         } catch (SQLException e) {
@@ -327,9 +302,7 @@ public class loandao {
             return null;
         }
     }
-    // =====================
-// GET MONTHLY STATS FOR CHART
-// =====================
+    // Methode qui permet d'avoir la liste des prêts par semaine
     public List<int[]> getMonthlyStats() {
         List<int[]> stats = new ArrayList<>();
         String query = """
@@ -350,16 +323,15 @@ public class loandao {
                         rs.getInt("count")
                 });
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return stats;
     }
 
-    // =====================
-// GET RECENT LOANS FOR DASHBOARD TABLE
-// =====================
+    // Les prêts récents pour le tableau de bord
     public List<DashboardController.LoanRow> getRecentLoansForDashboard() {
         List<DashboardController.LoanRow> loans = new ArrayList<>();
         String query = """
@@ -395,9 +367,10 @@ public class loandao {
                         status
                 ));
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return loans;
     }

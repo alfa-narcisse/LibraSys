@@ -19,9 +19,6 @@ public class SessionManager {
         return loggedInUsername;
     }
 
-    public static String getRole() {
-        return loggedInRole;
-    }
 
     public static void logout() {
         loggedInUserId   = -1;

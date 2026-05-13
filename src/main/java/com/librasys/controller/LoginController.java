@@ -122,6 +122,7 @@ public class LoginController {
         SessionManager.login(userId, dbUsername, dbRole);
 
         try {
+
             // Recherche du fichier fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/librasys/DashboardView.fxml"));
             Parent root = loader.load();

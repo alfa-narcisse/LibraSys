@@ -14,6 +14,8 @@ import java.util.List;
 
 public class studentdao {
     private final loandao loanDAO = new loandao();
+
+    // Methode qui retourne la liste des étudiants dans la BDD
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
 
@@ -27,8 +29,6 @@ public class studentdao {
             LEFT JOIN loans l ON s.id = l.id_etudiant
             GROUP BY s.id
             """;
-
-        // Local record — matricule stays a clean String
         record RawStudent(
                 String fullName,
                 String email,
@@ -42,8 +42,6 @@ public class studentdao {
         ) {}
 
         List<RawStudent> rawData = new ArrayList<>();
-
-        // Step 1 — Read all rows, close ResultSet
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement Ps = conn.prepareStatement(query);
              ResultSet rs = Ps.executeQuery(query)) {
@@ -61,6 +59,7 @@ public class studentdao {
                         rs.getInt("delays")
                 ));
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -83,50 +82,8 @@ public class studentdao {
 
         return students;
     }
-    public List<StudentsController.LoanEntry> getRecentLoans(String matricule) {
-        return loanDAO.getRecentLoans(matricule);
-    }
-    public void addStudent(Student student) {
-        String query = """
-                INSERT INTO students (full_name, email, matricule, class_name, year_level, promotion)
-                VALUES (?, ?, ?, ?, ?, ?)
-                """;
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement Ps = conn.prepareStatement(query)) {
-
-            Ps.setString(1, student.getFullName());
-            Ps.setString(2, student.getEmail());
-            Ps.setString(3, student.getMatricule());
-            Ps.setString(4, student.getClassName());
-            Ps.setString(5, student.getYearLevel());
-            Ps.setString(6, student.getPromotion());
-            Ps.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    // Delete a student
-    public void deleteStudent(String matricule) {
-        String query = "DELETE FROM students WHERE matricule = ?";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement Ps = conn.prepareStatement(query)) {
-
-            Ps.setString(1, matricule);
-            Ps.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    // =====================
-// ADD STUDENT
-// Used by NewStudentController.onSaveStudent()
-// =====================
+    // Methode qui permet d'ajouter un nouvel étudiant à la BDD
     public boolean addStudent(String fullName, String email, String matricule,
                               String className, String yearLevel,
                               LocalDate dateInscription, String promotion) {
@@ -146,6 +103,7 @@ public class studentdao {
             stmt.setString(5, yearLevel);
             stmt.setDate(6, Date.valueOf(dateInscription));
             stmt.setString(7, promotion);
+            DatabaseConnection.closeConnection();
             return stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -154,10 +112,7 @@ public class studentdao {
         }
     }
 
-    // =====================
-// CHECK IF MATRICULE EXISTS
-// Used before inserting to avoid duplicates
-// =====================
+    // Methode qui permet de vérifier l'existence d'un matricule
     public boolean matriculeExists(String matricule) {
         String query = "SELECT id FROM students WHERE matricule = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -165,6 +120,7 @@ public class studentdao {
 
             stmt.setString(1, matricule);
             ResultSet rs = stmt.executeQuery();
+            DatabaseConnection.closeConnection();
             return rs.next();
 
         } catch (SQLException e) {
@@ -173,10 +129,7 @@ public class studentdao {
         }
     }
 
-    // =====================
-// CHECK IF EMAIL EXISTS
-// Used before inserting to avoid duplicates
-// =====================
+    // Verification de l'existence de l'email
     public boolean emailExists(String email) {
         String query = "SELECT id FROM students WHERE email = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -191,6 +144,7 @@ public class studentdao {
             return false;
         }
     }
+    // Methode qui permet d'avoir le nombre d'étudiants
     public int countStudents() {
         String query = "SELECT COUNT(*) as total FROM students";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -198,6 +152,7 @@ public class studentdao {
              ResultSet rs = stmt.executeQuery(query)) {
 
             if (rs.next()) return rs.getInt("total");
+            DatabaseConnection.closeConnection();
             return 0;
 
         } catch (SQLException e) {
@@ -205,7 +160,7 @@ public class studentdao {
             return 0;
         }
     }
-    // Count new students registered this month
+    // Methode qui permet d'avoir le nombre d'étudiants enregistrés dans le mois
     public int countNewStudentsThisMonth() {
         String query = """
             SELECT COUNT(*) as total FROM students
@@ -218,10 +173,11 @@ public class studentdao {
              ResultSet rs = stmt.executeQuery(query)) {
 
             if (rs.next()) return rs.getInt("total");
+            DatabaseConnection.closeConnection();
             return 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return 0;
         }
     }

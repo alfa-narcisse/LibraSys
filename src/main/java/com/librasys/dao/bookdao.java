@@ -11,7 +11,7 @@ import java.util.List;
 
 public class bookdao {
 
-
+    // Fontion de listage de tous les livres utilisés
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
         String query = """
@@ -53,6 +53,7 @@ public class bookdao {
                         rs.getString("description") != null ? rs.getString("description") : ""
                 ));
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -60,8 +61,7 @@ public class bookdao {
         return books;
     }
 
-    // =====================
-    // GET ALL RAYONS (shelves)
+    // Fonction qui permet d'obtenr les infos sur les rayons
     public List<BooksController.Rayon> getRayonsFromShelves() {
         shelfdao shelfDAO = new shelfdao();
         return shelfDAO.getAllShelves()
@@ -75,11 +75,7 @@ public class bookdao {
                 ))
                 .toList();
     }
-
-    // =====================
-    // GET BOOKS BY RAYON
-    // Used when user clicks a rayon pill/card
-    // =====================
+    // Fonction qui permet d'obtenir les livres par rayon
     public List<Book> getBooksByRayon(String rayonName) {
         List<Book> books = new ArrayList<>();
         String query = """
@@ -124,6 +120,7 @@ public class bookdao {
                         rs.getString("description") != null ? rs.getString("description") : ""
                 ));
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -131,10 +128,7 @@ public class bookdao {
         return books;
     }
 
-    // =====================
-    // ADD BOOK
-    // Used by NewBookController
-    // =====================
+    // Fonction booleen qui permet d'ajouter un livre à notre BDD
     public boolean addBook(String title, String author, String isbn, String edition,
                            String category, int yearEdition, String description, int idShelf) {
         String query = """
@@ -153,6 +147,7 @@ public class bookdao {
             stmt.setInt(6, yearEdition);
             stmt.setString(7, description);
             stmt.setInt(8, idShelf);
+            DatabaseConnection.closeConnection();
             return stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -161,10 +156,7 @@ public class bookdao {
         }
     }
 
-    // =====================
-    // DELETE BOOK
-    // Used by delete action in table
-    // =====================
+    // Fonction qui permet de supprimer un livre dans la BDD
     public boolean deleteBook(String isbn) {
         String query = "DELETE FROM books WHERE isbn = ?";
 
@@ -172,6 +164,7 @@ public class bookdao {
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, isbn);
+            DatabaseConnection.closeConnection();
             return stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -180,69 +173,8 @@ public class bookdao {
         }
     }
 
-    // =====================
-    // SEARCH BOOKS
-    // Used by search field in controller
-    // =====================
-    public List<Book> searchBooks(String keyword) {
-        List<Book> books = new ArrayList<>();
-        String query = """
-                SELECT b.title, b.author, b.isbn, b.category,
-                       s.name as rayon_name,
-                       CONCAT(s.name, ', Étagère ', e.code_barre) as location,
-                       CASE WHEN e.disponible = TRUE THEN 'En rayon' ELSE 'Emprunté' END as availability,
-                       b.description,
-                       CONCAT('LIB-', LPAD(b.id_book, 5, '0')) as internal_code,
-                       COALESCE(
-                           SUM(CASE WHEN e.state IN ('Usé','Endommagé') THEN 1 ELSE 0 END) * 1.0
-                           / NULLIF(COUNT(e.id_exemplaire), 0),
-                       0) as wear_rate
-                FROM books b
-                LEFT JOIN shelves s    ON b.id_shelf = s.id_shelf
-                LEFT JOIN exemplaire e ON b.id_book  = e.id_livre
-                WHERE b.title   LIKE ?
-                   OR b.author  LIKE ?
-                   OR b.isbn    LIKE ?
-                GROUP BY b.id_book, b.title, b.author, b.isbn,
-                         b.category, s.name, e.code_barre,
-                         e.disponible, b.description
-                ORDER BY b.title
-                """;
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            String pattern = "%" + keyword + "%";
-            stmt.setString(1, pattern);
-            stmt.setString(2, pattern);
-            stmt.setString(3, pattern);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                books.add(new Book(
-                        rs.getString("title"),
-                        rs.getString("author"),
-                        rs.getString("isbn"),
-                        rs.getString("category"),
-                        rs.getString("rayon_name"),
-                        rs.getString("location"),
-                        rs.getString("availability"),
-                        "",
-                        rs.getString("internal_code"),
-                        rs.getDouble("wear_rate"),
-                        rs.getString("description") != null ? rs.getString("description") : ""
-                ));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return books;
-    }
-
-    // =====================
-    // HELPER — resolve icon based on rayon name
-    // =====================
+    // Choix des icones part rayon
     private String resolveRayonIcon(String rayonName) {
         if (rayonName == null) return "📚";
         String lower = rayonName.toLowerCase();
@@ -253,10 +185,7 @@ public class bookdao {
         if (lower.contains("droit"))  return "⚖️";
         return "📚";
     }
-    // =====================
-// CHECK IF ISBN EXISTS
-// Used by NewBookController before inserting
-// =====================
+// Verification de l'isbn pour savoir si on ajoute un livre en tant qu'exemplaire ou pas utilisé par le newbookcontroller
     public boolean isbnExists(String isbn) {
         String query = "SELECT id_book FROM books WHERE isbn = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -264,6 +193,7 @@ public class bookdao {
 
             stmt.setString(1, isbn);
             ResultSet rs = stmt.executeQuery();
+            DatabaseConnection.closeConnection();
             return rs.next();
 
         } catch (SQLException e) {
@@ -272,10 +202,7 @@ public class bookdao {
         }
     }
 
-    // =====================
-// ADD EXEMPLAIRES (physical copies)
-// Called after addBook() with the stock quantity
-// =====================
+    // Fonction d'ajout des examplaires
     public boolean addExemplaires(String isbn, int quantity) {
         // First get the book id from isbn
         String getIdQuery = "SELECT id_book FROM books WHERE isbn = ?";
@@ -297,7 +224,7 @@ public class bookdao {
 
         if (idBook == -1) return false;
 
-        // Insert one exemplaire per unit of stock
+        // Insertion des exemplaires par unité
         String insertQuery = """
             INSERT INTO exemplaire (code_barre, state, disponible, id_livre)
             VALUES (?, 'Excellent', TRUE, ?)
@@ -307,13 +234,13 @@ public class bookdao {
              PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
 
             for (int i = 1; i <= quantity; i++) {
-                // Generate unique barcode: ISBN + sequence number
                 String codeBarre = isbn + "-" + String.format("%03d", i);
                 stmt.setString(1, codeBarre);
                 stmt.setInt(2, idBook);
                 stmt.addBatch();
             }
             stmt.executeBatch();
+            DatabaseConnection.closeConnection();
             return true;
 
         } catch (SQLException e) {
@@ -321,6 +248,7 @@ public class bookdao {
             return false;
         }
     }
+    // Fontion qui totalise le nombre de livres
     public int countBooks() {
         String query = "SELECT COUNT(*) as total FROM books";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -328,6 +256,7 @@ public class bookdao {
              ResultSet rs = stmt.executeQuery(query)) {
 
             if (rs.next()) return rs.getInt("total");
+            DatabaseConnection.closeConnection();
             return 0;
 
         } catch (SQLException e) {
@@ -335,7 +264,7 @@ public class bookdao {
             return 0;
         }
     }
-    // Count available exemplaires
+    // Fonction qui totalise le nombre de livres disponibles
     public int countAvailableBooks() {
         String query = "SELECT COUNT(*) as total FROM exemplaire WHERE disponible = true";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -351,7 +280,7 @@ public class bookdao {
         }
     }
 
-    // Most borrowed books
+    // Les livres les plus empruntés
     public List<String[]> getPopularBooks() {
         List<String[]> books = new ArrayList<>();
         String query = """
@@ -367,8 +296,6 @@ public class bookdao {
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
-
-            // Get max count for progress bar ratio
             List<int[]> raw = new ArrayList<>();
             int maxCount    = 1;
 
@@ -379,15 +306,15 @@ public class bookdao {
                 books.add(new String[]{rs.getString("title"), String.valueOf(count)});
             }
 
-            // Convert count to progress ratio
             int finalMax = maxCount;
             books.replaceAll(b -> new String[]{
                     b[0],
                     String.valueOf(Double.parseDouble(b[1]) / finalMax)
             });
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return books;
     }

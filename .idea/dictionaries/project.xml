@@ -2,7 +2,44 @@
   <dictionary name="project">
     <words>
       <w>Attendus</w>
+      <w>Choix</w>
+      <w>Fonction</w>
+      <w>Fontion</w>
+      <w>ajoute</w>
+      <w>booleen</w>
+      <w>bord</w>
+      <w>chargement</w>
+      <w>d'ajout</w>
+      <w>d'ajouter</w>
+      <w>d'avoir</w>
+      <w>d'obtenir</w>
+      <w>d'obtenr</w>
+      <w>d'un</w>
+      <w>disponibles</w>
+      <w>empruntés</w>
+      <w>examplaires</w>
+      <w>icones</w>
       <w>l'email</w>
+      <w>l'etudiant</w>
+      <w>l'info</w>
+      <w>l'isbn</w>
+      <w>listage</w>
+      <w>liste</w>
+      <w>livres</w>
+      <w>loadlogo</w>
+      <w>lorsque</w>
+      <w>newbookcontroller</w>
+      <w>nombre</w>
+      <w>notre</w>
+      <w>partir</w>
+      <w>permet</w>
+      <w>preté</w>
+      <w>prêts</w>
+      <w>qu'exemplaire</w>
+      <w>rayons</w>
+      <w>semaine</w>
+      <w>supprimer</w>
+      <w>totalise</w>
     </words>
   </dictionary>
 </component>

@@ -9,10 +9,7 @@ import java.util.List;
 
 
 public class shelfdao {
-    // =====================
-    // GET ALL SHELVES
-    // Used by ShelvesController.seedShelves() replacement
-    // =====================
+    // Methode qui permet d'obtenir la liste des rayons disponibles
     public List<Shelf> getAllShelves() {
         List<Shelf> shelves = new ArrayList<>();
         String query = """
@@ -34,21 +31,19 @@ public class shelfdao {
                         rs.getString("name"),
                         rs.getInt("books_count"),
                         rs.getInt("max_capacity"),
-                        0,                            // shelvesCount not in DB yet
+                        0,
                         rs.getString("description") != null ? rs.getString("description") : ""
                 ));
             }
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return shelves;
     }
 
-    // =====================
-    // ADD SHELF
-    // Used by ShelvesController.showAddShelfDialog()
-    // =====================
+    // Methode qui permet d'ajouter un rayon
     public boolean addShelf(String name, String colorCode, String description) {
         String query = """
                 INSERT INTO shelves (name, color_code, description)
@@ -61,62 +56,17 @@ public class shelfdao {
             stmt.setString(1, name);
             stmt.setString(2, colorCode);
             stmt.setString(3, description);
+            DatabaseConnection.closeConnection();
             return stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
 
-    // =====================
-    // DELETE SHELF
-    // Used by delete action on shelf card
-    // =====================
-    public boolean deleteShelf(String name) {
-        String query = "DELETE FROM shelves WHERE name = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setString(1, name);
-            return stmt.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // =====================
-    // UPDATE SHELF
-    // Used if user edits a shelf
-    // =====================
-    public boolean updateShelf(String oldName, String newName, String description) {
-        String query = """
-                UPDATE shelves
-                SET name = ?, description = ?
-                WHERE name = ?
-                """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setString(1, newName);
-            stmt.setString(2, description);
-            stmt.setString(3, oldName);
-            return stmt.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // =====================
-    // GET SHELF NAMES (for ComboBox)
-    // Used by BooksController and NewBookController dropdowns
-    // =====================
+    // Methode qui permet d'obtenir le nom des rayons pour l'affichage dans le combo box
     public List<String> getAllShelfNames() {
         List<String> names = new ArrayList<>();
         String query = "SELECT name FROM shelves ORDER BY name";
@@ -130,15 +80,12 @@ public class shelfdao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            System.out.println(e.getMessage());
+                    }
         return names;
-    }
+   }
 
-    // =====================
-    // CHECK IF SHELF EXISTS
-    // Used before adding a new shelf to avoid duplicates
-    // =====================
+    // Methode qui permet de verifier l'existence d'un rayon
     public boolean shelfExists(String name) {
         String query = "SELECT id_shelf FROM shelves WHERE name = ?";
 
@@ -150,14 +97,11 @@ public class shelfdao {
             return rs.next();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
-    // =====================
-// GET SHELF ID BY NAME
-// Used by NewBookController to get id_shelf from shelf name
-// =====================
+    // Methode qui permet d'obtenir l'id du rayon à partir du rayon
     public int getShelfIdByName(String name) {
         String query = "SELECT id_shelf FROM shelves WHERE name = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -171,7 +115,7 @@ public class shelfdao {
             return -1;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return -1;
         }
     }

@@ -15,10 +15,11 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Start with the Login view as the first screen
+        // Chargement du login en premier
         FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/com/librasys/LoginView.fxml"));
-        Parent root = loader.load(); // On charge l'élément parent dans le fichier fxml (le conteneur et ses contenus)
-        Scene scene = new Scene(root, 800, 600); // On lui monte sur scene pour performer
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(MainApplication.class.getResource("/com/librasys/styleSheet/style.css").toExternalForm());
 
         stage.setTitle("LibraSys");
