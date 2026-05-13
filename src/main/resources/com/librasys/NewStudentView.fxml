@@ -44,12 +44,12 @@
 
             <VBox spacing="5">
                 <Label text="Email" styleClass="form-label"/>
-                <TextField fx:id="emailField" promptText="adresse@mail.tn" styleClass="form-input"/>
+                <TextField fx:id="emailField" promptText="adresse@ept.ucar.tn" styleClass="form-input"/>
             </VBox>
 
             <VBox spacing="5">
                 <Label text="Matricule" styleClass="form-label"/>
-                <TextField fx:id="matriculeField" promptText="2026-XXX-0001" styleClass="form-input"/>
+                <TextField fx:id="matriculeField" promptText="2X00YZ" styleClass="form-input"/>
             </VBox>
 
             <HBox spacing="10">
@@ -79,14 +79,14 @@
                 <padding>
                     <Insets top="16" right="16" bottom="16" left="16"/>
                 </padding>
-                <StackPane alignment="CENTER">
+                <StackPane>
                     <Circle radius="46" styleClass="detail-avatar" fx:id="previewAvatar" />
                 </StackPane>
                 <VBox spacing="2" alignment="CENTER">
                     <Label fx:id="detailNameLabel" text="Nom complet" styleClass="detail-name"/>
                     <Label fx:id="detailSectionLabel" text="Classe - Niveau" styleClass="detail-sub"/>
-                    <Label fx:id="detailMatriculeLabel" text="2026-XXX-0001" styleClass="detail-sub"/>
-                    <Label fx:id="detailLoanChipLabel" text="0 prêts" styleClass="loan-chip loan-chip-active"/>
+                    <Label fx:id="detailMatriculeLabel" text="2500XY" styleClass="detail-sub"/>
+                    <Label fx:id="detailLoanChipLabel" text="0 prêts" styleClass="loan-chip"/>
                 </VBox>
                 <VBox spacing="10" styleClass="digital-card">
                     <HBox alignment="CENTER_LEFT">

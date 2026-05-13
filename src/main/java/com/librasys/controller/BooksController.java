@@ -187,7 +187,7 @@ public class BooksController {
                 Label delete = new Label("🗑");
                 delete.getStyleClass().add("action-icon");
                 delete.setOnMouseClicked(evt -> {
-                    // ask for session password (styled dialog)
+                    // Pour confirmer la suppréssion du livre, on doit demander la confirmation du mdp de la session en cours
                     javafx.scene.control.Dialog<String> dialog = new javafx.scene.control.Dialog<>();
                     dialog.setTitle("Confirmer la suppression");
                     dialog.setHeaderText("Entrez votre mot de passe pour confirmer");
@@ -197,11 +197,11 @@ public class BooksController {
                     content.setPadding(new javafx.geometry.Insets(12));
                     dialog.getDialogPane().setContent(content);
 
-                    // Apply app stylesheet to dialog so it looks consistent
+
                     dialog.getDialogPane().getStylesheets().add(getClass().getResource("/com/librasys/styleSheet/style.css").toExternalForm());
                     dialog.getDialogPane().getStyleClass().add("password-dialog");
 
-                    // Add graphic icon
+
                     javafx.scene.control.Label icon = new javafx.scene.control.Label("🔒");
                     icon.getStyleClass().add("dialog-icon");
                     dialog.getDialogPane().setGraphic(icon);
@@ -212,11 +212,10 @@ public class BooksController {
                     if (result.isPresent()) {
                         String entered = result.get();
                         com.librasys.dao.logindao loginDAO = new com.librasys.dao.logindao();
-                        String expected = loginDAO.getpassword(com.librasys.util.SessionManager.getUsername());
-                        if (expected != null && expected.equals(entered)) {
+                        String expected = loginDAO.getpassword(com.librasys.util.SessionManager.getUsername()); // le mdp de la session actuelle
+                        if (expected != null && expected.equals(entered)) { // comparaison
                             boolean deleted = bookDAO.deleteBook(item);
                             if (deleted) {
-                                // refresh
                                 loadFromDatabase();
                                 applyFilters();
                                 javafx.scene.control.Alert ok = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
@@ -280,7 +279,7 @@ public class BooksController {
                     || book.getIsbn().toLowerCase(Locale.ROOT).contains(query);
             return matchesRayon && matchesQuery;
         });
-
+        // L'opérateur -> signifie que pour chaque param- on applique la fonction { }
         ObservableList<Book> sorted = FXCollections.observableArrayList(filteredBooks);
         sorted.sort(Comparator.comparing(Book::getTitle));
         booksTable.setItems(sorted);
@@ -305,6 +304,10 @@ public class BooksController {
         detailCodeLabel.setText(book.getInternalCode());
         detailWearProgress.setProgress(book.getWearRate());
         detailWearLabel.setText(String.format("Usure: %d%%", Math.round(book.getWearRate() * 100)));
+
+
+        // Dans l'amélioration future du projet, on ajoutera la photo de couverture du livre;
+        //Pour le moment, on laisse l'espace là ( le schéma de la base doit être modifié)
 
         URL imageUrl = getClass().getResource("/com/librasys/images/" + book.getCoverImageFile());
         if (imageUrl != null) {
@@ -440,14 +443,6 @@ public class BooksController {
         books.clear();
         rayons.addAll(bookDAO.getRayonsFromShelves());
         books.addAll(bookDAO.getAllBooks());
-    }
-
-    public void setSelectedRayon(String rayonName) {
-        this.selectedRayon = rayonName == null ? "Tous" : rayonName;
-        buildRayonPills();
-        buildRayonCards();
-        highlightSelectedRayonCard();
-        applyFilters();
     }
 
 

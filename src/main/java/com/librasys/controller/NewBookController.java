@@ -36,7 +36,7 @@ public class NewBookController {
         // Categories are fixed
         categoryCombo.setItems(FXCollections.observableArrayList(
                 "Informatique", "Mathématiques", "Physique",
-                "Littérature", "Économie", "Droit"
+                "Littérature", "Économie"
         ));
 
         // Rayons come from the database

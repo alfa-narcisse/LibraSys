@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,9 +22,12 @@ import java.time.LocalDate;
 
 public class NewStudentController {
 
+    @FXML
+    public VBox studentDetailPane;
+
     @FXML private VBox newStudentRoot;
 
-    // ── Form fields ──
+    // les champs à remplir
     @FXML private TextField fullNameField;
     @FXML private TextField emailField;
     @FXML private TextField matriculeField;
@@ -39,13 +43,13 @@ public class NewStudentController {
     @FXML private javafx.scene.control.Label detailLoanChipLabel;
     @FXML private javafx.scene.control.Label cardNameLabel;
     @FXML private javafx.scene.control.Label cardMatriculeLabel;
-    @FXML private javafx.scene.shape.Circle previewAvatar;
 
+    // Pour la connexion avec la base de données pour enregistrer les formulaires
     private final studentdao studentDAO = new studentdao();
 
     @FXML
     private void initialize() {
-        feedbackLabel.setText("");
+        feedbackLabel.setText("");  // Un id permettant d'afficher les erreurs occurents
 
         classNameCombo.setItems(FXCollections.observableArrayList(
                 "TC-1", "TC-2",
@@ -61,22 +65,23 @@ public class NewStudentController {
         int currentYear = LocalDate.now().getYear();
         if (promotionCombo != null) {
             javafx.collections.ObservableList<String> promos = FXCollections.observableArrayList();
-            for (int y = 2015; y <= 2040; y++) promos.add(String.valueOf(y));
+            for (int y = 2020; y <= 2035; y++) promos.add(String.valueOf(y));
             promotionCombo.setItems(promos);
-            // select current year if in range
+
+            // Mettre l'année actuelle comme valeur par défaut
             String cur = String.valueOf(currentYear);
             if (promos.contains(cur)) promotionCombo.getSelectionModel().select(cur);
         }
 
-        // Initialize preview with defaults (Students view style)
+        // On ajoute des valeurs par défaut et on modifie le contenu dès que le personnel saisie l'information
         if (detailNameLabel != null) detailNameLabel.setText("Nom complet");
-        if (detailMatriculeLabel != null) detailMatriculeLabel.setText("2026-XXX-0001");
+        if (detailMatriculeLabel != null) detailMatriculeLabel.setText("2500XY");
         if (detailSectionLabel != null) detailSectionLabel.setText("SISY");
         if (detailLoanChipLabel != null) detailLoanChipLabel.setText("0 prêts");
         if (cardNameLabel != null) cardNameLabel.setText("Nom complet");
-        if (cardMatriculeLabel != null) cardMatriculeLabel.setText("2026-XXX-0001");
+        if (cardMatriculeLabel != null) cardMatriculeLabel.setText("2500XY");
 
-        // Live update listeners to generate the student card in real-time
+        // Génération  à temps réel de la carte de bibliothèque:
         if (fullNameField != null) {
             fullNameField.textProperty().addListener((obs, oldV, newV) -> {
                 String v = (newV == null || newV.isBlank()) ? "Nom complet" : newV;
@@ -86,7 +91,7 @@ public class NewStudentController {
         }
         if (matriculeField != null) {
             matriculeField.textProperty().addListener((obs, oldV, newV) -> {
-                String v = (newV == null || newV.isBlank()) ? "2026-XXX-0001" : newV;
+                String v = (newV == null || newV.isBlank()) ? "2500XY" : newV;
                 if (detailMatriculeLabel != null) detailMatriculeLabel.setText(v);
                 if (cardMatriculeLabel != null) cardMatriculeLabel.setText(v);
             });
@@ -114,16 +119,6 @@ public class NewStudentController {
         }
     }
 
-    private String extractInitials(String fullName) {
-        if (fullName == null || fullName.isBlank()) return "NB";
-        String[] parts = fullName.trim().split("\\s+");
-        if (parts.length == 1) return parts[0].substring(0, Math.min(2, parts[0].length())).toUpperCase();
-        String first = parts[0].substring(0,1);
-        String last = parts[parts.length-1].substring(0,1);
-        return (first + last).toUpperCase();
-    }
-
-
     @FXML
     private void onBackToList() {
         navigateToStudentsList();
@@ -134,10 +129,12 @@ public class NewStudentController {
         navigateToStudentsList();
     }
 
+
+    // Si on clique sur le bouton ajouter l'étudiant
     @FXML
     private void onSaveStudent() {
 
-        // 1ere etape : validation des champs de remplissage
+        // 1ere etape : validation des champs de remplissage  ( on utilise la méthode déjà créer):
         if (!validateFields()) return;
 
         String fullName  = fullNameField.getText().trim();
@@ -177,9 +174,10 @@ public class NewStudentController {
         navigateToStudentsList();
     }
 
-    // =====================
-    // VALIDATION
-    // =====================
+    // ===============================================================================
+    // VALIDATION   du cintenu de chaque formulaire
+    // ===============================================================================
+
     private boolean validateFields() {
         if (fullNameField.getText() == null || fullNameField.getText().isBlank()) {
             feedbackLabel.setText("Le nom complet est obligatoire.");

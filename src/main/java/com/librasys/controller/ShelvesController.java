@@ -120,7 +120,7 @@ public class  ShelvesController {
                 return;
             }
 
-            // Check for duplicates before inserting
+            // Le nom du rayon existe déjà?
             String fullName = name + " - " + category;
             if (shelfDAO.shelfExists(fullName)) {
                 // show error — shelf already exists

@@ -426,7 +426,7 @@ public class LoansController {
     private void validateReturn() {
         String codeBarre = scanBookField.getText().trim();
         if (codeBarre.isEmpty()) {
-            showAlert("Erreur", "Veuillez scanner ou saisir le code barre de l'exemplaire.");
+            showAlert("Erreur", "saisir le code ISBN de l'exemplaire.");
             return;
         }
         boolean isDamaged = damagedCheckBox.isSelected();

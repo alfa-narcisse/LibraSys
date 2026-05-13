@@ -120,20 +120,21 @@ public class DashboardController {
     }
 
 
-    // =====================
-    // SUMMARY CARDS FROM DB
-    // =====================
+    // ===================================================================
+    // Espace de gestion des barres horizontales des cartes d'informations
+    // ===================================================================
     private void loadSummaryCards() {
-        // Header with logged-in username and today's date
+
+        // Date du jour et utilisateur inscrit
         String username = SessionManager.getUsername();
         String today    = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRENCH));
         if (headerLabel != null) {
             headerLabel.setText("Bonjour, " + username + " — " + today);
         }
 
-        // Total books and available
-        int totalBooks     = bookDAO.countBooks();
-        int availableBooks = bookDAO.countAvailableBooks();
+        // Livre disponible
+        int totalBooks     = bookDAO.countBooks(); // Le livre (pas avec ses exemplaires)
+        int availableBooks = bookDAO.countAvailableBooks(); // les livres avec les exemplaires
         if (totalBooksLabel     != null) totalBooksLabel.setText(String.valueOf(totalBooks));
         if (availableBooksLabel != null) availableBooksLabel.setText(availableBooks + " disponibles");
 
@@ -150,24 +151,26 @@ public class DashboardController {
         int expectedToday  = stats[2];
         int criticalDelays = stats[4];
 
-        if (activeLoansLabel    != null) activeLoansLabel.setText(activeLoans + " prets actifs");
+        if (activeLoansLabel    != null) activeLoansLabel.setText(activeLoans + " prêts actifs");
         if (criticalDelaysLabel != null) criticalDelaysLabel.setText(criticalDelays + " retards");
         if (todayLoansLabel     != null) todayLoansLabel.setText(String.valueOf(newToday));
         if (todayReturnsLabel   != null) todayReturnsLabel.setText(expectedToday + " retours");
         if (totalDelaysLabel    != null) totalDelaysLabel.setText(String.valueOf(criticalDelays));
 
-        // Color for critical delays
+        // On colore de plus en plus red lorsqu'il y a beaucoup de retard
         if (criticalDelaysLabel != null) {
             if (criticalDelays > 5)     criticalDelaysLabel.setStyle("-fx-text-fill: #e74c3c;");
             else if (criticalDelays > 0) criticalDelaysLabel.setStyle("-fx-text-fill: #f39c12;");
             else                         criticalDelaysLabel.setStyle("-fx-text-fill: #2ecc71;");
         }
 
-        // Popular books
+        // ici, on affiche le livre le plus utilisé (emprunté)
         loadPopularBooks();
     }
     private void loadPopularBooks() {
         if (popularBooksContainer == null) return;
+
+        // basé sur le livre ayant le maximum de nombre d'emprunt
 
         List<String[]> popular = bookDAO.getPopularBooks();
         popularBooksContainer.getChildren().clear();
@@ -187,10 +190,12 @@ public class DashboardController {
             popularBooksContainer.getChildren().add(entry);
         }
     }
-    // =====================
-    // CHART FROM DB
-    // =====================
+    /**
+     * Pour gérer l'affichage du graphe de statistique des activités d'emprunts
+     * */
     private void initChart() {
+
+        // de la part de la base de données
         List<int[]> monthlyStats = loanDAO.getMonthlyStats();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -200,7 +205,7 @@ public class DashboardController {
                 "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"};
 
         if (monthlyStats.isEmpty()) {
-            // Fallback — show empty chart
+            // S'il n'y a pas d'emprunt
             for (String month : monthNames) {
                 series.getData().add(new XYChart.Data<>(month, 0));
             }
@@ -219,7 +224,7 @@ public class DashboardController {
     }
 
     // =====================
-    // RECENT LOANS TABLE FROM DB
+    // table d'historique
     // =====================
     private void initTable() {
         studentColumn.setCellValueFactory(data -> data.getValue().studentProperty());
@@ -249,8 +254,6 @@ public class DashboardController {
                 setGraphic(wrapper);
             }
         });
-
-        // Load recent loans from DB
         loadRecentLoans();
     }
 
@@ -259,10 +262,6 @@ public class DashboardController {
         recentLoansTable.getItems().clear();
         recentLoansTable.getItems().addAll(recentLoans);
     }
-
-
-
-
 
     @FXML
     private void showDashboard() {
@@ -314,11 +313,13 @@ public class DashboardController {
         activeButton.getStyleClass().add("menu-btn-selected");
     }
 
+
+    // Une classe pour définir un objet emprunt
     public static class LoanRow {
-        private final StringProperty student;
-        private final StringProperty book;
-        private final StringProperty returnDate;
-        private final StringProperty status;
+        private final StringProperty student;  // l'emprunteur
+        private final StringProperty book;  // le livre
+        private final StringProperty returnDate; //date prevue de retour du livre
+        private final StringProperty status; // Etat de l'emprunt (en cours ou bien déjà retourné)
 
         public LoanRow(String student, String book, String returnDate, String status) {
             this.student = new SimpleStringProperty(student);
